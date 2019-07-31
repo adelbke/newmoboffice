@@ -1,0 +1,29 @@
+>>> $item = new User();
+=> App\User {#2990}
+>>> $item->name="Adel";
+=> "Adel"
+>>> $item->email="test@email.com";
+=> "test@email.com"
+>>> $item->password=Hash::make('testpass');
+=> "$2y$10$0/MC7MvSdEM21jpMrbgEQe8T2C/SlgVjylmx2tyggK6NyBBmLnNFi"
+>>> $item->save();
+=> true
+>>> $user->save();
+=> true
+>>> User::all();
+=> Illuminate\Database\Eloquent\Collection {#2981
+     all: [
+       App\User {#2989
+         id: "1",
+         name: "Adel",
+         email: "test@email.com",
+         email_verified_at: null,
+         created_at: "2019-05-29 15:09:17",
+         updated_at: "2019-05-29 15:09:17",
+       },
+     ],
+   }
+>>> $thing = new Admin();
+=> App\Admin {#2983}
+>>> $thing->user_id = 1;
+=> 1

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Meuble Accueil</title>
+    <link rel="stylesheet" href="Hover-master/css/hover-min.css">
+    <link rel="stylesheet" href="bootstrap-4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.9.0-web/css/all.css">
+    <link rel="stylesheet" href="aos-master/dist/aos.css">
+</head>
+<body>
+    <style>
+        textarea:focus,
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="datetime"]:focus,
+        input[type="datetime-local"]:focus,
+        input[type="date"]:focus,
+        input[type="month"]:focus,
+        input[type="time"]:focus,
+        input[type="week"]:focus,
+        input[type="number"]:focus,
+        input[type="email"]:focus,
+        input[type="url"]:focus,
+        input[type="search"]:focus,
+        input[type="tel"]:focus,
+        input[type="color"]:focus,
+        button[type="button"]:focus,
+        .uneditable-input:focus {   
+            border-color: #eee;
+            box-shadow:none;
+            outline: none;
+        }
+        a{
+            color: white;
+        }
+        a:hover{
+            color: white;
+        }
+    </style>
+
+    <header class="container-fluid bg-light">
+        <div class="row justify-content-center">
+            <a href="" class="btn-link text-dark mx-2 text-center">test</a>
+            <a href="" class="btn-link text-dark mx-2 text-center">test</a>
+            <a href="" class="btn-link text-dark mx-2 text-center">test</a>
+        </div>
+
+    </header>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand" href="#">New Meuble</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ml-2 my-2" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item font-weight-bold">
+                    <a class="nav-link text-dark hvr-grow" href="#">Produits</a>
+                </li>
+                <li class="nav-item font-weight-bold">
+                    <a class="nav-link text-dark hvr-grow" href="#">Produits</a>
+                </li>
+                <li class="nav-item font-weight-bold">
+                    <a class="nav-link text-dark hvr-grow" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown font-weight-bold" style="z-index: 2">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="#">Action 1</a>
+                        <a class="dropdown-item" href="#">Action 2</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <!-- search-bar -->
+    <div class="container-fluid mb-4 mt-2">
+        <div class="input-group">
+            <div class="input-group-append">
+                <button class="btn" type="button" style="border-radius: 1rem 0rem 0rem 1rem;background-color: #eee">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <input type="text" class="form-control border-0" style="border-radius: 0rem 1rem 1rem 0rem;background-color: #eee;outline-width: 0;" placeholder="Recherche">
+            
+        </div>
+    </div>
+    <!-- Heading -->
+    <div class="container mt-3 text-center">
+        <h2 class="display-4">Slogan</h2>
+    </div>
+    
+    <!-- Image Slider -->
+    <div class="container my-5 bg-white">
+        <div id="main" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#main" data-slide-to="0" class="active"></li>
+                <li data-target="#main" data-slide-to="1"></li>
+                <li data-target="#main" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox" style=" width:100%; height: 500px !important;">
+                <div class="carousel-item active text-center" style="height:500px;" >
+                    <img src="images/produit2.jpg" class="h-100 img-fluid mx-auto" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block text-white"style="mix-blend-mode: difference;">
+                        <h3 class="hvr-grow d-block">Title 1</h3>
+                        <p>Description</p>
+                    </div>
+                </div>
+                <div class="carousel-item text-center" style="height:500px;" >
+                    <img src="images/produit3.jpg" class="h-100 img-fluid mx-auto" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block text-white"style="mix-blend-mode: difference;">
+                        <h3 class="hvr-grow d-block">Title</h3>
+                        <p>Description</p>
+                    </div>
+                </div>
+                <div class="carousel-item text-center" style="height:500px;" >
+                    <img src="images/produit1.jpg" class="h-100 img-fluid mx-auto" alt="Third slide">
+                    <div class="carousel-caption d-none d-md-block text-white"style="mix-blend-mode: difference;">
+                        <h3 class="hvr-grow d-block">Title</h3>
+                        <p>Description</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#main" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#main" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Products Selection -->
+    <div class="container-fluid px-5 my-4">
+        <div class="row justify-content-center">
+            <!-- first -->
+            <div class="col-md-3 col-6 rounded p-2 hvr-grow" style="height: 350px">
+                <a href="" class="h-50">
+                    <img src="images/drawers.jpg" class="img-fluid img-product mb-2 rounded  d-block" style="height:210px;width:210px" alt="">
+                </a>
+                
+                <a href="" class="text-dark font-weight-bold d-block btn-link">titre produit court</a>
+                <p class="text-left my-0">bréve descrption</p>
+                <h4 class="text-left">11000 Da</h4 class="text-left">
+                <p class="text-left" style="color: rgb(255, 210, 0);">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </p>
+                <p class="text-left">
+                    <small class="text-muted text-left">Petite Note</small>
+                </p>
+            </div>
+
+            <!-- Second -->
+            <div class="col-md-3 col-6 rounded p-2 hvr-grow" style="height: 350px">
+                <a href="">
+                    <img src="images/hair-salon-couch.jpg" class="img-fluid img-product mb-2 w-auto rounded  d-block" style="height:210px;width:210px" alt="">
+                </a>
+                
+                <a href="" class="text-dark font-weight-bold btn-link d-block">titre produit court</a>
+                <p class="text-left my-0">bréve descrption</p>
+                <h4 class="text-left">11000 Da</h4 class="text-left">
+                <p class="text-left" style="color: rgb(255, 210, 0);">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </p>
+                <p class="text-left">
+                    <small class="text-muted text-left">Petite Note</small>
+                </p>
+            </div>
+
+            <!-- Third -->
+            <div class="col-md-3 col-6 rounded p-2 hvr-grow" style="height: 350px">
+                <a href="">
+                    <img src="images/glass-pane.jpg" class="img-fluid img-product mb-2 w-auto rounded  d-block" style="height:210px;width:210px" alt="">
+                </a>
+                
+                <a href="" class="text-dark font-weight-bold btn-link d-block">titre produit court</a>
+                <p class="text-left my-0">bréve descrption</p>
+                <h4 class="text-left">11000 Da</h4 class="text-left">
+                <p class="text-left" style="color: rgb(255, 210, 0);">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </p>
+                <p class="text-left">
+                    <small class="text-muted text-left">Petite Note</small>
+                </p>
+            </div>
+
+            <!-- Fourth -->
+            <div class="col-md-3 col-6 rounded p-2 hvr-grow" style="height: 350px">
+                <a href="">
+                    <img src="images/couch.jpeg" class="img-fluid img-product mb-2 w-auto rounded  d-block" style="height:210px;width:210px" alt="">
+                </a>
+                
+                <a href="" class="text-dark font-weight-bold btn-link d-block">titre produit court</a>
+                <p class="text-left my-0">bréve descrption</p>
+                <h4 class="text-left">11000 Da</h4 class="text-left">
+                <p class="text-left" style="color: rgb(255, 210, 0);">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </p>
+                <p class="text-left">
+                    <small class="text-muted text-left">Petite Note</small>
+                </p>
+            </div>
+           
+        </div>
+    </div>
+
+    <!-- Products Link -->
+    <div class="container text-center mb-4">
+            <a name="" id="" class="btn btn-light border border-primary hvr-back-pulse my-4 hvr-icon-forward" href="#" role="button">
+                Voir tous les Produits
+                <i class="fas fa-chevron-right hvr-icon"></i>
+            </a>
+    </div>
+
+    <!-- Collections -->
+    <div class="container-fluid px-5 mb-5">
+        <div class="row my-3">
+            <div class="col-md-6 col-6 text-center hvr-grow d-block" >
+                <h4 class="mb-4">Titre Collection</h4>
+                <div class="mb-5" style="height:400px">
+                    <img src="images/furniture-slide.jpg" alt="" class="img-fluid mb-2 w-100">
+                </div>
+                <a href="" class="">Description</a>
+                <br>
+                <a name="" id="" class="btn btn-light border border-primary hvr-back-pulse my-4 hvr-icon-forward" href="#" role="button">
+                    Voir la Collection
+                    <i class="fas fa-chevron-right hvr-icon"></i>
+                </a>
+            </div>
+            <div class="col-md-6 col-6 text-center hvr-grow d-block" >
+                <h4 class="mb-4">Titre Collection</h4>
+                <div class="mb-5" style="height:400px">
+                    <img src="images/furniture-slide1.png" alt="" class="img-fluid mb-2 w-100">
+                </div>
+                <a href="" class="">Description</a>
+                <br>
+                <a name="" id="" class="btn btn-light border border-primary hvr-back-pulse my-4 hvr-icon-forward" href="#" role="button">
+                    Voir la Collection
+                    <i class="fas fa-chevron-right hvr-icon"></i>
+                </a>
+            </div>
+            
+        </div>
+        <hr>
+        <div class="row mt-5 mb-3">
+            <div class="col-md-6 col-6 text-center hvr-grow d-block" >
+                <h4 class="mb-4">Titre Collection</h4>
+                <div class="mb-5" style="height:400px">
+                    <img src="images/furniture-slide.jpg" alt="" class="img-fluid  mb-2 w-100">
+                </div>
+
+                <a href="" class="">Description</a>
+                <br>
+                <a name="" id="" class="btn btn-light border border-primary hvr-back-pulse my-4 hvr-icon-forward" href="#" role="button">
+                    Voir la Collection
+                    <i class="fas fa-chevron-right hvr-icon"></i>
+                </a>
+            </div>
+            <div class="col-md-6 col-6 text-center hvr-grow d-block" >
+                <h4 class="mb-4">Titre Collection</h4>
+                <div class="mb-5" style="height:400px">
+                    <img src="images/furniture-slide1.png" alt="" class="img-fluid mb-2 w-100">
+                </div>
+                <a href="" class="">Description</a>
+                <br>
+                <a name="" id="" class="btn btn-light border border-primary hvr-back-pulse my-4 hvr-icon-forward" href="#" role="button">
+                    Voir la Collection
+                    <i class="fas fa-chevron-right hvr-icon"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-6 pr-2 pb-2">
+                <a href="" class="text-dark">
+                    <div class="card hvr-grow mb-4 border-secondary rounded-0">
+                        <img class="card-img-top" src="images/drawers.jpg" alt="">
+                        <div class="card-body border-top border-secondary">
+                            <h4 class="card-title font-weight-bold">Title</h4>
+                        </div>
+                    </div>
+                </a>
+                
+            </div>
+
+            <div class="col-md-3 col-6 pr-2 pb-2">
+                <div class="card hvr-grow mb-4 border-secondary rounded-0">
+                    <img class="card-img-top" src="images/drawers.jpg" alt="">
+                    <div class="card-body border-top border-secondary">
+                        <h4 class="card-title font-weight-bold">Title</h4>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-6 pr-2 pb-2">
+                <div class="card hvr-grow mb-4 border-secondary rounded-0">
+                    <img class="card-img-top" src="images/drawers.jpg" alt="">
+                    <div class="card-body border-top border-secondary">
+                        <h4 class="card-title font-weight-bold">Title</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-6 pr-2 pb-2">
+                <div class="card hvr-grow mb-4 border-secondary rounded-0">
+                    <img class="card-img-top" src="images/drawers.jpg" alt="">
+                    <div class="card-body border-top border-secondary">
+                        <h4 class="card-title font-weight-bold">Title</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 pr-2 pb-2">
+                    <div class="card hvr-grow mb-4 border-secondary rounded-0">
+                      <img class="card-img-top" src="images/drawers.jpg" alt="">
+                      <div class="card-body border-top border-secondary">
+                        <h4 class="card-title font-weight-bold">Title</h4>
+                      </div>
+                    </div>
+                </div>
+    
+                <div class="col-md-3 col-6 pr-2 pb-2">
+                    <div class="card hvr-grow mb-4 border-secondary rounded-0">
+                        <img class="card-img-top" src="images/drawers.jpg" alt="">
+                        <div class="card-body border-top border-secondary">
+                            <h4 class="card-title font-weight-bold">Title</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6 pr-2 pb-2">
+                    <div class="card hvr-grow mb-4 border-secondary rounded-0">
+                        <img class="card-img-top" src="images/drawers.jpg" alt="">
+                        <div class="card-body border-top border-secondary">
+                            <h4 class="card-title font-weight-bold">Title</h4>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-md-3 col-6 pr-2 pb-2">
+                    <div class="card hvr-grow mb-4 border-secondary rounded-0">
+                        <img class="card-img-top" src="images/drawers.jpg" alt="">
+                        <div class="card-body border-top border-secondary">
+                            <h4 class="card-title font-weight-bold">Title</h4>
+                        </div>
+                    </div>
+                </div>
+            
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="container-fluid bg-primary text-center p-5 text-light">
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <h5>
+                    <i class="fas fa-file fa-rotate-90"></i>
+                    Services
+                </h5>
+                <ul style="list-style:none">
+                    <li>Service de livraison</li>
+                    <li>Montage</li>
+                    <li>Garanties</li>
+                    <li>Conditions de retour</li>
+                    <li>Financement</li>
+
+                </ul>
+            </div>
+            <div class="col-md-4 col-12">
+                <h5>
+                    <i class="fas fa-comments"></i>
+                    Besoin d'aide
+                </h5>
+                <ul style="list-style:none">
+                    <li>Questions/Réponses</li>
+                    <li>Contact</li>
+                    <li>Suivi de commande</li>    
+                </ul>
+            </div>
+            <div class="col-md-4 col-12">
+                <h5>
+                    <i class="fas fa-credit-card"></i>
+                    New Meuble Family
+                </h5>
+                <ul style="list-style:none">
+                    <li>Devenir Membre</li>
+                    <li>Avantages</li>
+                    <li>Connexion</li>
+                    <li>Offres</li>    
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mx-5 mb-5 mt-3 text-center">
+            <div class="col-md-12 col-12">
+                <ul class="text-center list-inline" style="list-style: none;font-size: 1.25em">
+                    <li class="list-inline-item mx-3">
+                        <a href="" >
+                            <i class="fab fa-facebook"></i>
+                            Facebook
+                        </a>
+                    </li>
+                    <li class="list-inline-item mx-3">
+                        <a href="">
+                            <i class="fab fa-instagram"></i>
+                            Instagram
+                        </a>
+                    </li>
+                    <li class="list-inline-item mx-3">
+                        <a href="">
+                            <i class="fab fa-twitter"></i>
+                            twitter        
+                        </a>
+                    </li>
+                    <li class="list-inline-item mx-3">
+                        <a href="">
+                            <i class="fab fa-youtube"></i>
+                            Youtube        
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="row text-center mb-0">
+            <div class="col-md-12 col-12">
+                <p>© Inter IKEA Systems B.V 1999-2019</p>
+            </div>
+        </div>
+        
+    </footer>
+
+
+    <!-- JS -->
+    <script src="bootstrap-4.0.0/assets/js/vendor/jquery-slim.min.js"></script>
+    <script src="bootstrap-4.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="aos-master/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
