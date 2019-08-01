@@ -8,7 +8,7 @@ class Retailer extends Model
 {
     //
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function client(){
+        return $this->belongsTo(client::class);
     }
 }

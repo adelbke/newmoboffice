@@ -15,11 +15,11 @@ class CreateRetailersTable extends Migration
     {
         Schema::create('retailers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('client_id')->unique();
             $table->integer('registreCommerce')->unique();
             $table->boolean('valide')->default(false);
 
-            $table->index('user_id');
+            $table->index('client_id');
             $table->timestamps();
         });
     }

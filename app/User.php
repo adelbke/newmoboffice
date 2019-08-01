@@ -44,7 +44,4 @@ class User extends Authenticatable
         return $this->hasOne(client::class);
     }
 
-    public function Retailer(){
-        return $this->hasOne(client::class);
-    }
 }
