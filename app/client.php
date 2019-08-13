@@ -16,4 +16,8 @@ class client extends Model
     public function retailer(){
         return $this->hasOne(Retailer::class);
     }
+
+    public function client(){
+        return $this->hasOne(ClientPro::class);
+    }
 }

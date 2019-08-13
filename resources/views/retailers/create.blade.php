@@ -96,16 +96,7 @@
                 <h2 class="h2 text-white">Rejoignez une communauté productive avec une des meilleurs industries du Pays.</h2>
             </div>
             <div class="container-fluid bg-white">
-                <div class="row">
-                    <div class="col-12 col-md-6 col-lg-6 text-center my-3 border-right border-primary">
-                        <h5 class="h5 mt-3 mb-1">Devenez Partenaire! et déposez vôtre demande Maintenant !!</h4>
-                        <a name="" id="" class="btn btn-primary hvr-grow hvr-icon-forward mb-3" href="#" role="button">Demande de Partenariat</a>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6 text-left border-left text-center my-3 border-primary">
-                        <h5 class="h5 mt-3 mb-1">Déja Partenaire? Connectez-vous à votre compte !</h4>
-                        <a name="" id="" class="btn btn-primary hvr-grow hvr-icon-forward mb-3" href="/login" role="button">Portail de Connexion</a>
-                    </div>
-                </div>
+                {{-- Content --}}
             </div>
         </div>
         

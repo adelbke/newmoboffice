@@ -12,4 +12,8 @@ class RetailerController extends Controller
         
         return view('retailers.index');
     }
+
+    public function create(){
+        return view('retailers.create');
+    }
 }
