@@ -18,12 +18,11 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::get('/products/{product}','ProductController@show')->name('products.show');
 Route::get('/retailers','RetailerController@index')->name('retailers.index');
+Route::get('/retailers/create','RetailerController@create')->name('retailers.create');
+Route::post('/retailers','RetailerController@store')->name('retailers.store');
 
 Route::group(['middleware' => 'Admin'], function () {
-	// Route::resource('user', 'UserController', ['except' => ['show']]);
-	// Route::get('/user/{user}/edit','UserController@edit')->name('user.edit');
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
@@ -38,13 +37,19 @@ Route::group(['middleware' => 'Admin'], function () {
 	Route::delete('/products/{product}', 'ProductController@destroy')->name('products.destroy');
 	
 	Route::group(['middleware'=>'SuperAdmin'],function(){
-		Route::get('/user','UserController@index')->name('user.index');
-		Route::get('/user/create','UserController@create')->name('user.create');
-		Route::post('/user','UserController@store')->name('user.store');
-		Route::post('/user/{user}','UserController@update')->name('user.update');
-		Route::delete('/user/{user}','UserController@destroy')->name('user.destroy');
-		Route::get('user/{user}/edit','UserController@edit')->name('user.edit');
+		// Route::get('/user','UserController@index')->name('user.index');
+		// Route::get('/user/create','UserController@create')->name('user.create');
+		// Route::post('/user','UserController@store')->name('user.store');
+		// Route::post('/user/{user}','UserController@update')->name('user.update');
+		// Route::delete('/user/{user}','UserController@destroy')->name('user.destroy');
+		// Route::get('user/{user}/edit','UserController@edit')->name('user.edit');
+		Route::resource('user', 'UserController', ['except' => ['show']]);
+		Route::get('/user/{user}/edit','UserController@edit')->name('user.edit');
+	
 	});
 
 });
+
+Route::get('/products/{product}','ProductController@show')->name('products.show');
+
 

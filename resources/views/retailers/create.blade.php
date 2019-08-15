@@ -95,8 +95,100 @@
                 <h1 class="display-4 text-white">Devenez Partenaire !</h1>
                 <h2 class="h2 text-white">Rejoignez une communauté productive avec une des meilleurs industries du Pays.</h2>
             </div>
-            <div class="container-fluid bg-white">
-                {{-- Content --}}
+            <div class="container-fluid">
+                <div class="col-md-4 offset-md-4 col-12 bg-white p-4 rounded offset-0">
+                    
+                    @if (session('status'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('status') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>                        
+                    @endif
+
+                    {{-- Content --}}
+                    <form action="/retailers" method="post">
+                        @csrf
+                        {{-- Name input --}}
+                        <div class="form-group @error('name') has-danger @enderror ">
+                            <label class="form-control-label font-weight-bold" for="input-name">Nom</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="" aria-describedby="helpId" placeholder="Nom" required >
+                            @if ($errors->has('name'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+        
+                        {{-- Email input --}}
+                        <div class="form-group @error('email') has-danger @enderror ">
+                            <label class="form-control-label font-weight-bold" for="input-email">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror " name="email" id="input-email" aria-describedby="emailHelpId" placeholder="Email" required >
+        
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+        
+                        {{-- Password input --}}
+                        <div class="form-group @error('password') has-danger @enderror ">
+                            <label class="form-control-label font-weight-bold" for="input-password">Mot de passe</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror " name="password" id="input-password" placeholder="Mot de passe" required >
+        
+                            @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
+        
+                        </div>
+        
+                        {{-- Password Confirmation --}}
+                        <div class="form-group @error('password_confirmation') has-danger @enderror ">
+                            <label class="form-control-label font-weight-bold" for="input-password_confirmation">Confirmation de Mot de passe</label>
+                            <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" id="input-password-confirmation" placeholder="Confirmer le mot de passe" required >
+                            
+                            @if ($errors->has('password_confirmation'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                </span>
+                            @endif
+                            
+                        </div>
+
+                        {{-- Phone --}}
+                        <div class="form-group @error('phone') has-danger @enderror">
+                            <label class="form-control-label font-weight-bold" for="input-phone">Téléphone</label>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="input-phone" aria-describedby="" placeholder="Tél" required>
+                                @if ($errors->has('phone'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                        </div>
+
+                        {{-- numéro Registre Commerce --}}
+                        <div class="form-group">
+                            <label class="form-control-label font-weight-bold" for="input-registreCommerce">Numéro de Registre Commerce</label>
+                            <input type="text"
+                            class="form-control" name="registreCommerce" id="input-registreCommerce" aria-describedby="helpId" placeholder="Numéro de registre de commerce" required >
+                            @if ($errors->has('input-registreCommerce'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('input-registreCommerce') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        
+
+                        <button type="submit" class="btn btn-primary">Envoyer demande partenariat</button>
+                    </form>
+
+                </div>
+                
             </div>
         </div>
         

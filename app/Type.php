@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     //
-    public function user(){
-        
+    public function products(){
         return $this->hasMany(Product::class);
     }
 }

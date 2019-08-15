@@ -4,13 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Retailer extends Model
+class Order extends Model
 {
-    //
 
-    protected $guarded = [];
-
-    public function client(){
+    public function client (){
         return $this->belongsTo(client::class);
     }
+    //
 }
