@@ -182,9 +182,19 @@
                             @endif
                         </div>
 
-                        
+                        <div class="form-group">
+                            <label class="form-control-label font-weight-bold" for="input-Address">Addresse</label>
+                            <input type="text" class="form-control" name="Address" id="input-Address" aria-describedby="helpId" placeholder="Addresse">
+                            @if ($errors->has('input-Address'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('input-Address') }}</strong>
+                                </span>
+                            @endif
 
-                        <button type="submit" class="btn btn-primary">Envoyer demande partenariat</button>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Envoyer demande partenariat</button>
+                        </div>
                     </form>
 
                 </div>

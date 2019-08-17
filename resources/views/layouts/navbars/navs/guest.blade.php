@@ -54,6 +54,13 @@
     </div>
 </nav> --}}
 
+<style>
+nav.scroll {
+  background-color: #A1572F;
+  color: #eef;
+}
+</style>
+
 <nav class="navbar sticky-top navbar-expand-lg navbar-light @isset($transparent) @if($transparent == true) bg-transparent @else bg-white @endif  @endisset">
     <a class="navbar-brand" href="/">
         <img src="/asset/logo-small.png" alt="">
@@ -153,7 +160,8 @@
             </a>
             
             <a class="rounded-circle hvr-fade @isset($transparent) @if($transparent == true) text-light @else text-dark @endif  @endisset text-center align-self-center" style="width:2.7em;height:2.7em;cursor: pointer;">
-                <i class="fa fa-cart-plus align-middle pt-1" title="Consulter Panier" style="font-size:1.8em" aria-hidden="true"></i>
+                {{-- <i class="fa fa-cart-plus align-middle pt-1" title="Consulter Panier" style="font-size:1.8em" aria-hidden="true"></i> --}}
+                <i class="fa fa-shopping-bag align-middle pt-1 " title="Consulter Panier" style="font-size:1.8em" aria-hidden="true"></i>
             </a>
             
         </div>
@@ -181,3 +189,11 @@
     @endif
 @endisset
 
+
+@push('js')
+    <script>
+        window.onscroll = () => {
+            const nav = document.querySelector('#navbar');
+            if(this.scrollY <= 10) nav.className = ''; else nav.className = 'scroll';};
+    </script>
+@endpush

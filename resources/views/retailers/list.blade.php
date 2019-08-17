@@ -10,10 +10,10 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('Utilisateurs') }}</h3>
+                                <h3 class="mb-0">{{ __('Revendeurs') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Ajouter Utilisateur') }}</a>
+                                <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Ajouter un revendeur') }}</a>
                                 
                             </div>
                         </div>
@@ -37,12 +37,58 @@
                                     <th scope="col">{{ __('Nom') }}</th>
                                     <th scope="col">{{ __('Email') }}</th>
                                     <th scope="col">{{ __('Date Création') }}</th>
-                                    <th scope="col">{{__('Catégorie')}}</th>
+                                    <th scope="col">{{__('addresse')}}</th>
+                                    <th scope="col">{{__('Téléphone')}}</th>
+                                    <th scope="col">{{__('N° Registre De Commerce')}}</th>
+                                    <th scope="col">{{__('Validé')}}</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($retailers as $retailer)
+                                    <tr>
+                                        {{-- Name --}}
+                                        <td>
+                                            {{$retailer->name}}
+                                        </td>
+                                        {{-- Mail --}}
+                                        <td>
+                                            <a href="mailto:{{$retailer->email}}">{{$retailer->email}}</a>
+                                        </td>
+                                        {{-- Created_at --}}
+                                        <td>
+                                            {{ $retailer->created_at }}
+                                        </td>
+                                        {{-- Address --}}
+                                        <td>
+                                            @if ($retailer->address == '')
+                                                Null
+                                            @else
+                                                {{$retailer->address}}                                                
+                                            @endif
+                                        </td>
+                                        {{-- Phone --}}
+                                        <td>
+                                            {{$retailer->phone}}
+                                        </td>
+                                        {{-- Registre Commerce --}}
+                                        <td>
+                                            {{$retailer->registreCommerce}}
+                                        </td>
+                                        {{-- Validé --}}
+                                        @if ($retailer->valide)
+                                            <td class="text-success">
+                                                {{__('oui')}}
+                                            </td>
+                                            @else
+                                            <td class="text-danger">
+                                                {{__('non')}}
+                                            </td>
+                                        @endif
+
+                                    </tr>
+                                @endforeach
+                                {{-- @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->name }}</td>
                                         <td>
@@ -57,7 +103,7 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                     @if ($user->id != auth()->id())
-                                                        {{-- {{__($user->id)}} --}}
+                                                        {{__($user->id)}}
                                                         
                                                         <form action="{{ route('user.destroy', $user) }}" method="post">
                                                             @csrf
@@ -77,13 +123,13 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>
                     <div class="card-footer py-4">
                         <nav class="d-flex justify-content-end" aria-label="...">
-                            {{ $users->links() }}
+                            {{ $retailers->links() }}
                         </nav>
                     </div>
                 </div>
