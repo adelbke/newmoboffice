@@ -39,7 +39,7 @@ class RetailerController extends Controller
         // dd('Hello');
         $data = request()->validate([
             'name'=>['required','unique:retailers'],
-            'email'=>['required','email'],
+            'email'=>['required','email','unique:users,email'],
             'password'=>['required','confirmed'],
             'password_confirmation'=>['required'],
             'phone'=>['required','alpha_num'],
