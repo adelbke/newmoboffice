@@ -169,6 +169,11 @@
                                     {{ __('Gérer Produits') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                {{ __('Types de produits')}}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

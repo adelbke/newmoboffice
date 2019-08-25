@@ -85,14 +85,7 @@ nav.scroll {
                             <li><a href="#" class="dropdown-item">Workstation</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="dropdown-item dropdown-toggle" href="#">Fauteuil et Siège</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" class="dropdown-item">Chaise Visiteur</a></li>
-                            <li><a href="#" class="dropdown-item">Fauteuil de Direction</a></li>
-                            <li><a href="#" class="dropdown-item">Fauteuil Opérateur</a></li>
-                        </ul>
-                    </li>
+                    
                     <li>
                         <a class="dropdown-item dropdown-toggle" href="#">Mobilier de Réunion</a>
                         <ul class="dropdown-menu">
@@ -127,20 +120,6 @@ nav.scroll {
                             <li><a href="#" class="dropdown-item">Rayonnage Métallique</a></li>
                             <li><a href="#" class="dropdown-item">Rayonnage Mobile</a></li>
                         </ul>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Environnement & Accéssoires</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item dropdown-toggle" href="#">Collectivité Cafeteria</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" class="dropdown-item">Chaises</a></li>
-                            <li><a href="#" class="dropdown-item">Tables</a></li>
-                            <li><a href="#" class="dropdown-item">Fauteuils & Tabourets</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Matériel Informatique</a>
                     </li>
                 </ul>
             </li>
@@ -195,5 +174,7 @@ nav.scroll {
         window.onscroll = () => {
             const nav = document.querySelector('#navbar');
             if(this.scrollY <= 10) nav.className = ''; else nav.className = 'scroll';};
+
+        $(document).ready(function(){$(".dropdown-menu a.dropdown-toggle").on("click",function(o){var s=$(this);s.toggleClass("active-dropdown");var n=$(this).offsetParent(".dropdown-menu");$(this).next().hasClass("show")||$(this).parents(".dropdown-menu").first().find(".show").removeClass("show");var e=$(this).next(".dropdown-menu");return e.toggleClass("show"),$(this).parent("li").toggleClass("show"),$(this).parents("li.nav-item.dropdown.show").on("hidden.bs.dropdown",function(o){$(".dropdown-menu .show").removeClass("show"),s.removeClass("active-dropdown")}),n.parent().hasClass("navbar-nav")||s.next().css({top:s[0].offsetTop,left:n.outerWidth()-4}),!1})});
     </script>
 @endpush

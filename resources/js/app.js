@@ -33,6 +33,10 @@ Vue.component('largeproduct-component',require('./components/LargeProductCompone
 
 Vue.component('productdescription-component',require('./components/ProductDescriptionComponent.vue').default);
 
+Vue.component('disable-retailer',require('./components/DisableRetailer.vue').default);
+
+Vue.component('enable-retailer',require('./components/EnableRetailer.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -43,4 +47,3 @@ const app = new Vue({
     el: '#app',
 });
 
-$(document).ready(function(){$(".dropdown-menu a.dropdown-toggle").on("click",function(o){var s=$(this);s.toggleClass("active-dropdown");var n=$(this).offsetParent(".dropdown-menu");$(this).next().hasClass("show")||$(this).parents(".dropdown-menu").first().find(".show").removeClass("show");var e=$(this).next(".dropdown-menu");return e.toggleClass("show"),$(this).parent("li").toggleClass("show"),$(this).parents("li.nav-item.dropdown.show").on("hidden.bs.dropdown",function(o){$(".dropdown-menu .show").removeClass("show"),s.removeClass("active-dropdown")}),n.parent().hasClass("navbar-nav")||s.next().css({top:s[0].offsetTop,left:n.outerWidth()-4}),!1})});

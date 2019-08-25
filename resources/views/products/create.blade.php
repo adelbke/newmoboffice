@@ -39,24 +39,17 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group @error('reference') has-danger @enderror">
-                                    <label class="form-control-label" for="input-reference">{{ __('Référence') }}</label>
-                                    <input type="text" name="reference" id="input-reference" class="form-control form-control-alternative text-dark @error('reference') is-invalid @enderror" placeholder="{{ __('Référence') }}" value="" r autofocus>
-
-                                    @if ($errors->has('reference'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('reference') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
 
 
                                 <div class="form-group @error('category') has-danger @enderror">
                                     <label for="category" class="form-control-label ">{{__('Catégorie')}}</label>
                                     <select class="@error('category') is-invalid @enderror form-control form-control-alternative " id="category" name="category">
-                                        <option value="Informatique">Informatique</option>
-                                        <option value="Ameublement">Ameublement</option>
-                                        <option value="Electronique">Electronique</option>
+                                        <option value="Meuble de Bureau">Meuble de Bureau</option>
+                                        <option value="Mobilier de Réunion">Mobilier de Réunion</option>
+                                        <option value="Mobilier Accueil">Mobilier Accueil</option>
+                                        <option value="Mobilier de Conférence">Mobilier de Conférence</option>
+                                        <option value="Bibliothèque & mobilier pour écoles et crèches">Bibliothèque & mobilier pour écoles et crèches</option>
+                                        <option value="Environnement & Accéssoires">Environnement & Accéssoires</option>
                                     </select>
                                     @error('category')
                                         <span class="invalid-feedback" role="alert">
@@ -87,6 +80,19 @@
                                     @enderror
                                 </div>
 
+
+                                <div class="form-group @error('note') has-danger @enderror">
+                                    <label class="form-control-label" for="input-note">{{ __('Note') }}</label>
+                                    <input type="text" name="note" id="input-note" class="form-control form-control-alternative text-dark @error('note') is-invalid @enderror" placeholder="{{ __('Note') }}" value="" r autofocus>
+
+                                    @if ($errors->has('note'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('note') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                
+                                
                                 <div class="form-group @error('description') has-danger @enderror">
                                     <label for="description" class="form-control-label">Description</label>
                                     <textarea class="form-control form-control-alternative @error('retailerPrice') is-invalid @enderror text-dark"  rows="3" placeholder="Write a large text here ..." name="description"></textarea>

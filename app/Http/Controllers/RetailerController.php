@@ -66,4 +66,38 @@ class RetailerController extends Controller
         $retailer->save();
         return redirect()->back()->with('status','Vôtre demande sera prise en charge et vous serez notifié par email dès l\'activation de vôtre compte');
     }
+    public function Activate (){
+        $data = request()->validate([
+            'retailerid'=>['required','exists:retailers,id','numeric'],
+            'adminid'=>['required','exists:admins,id','numeric']
+        ]);
+        if(auth()->user()->admin->id == intval($data['adminid'])){
+            $retailer = Retailer::find(intval($data['retailerid']));
+            $retailer->valide = true;
+            $retailer->save();
+            $client = Client::find($retailer->client_id);
+            $name = User::find($client->user_id)->name;
+            return 'le revendeur '.$name.' a été Activé avec succés.';
+        }
+        else
+            return 'erreur';
+        
+    }
+    public function Deactivate (){
+        $data = request()->validate([
+            'retailerid'=>['required','exists:retailers,id','numeric'],
+            'adminid'=>['required','exists:admins,id','numeric']
+        ]);
+        if(auth()->user()->admin->id == intval($data['adminid'])){
+            $retailer = Retailer::find(intval($data['retailerid']));
+            $retailer->valide = false;
+            $retailer->save();
+            $client = Client::find($retailer->client_id);
+            $name = User::find($client->user_id)->name;
+            return 'le revendeur '.$name.' a été Désactivé avec succés.';
+        }
+        else
+            return 'erreur';
+        
+    }
 }

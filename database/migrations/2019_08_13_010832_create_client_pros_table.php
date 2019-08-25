@@ -15,9 +15,8 @@ class CreateClientProsTable extends Migration
     {
         Schema::create('client_pros', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('client_id');
             $table->integer('registreCommerce')->unique();
-            // $table->enum('type')
-            // TODO: Set Enum of type of client pro
             $table->timestamps();
         });
     }
