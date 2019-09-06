@@ -7,11 +7,26 @@
 
 require('popper.js').default;
 // require('jquery').default;
-// require('./bootstrap');
+require('./bootstrap');
 
 window.Vue = require('vue');
 
-// import ZoomOnHover from "vue-zoom-on-hover";
+// importing VueLazyload
+import VueLazyload from 'vue-lazyload';
+ 
+Vue.use(VueLazyload);
+
+// importing vue-upload-multiple-image
+
+import VueUploadMultipleImage from 'vue-upload-multiple-image';
+ 
+export default {
+  components: {
+    VueUploadMultipleImage,
+  },
+}
+
+
 import "jquery-zoom";
 
 /**
@@ -36,6 +51,8 @@ Vue.component('productdescription-component',require('./components/ProductDescri
 Vue.component('disable-retailer',require('./components/DisableRetailer.vue').default);
 
 Vue.component('enable-retailer',require('./components/EnableRetailer.vue').default);
+
+Vue.component('category-form',require('./components/categoryFormComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

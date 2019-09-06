@@ -17,11 +17,11 @@ class IsAdmin
     public function handle($request, Closure $next)
     {
         if(auth()->user() == null){
-            return redirect()->back();
+            return redirect('/');
             
         }else{
             if(count(auth()->user()->admin()) == 0){
-                return redirect()->back();                
+                return redirect('/');              
             }
         }
         return $next($request);

@@ -3,8 +3,8 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
-        <div class="row">
+    <div class="container p-0 mt--7">
+        <div class="row p-3">
             <div class="col px-0">
                 <div class="card shadow">
                     <div class="card-header border-0">
@@ -30,33 +30,39 @@
                         @endif
                     </div>
 
-                    <div class="table-responsive table-striped table-hover overflow-x">
+                    <div class="table-responsive table-dark table-hover">
                         <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">{{ __('Nom') }}</th>
-                                    <th scope="col">{{ __('Catégorie') }}</th>
-                                    <th scope="col">{{ __('Date Création') }}</th>
-                                    <th scope="col">{{__('Visiteurs')}}</th>
-                                    <th scope="col">{{__('prix Client')}}</th>
-                                    <th scope="col">{{__('prix Revendeur')}}</th>
-                                    <th scope="col">{{__('Description')}}</th>
-                                    <th scope="col">{{__('Modifier')}}</th>
-                                    <th scope="col">{{__('Suppression')}}</th>
+                                    <th class="text-white font-weight-bold">{{ __('Nom') }}</th>
+                                    
+                                    <th class="text-white font-weight-bold">{{ __('Catégorie') }}</th>
+                                    <th class="text-white font-weight-bold">{{ __('Date Création') }}</th>
+                                    <th class="text-white font-weight-bold">{{__('Visiteurs')}}</th>
+                                    <th class="text-white font-weight-bold">{{__('prix Client')}}</th>
+                                    <th class="text-white font-weight-bold">{{__('prix Revendeur')}}</th>
+                                    <th class="text-white font-weight-bold">{{__('Couleurs')}}</th>
+                                    <th class="text-white font-weight-bold">{{__('Description')}}</th>
+                                    <th class="text-white font-weight-bold">{{__('Modifier')}}</th>
+                                    <th class="text-white font-weight-bold">{{__('Suppression')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td>{{ $product->name }}</td>
+                                        <th scope="row">
+                                            {{ $product->name }}
+                                        </th>
                                         
                                         <td>
-                                            <a>{{ $product->category }}</a>
+                                            <a>{{ $product->type['Name'] }}</a>
                                         </td>
                                         
-                                        <td>{{ $product->created_at->format('d/m/Y H:i') }}</td>
+                                        <td>
+                                            {{ $product->created_at }}
+                                        </td>
                                         
-                                        <td class="{{ $product->visitors > 100?'text-success':'text-dark'}}">
+                                        <td class="{{ $product->visitors > 100?'text-success':'text-light'}}">
                                             {{ $product->visitors}}
                                         </td>
                                         <td>
@@ -66,19 +72,29 @@
                                         <td>
                                             {{number_format($product->retailerPrice,0,'','.')}} da
                                         </td>
-                                        <td class="text-wrap">
-                                            {{$product->description}}
+                                        <td>
+                                            <div class="avatar-group">
+                                                @foreach ($product->colors as $color)
+                                                <a href="#!" class="avatar rounded-circle">
+                                                    <img alt="Image placeholder" src="{{$color->image->path}}">
+                                                </a>
+                                                @endforeach
+                                            </div>
                                         </td>
                                         <td>
-                                            <a class="text-info" href="/products/{{$product->id}}/edit">Modifier</a>
+                                            <div>
+                                                {{ $product->description}}
+                                            </div>
                                         </td>
                                         <td>
-                                            <form action="{{ route('products.destroy',$product) }}" method="post">
+                                            <a class="text-info font-weight-bold" href="/products/{{$product->id}}/edit">Modifier</a>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('products.destroy',$product->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                             <button class="text-danger p-0 btn btn-link" type="submit">Supprimer</button>
                                             </form>
-                                        {{-- <a href="" ></a> --}}
                                         </td>
                                         
                                     </tr>

@@ -36,12 +36,18 @@ Route::group(['middleware' => 'Admin'], function () {
 	Route::patch('/products/{product}','ProductController@update');
 	Route::get('/products/{product}/edit','ProductController@edit')->name('products.edit');
 	// Route::get('/products/{product}','ProductController@show')->name('products.show');
-	Route::post('/product','ProductController@store');
+	Route::post('/products','ProductController@store');
 	Route::delete('/products/{product}', 'ProductController@destroy')->name('products.destroy');
 
 	// Retailers
 	Route::post('/retailers/activate','RetailerController@Activate')->name('retailers.activate');
 	Route::post('/retailers/deactivate','RetailerController@Deactivate')->name('retailers.deactivate');
+
+	// Types
+	Route::get('/types','TypeController@index')->name('types.index');
+	Route::get('/types/create','TypeController@create')->name('types.create');
+
+	Route::post('/types','TypeController@getCategory')->name('types.getCategory');
 
 	Route::group(['middleware'=>'SuperAdmin'],function(){
 		// Route::get('/user','UserController@index')->name('user.index');

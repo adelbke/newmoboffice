@@ -170,7 +170,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('types.index')}}" class="nav-link">
                                 {{ __('Types de produits')}}
                                 </a>
                             </li>

@@ -9,14 +9,18 @@ class Product extends Model
     protected $guarded = [];
     //
     protected $fillable = [
-        'reference', 'category', 'clientPrice','retailerPrice','name','description'
+        'reference', 'clientPrice','retailerPrice','name','description','type_id','note'
     ];
     public function images(){
-        return $this->hasMany(Image::class);
+        return $this->belongsToMany(Image::class);
+    }
+
+    public function colors(){
+        return $this->belongsToMany(Color::class);
     }
 
     public function type(){
-        return $this->hasOne(Type::class);
+        return $this->belongsTo(Type::class);
     }
 
     public function products(){
