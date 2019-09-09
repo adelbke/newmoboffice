@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Image;
 use App\Type;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image as InterventionImage;
 
 class ProductController extends Controller
 {
@@ -33,8 +35,29 @@ class ProductController extends Controller
         return view('products.index',compact('products','colors'));
     }
 
-    public function show (){
-        return view ('products.show');
+    public function show (Product $product){
+        $product->load(['images' => function ($query){
+            $query->where('image_type','=','product_image');
+        }]);
+        foreach ($product->images as $index => $image) {
+            $smallimage = InterventionImage::make(public_path($image->path))->resize(410, 480);
+            $smallimage->save(public_path('storage/temp/'.$image->id.'.jpg'));
+            // $image['small'] = $smallimage;
+            $product->images[$index]['small'] = '/storage/temp/'.$image->id.'.jpg';
+        }
+        $product->price = $product->clientPrice;
+        unset($product->clientPrice);
+        if(Auth::check()){
+            if(Auth::user()->client()->exists()){
+                
+            }else{
+
+            }
+        }
+        // dd($product->images);
+
+
+        return view ('products.show',compact('product'));
     }
 
     public function destroy(Product $product){
@@ -42,7 +65,7 @@ class ProductController extends Controller
         $product->images()->delete();
         $product->delete();
 
-        return redirect()->back()->with('status','Produit'.$product->name.' supprimé avec Succès');;
+        return redirect()->back()->with('status','Produit '.$product->name.' supprimé avec Succès');;
     }
 
     public function update(Product $product){
@@ -140,7 +163,7 @@ class ProductController extends Controller
 
         // save each product image
         foreach (request('productImage') as  $image) {
-            $path = 'storage/'. $image->store('productImages','public');
+            $path = '/storage/'. $image->store('productImages','public');
             $object = new Image();
             $object->path=$path;
             // $object->image_type = "product_image";
@@ -149,7 +172,7 @@ class ProductController extends Controller
         }
 
         // Saving the Card Image
-        $path = 'storage/'.request('imageCard')->store('productCardImages','public');
+        $path = '/storage/'.request('imageCard')->store('productCardImages','public');
         $object = new Image();
         $object->path=$path;
         // $object->image_type = "card";
@@ -158,7 +181,7 @@ class ProductController extends Controller
 
 
         // save slider Image
-        $path = 'storage/'.request('imageSlider')->store('productSliderImages','public');
+        $path = '/storage/'.request('imageSlider')->store('productSliderImages','public');
         $object = new Image();
         $object->path=$path;
         // $object->image_type = "slider";

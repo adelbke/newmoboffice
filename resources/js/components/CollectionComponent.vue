@@ -26,7 +26,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 figure{
     background-color: #3490dc8c;
 }

@@ -76,7 +76,7 @@
                                             <div class="avatar-group">
                                                 @foreach ($product->colors as $color)
                                                 <a href="#!" class="avatar rounded-circle">
-                                                    <img alt="Image placeholder" src="{{$color->image->path}}">
+                                                    <img alt="Image placeholder" class="h-100" src="{{$color->image->path}}">
                                                 </a>
                                                 @endforeach
                                             </div>

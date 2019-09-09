@@ -46,6 +46,10 @@ Vue.component('product-component',require('./components/ProductComponent.vue').d
 
 Vue.component('largeproduct-component',require('./components/LargeProductComponent.vue').default);
 
+Vue.component('producticon-component',require('./components/ProductIconComponent.vue').default);
+
+Vue.component('productimages-component',require('./components/ProductImagesComponent.vue').default);
+
 Vue.component('productdescription-component',require('./components/ProductDescriptionComponent.vue').default);
 
 Vue.component('disable-retailer',require('./components/DisableRetailer.vue').default);

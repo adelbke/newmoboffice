@@ -12,7 +12,7 @@ class Color extends Model
         return $this->belongsTo(Image::class);
     }
 
-    public function Product(){
+    public function products(){
         return $this->belongsToMany(Product::class);
     }
 }

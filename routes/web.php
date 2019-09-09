@@ -44,10 +44,22 @@ Route::group(['middleware' => 'Admin'], function () {
 	Route::post('/retailers/deactivate','RetailerController@Deactivate')->name('retailers.deactivate');
 
 	// Types
+	Route::delete('/types/{type}','TypeController@destroy')->name('types.destroy');
+	Route::post('/types','TypeController@store')->name('types.store');
 	Route::get('/types','TypeController@index')->name('types.index');
 	Route::get('/types/create','TypeController@create')->name('types.create');
 
-	Route::post('/types','TypeController@getCategory')->name('types.getCategory');
+	Route::post('/types/getcategory','TypeController@getCategory')->name('types.getCategory');
+
+	// Colors
+	Route::get('/colors','ColorController@index')->name('colors.index');
+	Route::post('/colors','ColorsController@store')->name('colors.store');
+	Route::get('/colors/create','ColorController@create')->name('colors.create');
+	Route::delete('/colors/{color}','ColorController@destroy')->name('colors.destroy');
+
+	// Images
+	Route::get('/Images','ImageController@index')->name('images.index');
+
 
 	Route::group(['middleware'=>'SuperAdmin'],function(){
 		// Route::get('/user','UserController@index')->name('user.index');

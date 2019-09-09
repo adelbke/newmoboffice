@@ -17,6 +17,33 @@ class TypeController extends Controller
         return view('types.create');
     }
 
+    public function store(Request $request){
+        // dd(request()->all());
+        $data = request()->validate([
+            'Name'=>['required','String'],
+            'Category'=>['required','String','in:Meuble de Bureau,Mobilier de Réunion,Mobilier Accueil,Mobilier de Conférence,Bibliothèque & mobilier pour écoles et crèches,Environnement & Accéssoires']
+        ]);
+        // Data validated
+        // dd($data);
+
+        $type = new Type($data);
+        $type->save();
+
+        return redirect()->back()->with('status','La Sous Catégorie '.$type->Name.' Enregistré avec Succès');
+    }
+
+    public function destroy (Type $type) {
+        $name = $type->Name;
+
+        if($type->products()->exists()){
+            return redirect()->back()->with('statusError','La Sous Catégorie '.$type->Name.' Ne peut pas être supprimé car il existe des produits de ce type');;
+        }else{
+            $type->delete();
+        }
+        return redirect()->back()->with('status','La Sous Catégorie '.$type->Name.' Supprimé avec Succès');
+
+    }
+
     public function getCategory(){
         $data = request()->validate([
             'category'=>['required'],

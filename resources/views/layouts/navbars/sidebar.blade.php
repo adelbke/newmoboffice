@@ -123,28 +123,7 @@
                         </a>
                     </li> 
                 @endif
-                
-
-                
-                
-
-                
-                
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-key-25 text-info"></i> {{ __('Login') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
-                    </a>
-                </li> --}}
-                {{-- <li class="nav-item mb-5" style="position: absolute; bottom: 0;">
-                    <a class="nav-link" href="https://www.creative-tim.com/product/argon-dashboard-pro-laravel" target="_blank">
-                        <i class="ni ni-cloud-download-95"></i> Upgrade to PRO
-                    </a>
-                </li> --}}
+            
 
                 
             </ul>
@@ -171,11 +150,24 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('types.index')}}" class="nav-link">
-                                {{ __('Types de produits')}}
+                                    <i class="far fa-list-alt"></i>
+                                {{ __('Sous Catégories')}}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('colors.index')}}" class="nav-link">
+                                    <i class="far fa-list-alt"></i>
+                                {{ __('Couleurs')}}
                                 </a>
                             </li>
                         </ul>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('images.index') }}">
+                        <i class="fas fa fa-image"></i>
+                        {{ __('Images') }}
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#collapse3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse3">
@@ -202,6 +194,7 @@
                     </div>
                 </li>
             </ul>
+            
             <!-- Divider -->
             {{-- <hr class="my-3"> --}}
 

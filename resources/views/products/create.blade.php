@@ -22,9 +22,6 @@
                     @if(session('status'))
                         <div class="alert alert-success font-weight-bold"> {{session('status')}} </div>
                     @endif
-                    @if ($errors->any())
-                        {{ implode('', $errors->all('<div>:message</div>')) }}
-                    @endif
                     <div class="card-body">
                         {{-- {{ Form::open(array('url'=>'/product')) }} --}}
                         <form enctype="multipart/form-data" action="/products" method="post">

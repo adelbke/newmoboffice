@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="haserror" class="form-group">
+        <div v-if="!haserror" class="form-group">
             <label for="category" class="form-control-label ">Catégorie</label>
             <select v-model="selected" class="form-control text-dark form-control-alternative " id="category" name="category" @change="addTypes()">
                 <option value="Meuble de Bureau">Meuble de Bureau</option>
@@ -83,7 +83,7 @@ export default {
     methods:{
         addTypes:function (){
             var vm = this;
-            axios.post("/types", {
+            axios.post("/types/getcategory", {
                 category:this.selected,
                 adminId:parseInt(this.adminid),
 

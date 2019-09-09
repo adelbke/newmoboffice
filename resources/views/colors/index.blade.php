@@ -10,10 +10,10 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('Types') }}</h3>
+                                <h3 class="mb-0">{{ __('Couleurs') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('types.create') }}" class="btn btn-sm btn-primary">{{ __('Ajouter Type') }}</a>
+                                <a href="{{ route('colors.create') }}" class="btn btn-sm btn-primary">{{ __('Ajouter Couleur') }}</a>
                                 
                             </div>
                         </div>
@@ -43,24 +43,32 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">{{ __('N°') }}</th>
+                                    <th scope="col">{{ __('Référence') }}</th>
                                     <th scope="col">{{ __('Nom') }}</th>
-                                    <th scope="col">{{ __('Catégorie') }}</th>
+                                    <th scope="col">{{ __('Image') }}</th>
                                     <th scope="col">{{ __('Supprimer') }}</th>
+
+
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($types as $type)
+                                @foreach ($colors as $color)
                                     <tr>
-                                        <td>{{ $type->id }}</td>
+                                        <td>{{ $color->id }}</td>
                                         
                                         <td>
-                                            <a>{{ $type->Name }}</a>
+                                            <a>{{ $color->reference }}</a>
                                         </td>
                                         <td>
-                                            {{$type->Category}}
+                                            {{$color->name}}
                                         </td>
                                         <td>
-                                            <form action="{{ route('types.destroy',$type->id) }}" method="post">
+                                            <div style="width:100px">
+                                                <img src="{{$color->image->path}}" alt="" class="img-fluid">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('colors.destroy',$color->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="text-danger p-0 btn btn-link" type="submit">Supprimer</button>
