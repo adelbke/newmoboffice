@@ -21,6 +21,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $types = Type::all()->groupBy('Category');
+        return view('dashboard',compact('types'));
     }
 }

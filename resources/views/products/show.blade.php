@@ -3,11 +3,17 @@
     {{-- first annotation --}}
     <div class="container-fluid">
         <a href="" class="text-dark">
-            <span>Chaises Hautes</span>
+            <span>{{$product->type->Category}} </span>
         </a>
+
         <span class="font-weight-bold">></span>
         <a href=""class="text-dark">
-            <span>titre Produit</span>
+            <span>{{$product->type->Name}}</span>
+        </a>
+
+        <span class="font-weight-bold">></span>
+        <a href=""class="text-dark">
+            <span>{{$product->name}}</span>
         </a>
     </div>
 

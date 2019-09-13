@@ -15,7 +15,22 @@
                     Produits
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li>
+                    
+                    @foreach ($types as $name => $category)
+                        <li>
+                            <a href="" class="dropdown-item dropdown-toggle">{{$name}} </a>
+                            <ul class="dropdown-menu">
+                                @foreach ($category as $item)
+                                    <li><a href="#" class="dropdown-item">{{$item->Name}} </a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endforeach
+
+                    {{-- Categories --}}
+
+
+                    {{-- <li>
                         <a class="dropdown-item dropdown-toggle" href="#">Meuble de Bureau</a>
                         <ul class="dropdown-menu">
                             <li><a href="#" class="dropdown-item">Armoires</a></li>
@@ -24,7 +39,7 @@
                             <li><a href="#" class="dropdown-item">Workstation</a></li>
                         </ul>
                     </li>
-                    
+
                     <li>
                         <a class="dropdown-item dropdown-toggle" href="#">Mobilier de Réunion</a>
                         <ul class="dropdown-menu">
@@ -34,6 +49,7 @@
                             <li><a href="#" class="dropdown-item">Tables de Réunion et Travail</a></li>
                         </ul>
                     </li>
+                    
                     <li>
                         <a class="dropdown-item dropdown-toggle" href="#">Mobilier Accueil</a>
                         <ul class="dropdown-menu">
@@ -43,6 +59,7 @@
                             <li><a href="#" class="dropdown-item">Tables Basses</a></li>
                         </ul>
                     </li>
+
                     <li>
                         <a class="dropdown-item dropdown-toggle" href="#">Mobilier de Conférence</a>
                         <ul class="dropdown-menu">
@@ -51,6 +68,7 @@
                             <li><a href="#" class="dropdown-item">Pupitre Orateur</a></li>
                         </ul>
                     </li>
+
                     <li>
                         <a class="dropdown-item dropdown-toggle" href="#">Bibliothèque & mobilier pour écoles et crèches</a>
                         <ul class="dropdown-menu">
@@ -59,7 +77,8 @@
                             <li><a href="#" class="dropdown-item">Rayonnage Métallique</a></li>
                             <li><a href="#" class="dropdown-item">Rayonnage Mobile</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
+
                 </ul>
             </li>
             <li class="nav-item my-3 font-weight-bold">
@@ -73,14 +92,19 @@
             </li>
         </ul>
         <div class="d-inline my-2 my-lg-0 mx-lg-2">
-            <a class="rounded-circle @isset($transparent) @if($transparent == true) text-light @else text-dark @endif  @endisset hvr-fade text-center align-self-center" href="/login" style="width:2.7em;height:2.7em;cursor: pointer;">
-                <i class="fa fas fa-user align-middle pt-1" title="Accéder à mon Compte" style="font-size:1.8em" aria-hidden="true"></i>
+            <a class="rounded-circle @isset($transparent) @if($transparent == true) text-light @else text-dark @endif  @endisset hvr-fade p-1 text-center" href="/login" style="cursor: pointer;">
+                <i class="fa fas fa-user fa-2x align-middle mx-1" title="Accéder à mon Compte" aria-hidden="true"></i>
             </a>
-            
-            <a class="rounded-circle hvr-fade @isset($transparent) @if($transparent == true) text-light @else text-dark @endif  @endisset text-center align-self-center" style="width:2.7em;height:2.7em;cursor: pointer;">
-                {{-- <i class="fa fa-cart-plus align-middle pt-1" title="Consulter Panier" style="font-size:1.8em" aria-hidden="true"></i> --}}
-                <i class="fa fa-shopping-bag align-middle pt-1 " title="Consulter Panier" style="font-size:1.8em" aria-hidden="true"></i>
-            </a>
+            {{-- NEW BUtton --}}
+            {{-- <button type="button" class="btn rounded-circle text-dark hvr-fade p-1">
+                <div class="">
+                    <i class="fas fa fa-shopping-cart fa-2x mx-1"></i>
+                    <span class="badge badge-primary"></span>
+                </div>
+            </button> --}}
+
+            {{-- Component --}}
+            <cart-component></cart-component>
             
         </div>
         {{-- <form class="form-inline my-2 my-lg-0">

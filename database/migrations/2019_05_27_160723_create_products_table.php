@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->double('clientPrice',8,10);
             $table->double('retailerPrice',8,10);
             $table->string('name')->unique();
-            $table->string('note');
+            $table->string('note')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

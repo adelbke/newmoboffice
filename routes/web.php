@@ -22,6 +22,13 @@ Route::get('/retailers','RetailerController@index')->name('retailers.index');
 Route::get('/retailers/create','RetailerController@create')->name('retailers.create');
 Route::post('/retailers','RetailerController@store')->name('retailers.store');
 
+Route::post('/cart/add','CartController@add');
+Route::post('/cart/get','CartController@getContent');
+Route::post('/cart/remove','CartController@remove');
+Route::get('/cart','CartController@index')->name('cart.index');
+Route::post('/cart/update','CartController@update');
+
+
 Route::group(['middleware' => 'Admin'], function () {
 	
 	// Profiles

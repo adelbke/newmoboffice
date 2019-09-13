@@ -25,11 +25,7 @@ class ProductController extends Controller
 
     public function index(){
 
-        // $products = DB::table('products')->join('types','products.Type','=','types.id')->join('color_product','products.id','=','color_product.product_id')->join('colors','color_product.color_id','=','colors.id')->orderBy('products.created_at','DESC')->select('types.Name AS TypeName','colors.name AS ColorName','*')->paginate(10);
         $products = Product::with(['colors.image','type'])->paginate(15);
-        // dd($products[0]->type);
-        // dd($products);
-        // $products = DB::table('products')->join('types','products.Type','=','types.id')->paginate(10);
         $colors = DB::table('colors')->join('color_product','colors.id','=','color_product.color_id')->get();
         // dd($colors);
         return view('products.index',compact('products','colors'));
@@ -38,7 +34,7 @@ class ProductController extends Controller
     public function show (Product $product){
         $product->load(['images' => function ($query){
             $query->where('image_type','=','product_image');
-        }]);
+        },'colors.image','type']);
         foreach ($product->images as $index => $image) {
             $smallimage = InterventionImage::make(public_path($image->path))->resize(410, 480);
             $smallimage->save(public_path('storage/temp/'.$image->id.'.jpg'));
@@ -49,10 +45,13 @@ class ProductController extends Controller
         unset($product->clientPrice);
         if(Auth::check()){
             if(Auth::user()->client()->exists()){
-                
+                if(!Auth::user()->client()->retailer()->exists()){
+                    unset($product->retailerPrice);                    
+                }
             }else{
-
             }
+        }else{
+            unset($product->retailerPrice);            
         }
         // dd($product->images);
 

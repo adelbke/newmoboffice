@@ -26,7 +26,6 @@ export default {
   },
 }
 
-
 import "jquery-zoom";
 
 /**
@@ -58,6 +57,12 @@ Vue.component('enable-retailer',require('./components/EnableRetailer.vue').defau
 
 Vue.component('category-form',require('./components/categoryFormComponent.vue').default);
 
+Vue.component('cart-component',require('./components/CartComponent.vue').default);
+
+Vue.component('quantity-component',require('./components/QuantityComponent.vue').default);
+
+Vue.component('cartitems-component',require('./components/CartItemsComponent.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -66,5 +71,10 @@ Vue.component('category-form',require('./components/categoryFormComponent.vue').
 
 const app = new Vue({
     el: '#app',
+
+    data:{
+      cart:[
+      ]
+    }
 });
 

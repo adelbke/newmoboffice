@@ -24,7 +24,7 @@ export default {
     },
     data:function(){
         return{
-            selectedimage : this.images[0]
+            selectedimage : this.images[0],
         };
     },
     methods:{
