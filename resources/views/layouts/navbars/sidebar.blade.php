@@ -129,6 +129,24 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
+                    <a class="nav-link active" href="#collapse3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse3">
+                        <i class="fas fa-box-open text-primary"></i>
+                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Commandes') }}</span>
+                    </a>
+                    <div class="collapse show" id="collapse2">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('orders.index') }}">
+                                        <i class="fas fa fa-list"></i>
+                                        {{ __('Liste Commandes') }}
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+    
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" href="#collapse2" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse2">
                         <i class="fas fa-box-open text-primary"></i>
                         <span class="nav-link-text" style="color: #f4645f;">{{ __('Produits') }}</span>

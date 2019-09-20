@@ -63,6 +63,13 @@ Vue.component('quantity-component',require('./components/QuantityComponent.vue')
 
 Vue.component('cartitems-component',require('./components/CartItemsComponent.vue').default);
 
+Vue.component('searchpage-component',require('./components/SearchPageComponent.vue').default);
+
+Vue.component('ordersdatatable-component',require('./components/OrdersDatatableComponent.vue').default);
+
+Vue.component('ordersbutton-component',require('./components/OrdersButtonComponent.vue').default);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

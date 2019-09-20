@@ -103,9 +103,9 @@ export default {
     mounted() {
         var vm = this;
         axios.post('/cart/get', {}).then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             response.data.forEach((value) => {
-                console.log(value);
+                // console.log(value);
                 vm.cart.push(value);
                 
             });        

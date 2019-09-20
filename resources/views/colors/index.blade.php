@@ -28,14 +28,14 @@
                                 </button>
                             </div>
                         @endif
-                        @if (session('statusError'))
+                        {{-- @if (session('statusError'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ session('statusError') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        @endif
+                        @endif --}}
                     </div>
 
                     <div class="table-responsive table-dark table-hover overflow-x">
@@ -46,6 +46,7 @@
                                     <th scope="col">{{ __('Référence') }}</th>
                                     <th scope="col">{{ __('Nom') }}</th>
                                     <th scope="col">{{ __('Image') }}</th>
+                                    <th scope="col">{{ __('Modifier') }}</th>
                                     <th scope="col">{{ __('Supprimer') }}</th>
 
 
@@ -66,6 +67,9 @@
                                             <div style="width:100px">
                                                 <img src="{{$color->image->path}}" alt="" class="img-fluid">
                                             </div>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success" href="{{route('colors.edit',$color)}}" role="button">Modifier</a>
                                         </td>
                                         <td>
                                             <form action="{{ route('colors.destroy',$color->id) }}" method="post">

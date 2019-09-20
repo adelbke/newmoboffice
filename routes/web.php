@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Product;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,16 +20,53 @@ Route::get('/', function () {
 });
 Auth::routes();
 
+// Search
+Route::get('/search',function (Request $request){
+	if(isset($request->orderby)){
+
+		switch ($request->orderby) {
+			case 'cheaptoexpensive':
+				$list = Product::search($request->search)->orderBy('clientPrice','desc')->get();			
+				break;
+			case 'expensivetocheap':
+				$list = Product::search($request->search)->orderBy('clientPrice','asc')->get();
+				break;
+			case 'popularity':
+				$list = Product::search($request->search)->orderBy('visitors','desc')->get();
+		}
+	}else{
+		if(isset($request->search))
+		{
+			$list = Product::search($request->search)->get();
+		}
+			$list= Product::all();
+	}
+
+	$search = $request->search;
+	$orderby = $request->orderby;
+	return view('search',compact('list','search','orderby'));
+})->name('search');
+
+Route::get('/about',function (){
+	return view('about');
+})->name('about');
+
+
+// Retailers
 Route::get('/retailers','RetailerController@index')->name('retailers.index');
 Route::get('/retailers/create','RetailerController@create')->name('retailers.create');
 Route::post('/retailers','RetailerController@store')->name('retailers.store');
 
+// Cart
 Route::post('/cart/add','CartController@add');
 Route::post('/cart/get','CartController@getContent');
 Route::post('/cart/remove','CartController@remove');
 Route::get('/cart','CartController@index')->name('cart.index');
 Route::post('/cart/update','CartController@update');
+Route::post('/cart','CartController@store')->name('cart.save');
 
+// Orders
+Route::post('/order/getallorders','OrderController@getUserOrders');
 
 Route::group(['middleware' => 'Admin'], function () {
 	
@@ -55,6 +94,8 @@ Route::group(['middleware' => 'Admin'], function () {
 	Route::post('/types','TypeController@store')->name('types.store');
 	Route::get('/types','TypeController@index')->name('types.index');
 	Route::get('/types/create','TypeController@create')->name('types.create');
+	Route::get('/types/{type}/edit','TypeController@edit')->name('types.edit');
+	Route::patch('/types/{type}','TypeController@update')->name('types.update');
 
 	Route::post('/types/getcategory','TypeController@getCategory')->name('types.getCategory');
 
@@ -63,9 +104,15 @@ Route::group(['middleware' => 'Admin'], function () {
 	Route::post('/colors','ColorsController@store')->name('colors.store');
 	Route::get('/colors/create','ColorController@create')->name('colors.create');
 	Route::delete('/colors/{color}','ColorController@destroy')->name('colors.destroy');
+	Route::get('/colors/{color}/edit','ColorController@edit')->name('colors.edit');
+	Route::patch('/colors/{color}','ColorController@update')->name('colors.update');
 
 	// Images
 	Route::get('/Images','ImageController@index')->name('images.index');
+
+	Route::get('/orders','OrderController@index')->name('orders.index');
+	Route::post('/orders/fullList','OrderController@getListJson');
+	Route::post('/orders/update','OrderController@update');
 
 
 	Route::group(['middleware'=>'SuperAdmin'],function(){
@@ -82,6 +129,10 @@ Route::group(['middleware' => 'Admin'], function () {
 
 });
 
+// Product View
 Route::get('/products/{product}','ProductController@show')->name('products.show');
+
+// Type View
+Route::get('/types/{type}','TypeController@show')->name('types.show');
 
 

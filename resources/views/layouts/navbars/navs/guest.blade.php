@@ -21,7 +21,7 @@
                             <a href="" class="dropdown-item dropdown-toggle">{{$name}} </a>
                             <ul class="dropdown-menu">
                                 @foreach ($category as $item)
-                                    <li><a href="#" class="dropdown-item">{{$item->Name}} </a></li>
+                                    <li><a href="{{route('types.show',$item)}} " class="dropdown-item">{{$item->Name}} </a></li>
                                 @endforeach
                             </ul>
                         </li>
@@ -81,31 +81,27 @@
 
                 </ul>
             </li>
-            <li class="nav-item my-3 font-weight-bold">
+            {{-- <li class="nav-item my-3 font-weight-bold">
                 <a class="nav-link @isset($transparent) @if($transparent == true) text-light @else text-dark @endif  @endisset" href="#">Collections</a>
+            </li> --}}
+            <li class="nav-item my-3 font-weight-bold">
+                <a class="nav-link @isset($transparent) @if($transparent == true) text-light @else text-dark @endif  @endisset" href="">Contact</a>
             </li>
             <li class="nav-item my-3 font-weight-bold">
-                <a class="nav-link @isset($transparent) @if($transparent == true) text-light @else text-dark @endif  @endisset" href="#">Contact</a>
-            </li>
-            <li class="nav-item my-3 font-weight-bold">
-                <a class="nav-link @isset($transparent) @if($transparent == true) text-light @else text-dark @endif  @endisset" href="#">À propos</a>
+                <a class="nav-link @isset($transparent) @if($transparent == true) text-light @else text-dark @endif  @endisset" href="{{route('about')}} ">À propos</a>
             </li>
         </ul>
         <div class="d-inline my-2 my-lg-0 mx-lg-2">
             <a class="rounded-circle @isset($transparent) @if($transparent == true) text-light @else text-dark @endif  @endisset hvr-fade p-1 text-center" href="/login" style="cursor: pointer;">
                 <i class="fa fas fa-user fa-2x align-middle mx-1" title="Accéder à mon Compte" aria-hidden="true"></i>
             </a>
-            {{-- NEW BUtton --}}
-            {{-- <button type="button" class="btn rounded-circle text-dark hvr-fade p-1">
-                <div class="">
-                    <i class="fas fa fa-shopping-cart fa-2x mx-1"></i>
-                    <span class="badge badge-primary"></span>
-                </div>
-            </button> --}}
 
             {{-- Component --}}
             <cart-component></cart-component>
-            
+
+            @auth
+                <ordersbutton-component></ordersbutton-component>
+            @endauth
         </div>
         {{-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -118,15 +114,18 @@
     @if($transparent == false)
         <!-- search-bar -->
         <div class="container-fluid mb-4 mt-2">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <button class="btn" type="button" style="border-radius: 1rem 0rem 0rem 1rem;background-color: #eee">
-                        <i class="fa fa-search"></i>
-                    </button>
+            <form action="{{route('search')}}" method="get">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <button class="btn" type="button" type="submit" name="submit" style="border-radius: 1rem 0rem 0rem 1rem;background-color: #eee">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                    <input type="text" class="form-control border-0" style="border-radius: 0rem 1rem 1rem 0rem;background-color: #eee;outline-width: 0;" name="search" placeholder="Recherche">
+                    
                 </div>
-                <input type="text" class="form-control border-0" style="border-radius: 0rem 1rem 1rem 0rem;background-color: #eee;outline-width: 0;" placeholder="Recherche">
-                
-            </div>
+            </form>
+            
         </div>    
     @endif
 @endisset

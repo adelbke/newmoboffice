@@ -6,7 +6,7 @@
             </div>
             <div class="col-12 col-md-6 col-lg-6">
                 <h4 class="h4" v-text="item.name" ></h4>
-                <p v-text="item.description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque reprehenderit, dignissimos libero pariatur, culpa vel iure magni, modi nesciunt autem temporibus ipsa obcaecati repellat tempore in! Dolor quis ab eligendi.</p>
+                <p v-text="item.description"></p>
                 <!-- <quantity-component></quantity-component> -->
                 <div class=" rounded d-inline px-0 justify-content-center">
                     Quantité:
@@ -25,6 +25,11 @@
                     </button>
                 </div>
             </div>
+        </div>
+        <div class="row justify-content-end">
+            <h4 class="text-right " v-text="'Prix totale: ' + this.totalPrice">
+                
+            </h4>
         </div>
     </div>
 </template>
@@ -49,6 +54,15 @@ export default {
         return {
             cart :[]
         };
+    },
+    computed:{
+        totalPrice:function(){
+            var sum = 0;
+            this.cart.forEach(element => {
+                sum = sum +(parseInt(element.Price) * parseInt(element.quantity));
+            });
+            return sum;
+        }
     },
     methods:{
         removeFromCart: function (index){

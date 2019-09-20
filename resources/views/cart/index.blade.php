@@ -7,7 +7,11 @@
             <a href="{{route('login')}}" class="text-info">Se connecter ou créer mon compte</a>
             pour commander plus vite et plus facilement
         @endguest
-        <button type="button" name="" id="" class="btn btn-primary hvr-fade  d-block mx-auto px-5 my-2">Passer Commande</button>
+        <form action="{{route('cart.save')}}" method="post">
+            @csrf
+            <button type="submit" class="btn btn-primary hvr-fade  d-block mx-auto px-5 my-2">Passer Commande</button>
+
+        </form>
     </div>
 
     <div class="container my-4">

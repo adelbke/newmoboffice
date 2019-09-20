@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Color;
 use App\Image;
+use App\Order;
 use App\Product;
 use Gloudemans\Shoppingcart\Facades\Cart as Cart;
 use Illuminate\Http\Request;
@@ -86,5 +87,24 @@ class CartController extends Controller
         }
         
 
+    }
+    public function store(){
+        if(Auth::check()){
+            $content = Cart::content();
+            $order = new Order();
+            $order->client_id = auth()->user()->client->id;
+            $order->state="requested";
+            $order->price= Cart::total();
+            $order->save();
+            foreach ($content as $key => $value) {
+                $order->products()->attach($value->id,['quantity'=>$value->qty,
+                'color_id' =>$value->options->color->id]);
+            }
+            
+            Cart::destroy();
+            return redirect('/')->with('Message','Cart Saved Successfully');
+        }else{
+            return redirect('/login')->with('sendBackTo','cartIndex');
+        }
     }
 }

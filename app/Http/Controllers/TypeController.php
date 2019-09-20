@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Color;
+use App\Product;
 use App\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TypeController extends Controller
 {
@@ -43,6 +46,26 @@ class TypeController extends Controller
         return redirect()->back()->with('status','La Sous Catégorie '.$type->Name.' Supprimé avec Succès');
 
     }
+    public function edit(Type $type)
+    {
+        return view('types.edit',compact('type'));
+    }
+
+    public function update (Type $type){
+        $data = request()->validate([
+            'Name'=>['required','String'],
+            'Category'=>['required','String','in:Meuble de Bureau,Mobilier de Réunion,Mobilier Accueil,Mobilier de Conférence,Bibliothèque & mobilier pour écoles et crèches,Environnement & Accéssoires']
+        ]);
+
+        // dd($type);
+        $type->update([
+            'Name'=>$data['Name'],
+            'Category'=>$data['Category'],
+        ]);
+
+        return redirect()->back()->with('status','La Sous Catégorie '.$type->Name.' Modifié avec Succès');
+        
+    }
 
     public function getCategory(){
         $data = request()->validate([
@@ -56,5 +79,27 @@ class TypeController extends Controller
         }
         
         return json_encode($types);
+    }
+
+    public function show(Type $type){
+        
+        $products = Product::with(['colors.image','images'=> function ($query) {
+            $query->where('image_type','=','card');
+        }])->where('type_id','=',$type->id)->paginate(15);
+
+        $productsList = $products->toJson(JSON_PRETTY_PRINT);
+        
+        $colors = DB::table('colors')->join('color_product','colors.id','=','color_product.color_id')
+            ->join('products','color_product.product_id',"=","products.id")
+            ->join('images','colors.image_id','=','images.id')
+            ->where('type_id','=',$type->id)
+            ->select('colors.name','path','colors.reference')->get();
+
+        // dd($products);
+        
+        // $colors = Color::with('image')->where('');
+
+
+        return view('types.show',compact('products','productsList','type','colors'));
     }
 }

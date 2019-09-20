@@ -28,14 +28,14 @@
                                 </button>
                             </div>
                         @endif
-                        @if (session('statusError'))
+                        {{-- @if (session('statusError'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ session('statusError') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        @endif
+                        @endif --}}
                     </div>
 
                     <div class="table-responsive table-dark table-hover overflow-x">
@@ -45,7 +45,9 @@
                                     <th scope="col">{{ __('N°') }}</th>
                                     <th scope="col">{{ __('Nom') }}</th>
                                     <th scope="col">{{ __('Catégorie') }}</th>
+                                    <th scope="col">{{ __('Modifier') }}</th>
                                     <th scope="col">{{ __('Supprimer') }}</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,7 +62,10 @@
                                             {{$type->Category}}
                                         </td>
                                         <td>
-                                            <form action="{{ route('types.destroy',$type->id) }}" method="post">
+                                                <a class="btn btn-success" href="{{route('types.edit',$type)}}" role="button">Modifier</a>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('types.destroy',$type) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="text-danger p-0 btn btn-link" type="submit">Supprimer</button>

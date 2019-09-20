@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\client;
 use App\Color;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Image;
+use App\Retailer;
 use App\Type;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -45,7 +47,8 @@ class ProductController extends Controller
         unset($product->clientPrice);
         if(Auth::check()){
             if(Auth::user()->client()->exists()){
-                if(!Auth::user()->client()->retailer()->exists()){
+                $retailer = Retailer::with('client.user')->where('user_id','=',auth()->user()->id);
+                if(count($retailer)){
                     unset($product->retailerPrice);                    
                 }
             }else{
