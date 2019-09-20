@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Product;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,33 +20,119 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::get('/products/{product}','ProductController@show')->name('products.show');
+// Search
+Route::get('/search',function (Request $request){
+	if(isset($request->orderby)){
+
+		switch ($request->orderby) {
+			case 'cheaptoexpensive':
+				$list = Product::search($request->search)->orderBy('clientPrice','desc')->get();			
+				break;
+			case 'expensivetocheap':
+				$list = Product::search($request->search)->orderBy('clientPrice','asc')->get();
+				break;
+			case 'popularity':
+				$list = Product::search($request->search)->orderBy('visitors','desc')->get();
+		}
+	}else{
+		if(isset($request->search))
+		{
+			$list = Product::search($request->search)->get();
+		}
+			$list= Product::all();
+	}
+
+	$search = $request->search;
+	$orderby = $request->orderby;
+	return view('search',compact('list','search','orderby'));
+})->name('search');
+
+Route::get('/about',function (){
+	return view('about');
+})->name('about');
+
+
+// Retailers
 Route::get('/retailers','RetailerController@index')->name('retailers.index');
+Route::get('/retailers/create','RetailerController@create')->name('retailers.create');
+Route::post('/retailers','RetailerController@store')->name('retailers.store');
+
+// Cart
+Route::post('/cart/add','CartController@add');
+Route::post('/cart/get','CartController@getContent');
+Route::post('/cart/remove','CartController@remove');
+Route::get('/cart','CartController@index')->name('cart.index');
+Route::post('/cart/update','CartController@update');
+Route::post('/cart','CartController@store')->name('cart.save');
+
+// Orders
+Route::post('/order/getallorders','OrderController@getUserOrders');
 
 Route::group(['middleware' => 'Admin'], function () {
-	// Route::resource('user', 'UserController', ['except' => ['show']]);
-	// Route::get('/user/{user}/edit','UserController@edit')->name('user.edit');
+	
+	// Profiles
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
+	// Products
 	Route::get('/products','ProductController@index')->name('products.index');	
 	Route::get('/products/create','ProductController@create')->name('products.create');
 	Route::patch('/products/{product}','ProductController@update');
 	Route::get('/products/{product}/edit','ProductController@edit')->name('products.edit');
 	// Route::get('/products/{product}','ProductController@show')->name('products.show');
-	Route::post('/product','ProductController@store');
+	Route::post('/products','ProductController@store');
 	Route::delete('/products/{product}', 'ProductController@destroy')->name('products.destroy');
-	
+
+	// Retailers
+	Route::post('/retailers/activate','RetailerController@Activate')->name('retailers.activate');
+	Route::post('/retailers/deactivate','RetailerController@Deactivate')->name('retailers.deactivate');
+
+	// Types
+	Route::delete('/types/{type}','TypeController@destroy')->name('types.destroy');
+	Route::post('/types','TypeController@store')->name('types.store');
+	Route::get('/types','TypeController@index')->name('types.index');
+	Route::get('/types/create','TypeController@create')->name('types.create');
+	Route::get('/types/{type}/edit','TypeController@edit')->name('types.edit');
+	Route::patch('/types/{type}','TypeController@update')->name('types.update');
+
+	Route::post('/types/getcategory','TypeController@getCategory')->name('types.getCategory');
+
+	// Colors
+	Route::get('/colors','ColorController@index')->name('colors.index');
+	Route::post('/colors','ColorsController@store')->name('colors.store');
+	Route::get('/colors/create','ColorController@create')->name('colors.create');
+	Route::delete('/colors/{color}','ColorController@destroy')->name('colors.destroy');
+	Route::get('/colors/{color}/edit','ColorController@edit')->name('colors.edit');
+	Route::patch('/colors/{color}','ColorController@update')->name('colors.update');
+
+	// Images
+	Route::get('/Images','ImageController@index')->name('images.index');
+
+	Route::get('/orders','OrderController@index')->name('orders.index');
+	Route::post('/orders/fullList','OrderController@getListJson');
+	Route::post('/orders/update','OrderController@update');
+
+
 	Route::group(['middleware'=>'SuperAdmin'],function(){
-		Route::get('/user','UserController@index')->name('user.index');
-		Route::get('/user/create','UserController@create')->name('user.create');
-		Route::post('/user','UserController@store')->name('user.store');
-		Route::post('/user/{user}','UserController@update')->name('user.update');
-		Route::delete('/user/{user}','UserController@destroy')->name('user.destroy');
-		Route::get('user/{user}/edit','UserController@edit')->name('user.edit');
+		// Route::get('/user','UserController@index')->name('user.index');
+		// Route::get('/user/create','UserController@create')->name('user.create');
+		// Route::post('/user','UserController@store')->name('user.store');
+		// Route::post('/user/{user}','UserController@update')->name('user.update');
+		// Route::delete('/user/{user}','UserController@destroy')->name('user.destroy');
+		// Route::get('user/{user}/edit','UserController@edit')->name('user.edit');
+		Route::resource('user', 'UserController', ['except' => ['show']]);
+		Route::get('/user/{user}/edit','UserController@edit')->name('user.edit');
+	
 	});
 
 });
+
+// Product View
+Route::get('/products/{product}','ProductController@show')->name('products.show');
+
+// Type View
+Route::get('/types/{type}','TypeController@show')->name('types.show');
+
 

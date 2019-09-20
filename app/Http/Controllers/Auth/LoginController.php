@@ -30,7 +30,12 @@ class LoginController extends Controller
     protected function redirectTo(){
         // $user = Auth::user();
         if(auth()->user()->admin == null){
-            return "/";
+            if(isset($sendBackTo) || request('sendBackTo') == 'cartIndex'){
+                return '/cart';
+            }else{
+                return '/';
+            }
+            // return "/";
         }else{
             return "/home";
         }

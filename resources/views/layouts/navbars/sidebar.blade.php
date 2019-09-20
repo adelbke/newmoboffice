@@ -89,7 +89,7 @@
                         <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
                             {{-- <i class="fab fa-laravel" style="color: #f4645f;"></i> --}}
                             <i class="fa fa-user text-primary" aria-hidden="true"></i>
-                            <span class="nav-link-text" style="color: #f4645f;">{{ __('Options Utilisateurs') }}</span>
+                            <span class="nav-link-text" style="color: #f4645f;">{{ __('Options Admins') }}</span>
                         </a>
     
                         <div class="collapse show" id="navbar-examples">
@@ -97,19 +97,19 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('profile.edit') }}">
                                         <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                        {{ __('Profil Utilisateur') }}
+                                        {{ __('Mon Profil') }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('user.index') }}">
                                         <i class="fa fa-object-group" aria-hidden="true"></i>
-                                        {{ __('Gérer Utilisateurs') }}
+                                        {{ __('Gérer Admins') }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('user.create') }}">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
-                                        {{ __('Ajouter Utilisateur') }}
+                                        {{ __('Ajouter Admin') }}
                                     </a>
                                 </li>
                             </ul>
@@ -123,32 +123,29 @@
                         </a>
                     </li> 
                 @endif
-                
-
-                
-                
-
-                
-                
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-key-25 text-info"></i> {{ __('Login') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
-                    </a>
-                </li> --}}
-                {{-- <li class="nav-item mb-5" style="position: absolute; bottom: 0;">
-                    <a class="nav-link" href="https://www.creative-tim.com/product/argon-dashboard-pro-laravel" target="_blank">
-                        <i class="ni ni-cloud-download-95"></i> Upgrade to PRO
-                    </a>
-                </li> --}}
+            
 
                 
             </ul>
             <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#collapse3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse3">
+                        <i class="fas fa-box-open text-primary"></i>
+                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Commandes') }}</span>
+                    </a>
+                    <div class="collapse show" id="collapse2">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('orders.index') }}">
+                                        <i class="fas fa fa-list"></i>
+                                        {{ __('Liste Commandes') }}
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+    
+                </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#collapse2" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse2">
                         <i class="fas fa-box-open text-primary"></i>
@@ -169,10 +166,53 @@
                                     {{ __('Gérer Produits') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{route('types.index')}}" class="nav-link">
+                                    <i class="far fa-list-alt"></i>
+                                {{ __('Sous Catégories')}}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('colors.index')}}" class="nav-link">
+                                    <i class="far fa-list-alt"></i>
+                                {{ __('Couleurs')}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('images.index') }}">
+                        <i class="fas fa fa-image"></i>
+                        {{ __('Images') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#collapse3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse3">
+                        {{-- <i class="fas fa-box-open text-primary"></i> --}}
+                        <i class="fas fa-store    text-primary"></i>
+                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Revendeurs') }}</span>
+                    </a>
+
+                    <div class="collapse show" id="collapse3">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('retailers.create') }}">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    {{ __('Ajouter Revendeur') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('retailers.index') }}">
+                                    <i class="fa fa-object-group" aria-hidden="true"></i>
+                                    {{ __('Gérer Revendeurs') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
             </ul>
+            
             <!-- Divider -->
             {{-- <hr class="my-3"> --}}
 

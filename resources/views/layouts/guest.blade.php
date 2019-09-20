@@ -19,6 +19,7 @@
 
         <!-- Argon CSS -->
         {{-- <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet"> --}}
+        @stack('css')
     </head>
     <body class="{{ $class ?? '' }}">
         <style>
@@ -56,39 +57,39 @@
                 @csrf
             </form>
         @endauth
-
-        {{-- Header --}}
-        <header class="container-fluid bg-light">
-            <div class="row justify-content-end">
-                {{-- <a href="" class="btn-link text-dark mx-2 text-center">test</a> --}}
-                @guest
-                    <a href=" {{route('retailers.index')}} " class="btn-link text-dark mx-2 text-center">Espace Partenaires</a>
-                    <a href="/login" class="btn-link text-dark mx-2 text-center">Connexion</a>                
-                @endguest
-                @auth
-                    @if (auth()->user()->admin != null)
-                        <a href="/home" class="btn-link text-dark mx-2 text-center font-weight-bold"> <u>Dashboard</u></a>
-                        <a href="/profile" class="btn-link text-dark mx-2 text-center font-weight-bold"> <u>Mon Compte</u> </a>
-                    @else
-                        <a href="#" class="btn-link text-dark mx-2 text-center font-weight-bold"><u>Mon Compte</u></a>
-                        <a href="{{ route('logout') }}" class="btn-link text-dark mx-2 text-center font-weight-bold" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                        Déconnexion
-                        </a>
-                    @endif
-                @endauth
-            </div>
-
-        </header>
-
-        <!-- navbar -->
-
-            @include('layouts.navbars.navs.guest',["transparent" => false])        
         <div class="main-content" id="app">
-            {{-- @include('layouts.navbars.navbar') --}}
+            {{-- Header --}}
+            <header class="container-fluid bg-light">
+                <div class="row justify-content-end">
+                    {{-- <a href="" class="btn-link text-dark mx-2 text-center">test</a> --}}
+                    @guest
+                        <a href=" {{route('retailers.index')}} " class="btn-link text-dark mx-2 text-center">Espace Partenaires</a>
+                        <a href="/login" class="btn-link text-dark mx-2 text-center">Connexion</a>                
+                    @endguest
+                    @auth
+                        @if (auth()->user()->admin != null)
+                            <a href="/home" class="btn-link text-dark mx-2 text-center font-weight-bold"> <u>Dashboard</u></a>
+                            <a href="/profile" class="btn-link text-dark mx-2 text-center font-weight-bold"> <u>Mon Compte</u> </a>
+                        @else
+                            <a href="#" class="btn-link text-dark mx-2 text-center font-weight-bold"><u>Mon Compte</u></a>
+                            <a href="{{ route('logout') }}" class="btn-link text-dark mx-2 text-center font-weight-bold" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            Déconnexion
+                            </a>
+                        @endif
+                    @endauth
+                </div>
+
+            </header>
+
+            <!-- navbar -->
+
+                @include('layouts.navbars.navs.guest',["transparent" => false])        
+            
+                {{-- @include('layouts.navbars.navbar') --}}
             @yield('content')
         </div>
         <!-- Footer -->
-        <footer class="container-fluid bg-primary text-center px-5 pt-5 text-light">
+        {{-- <footer class="container-fluid bg-primary text-center px-5 pt-5 text-light">
             <div class="row">
                 <div class="col-md-4 col-12">
                     <h5>
@@ -121,7 +122,7 @@
                         New Meuble Family
                     </h5>
                     <ul style="list-style:none">
-                        <li>Devenir Membre</li>
+                        <li>Devenir Partenaire</li>
                         <li>Avantages</li>
                         <li>Connexion</li>
                         <li>Offres</li>    
@@ -166,6 +167,76 @@
                 </div>
             </div>
             
+        </footer> --}}
+
+        <footer class="container-fluid bg-primary text-center text-light">
+            <div class="row">
+                <div class="col-md-6 pt-4 col-12">
+                    <p class="h2">
+                        <i class="fas fa fa-comments"></i>
+                        Besoin d'aide
+                    </p>
+                    <ul style="list-style:none;" class="text-center px-0">
+                        <li class="text-center">
+                            <a href="#">Contact</a>
+                        </li>
+                        <li>
+                            <a href="{{route('about')}}">À propos</a>
+                        </li>
+                        <li>
+                            <a href="{{route('register')}}">Créer un compte</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 pt-4 col-12">
+                    <p class="h2">
+                        <i class="fa fa-credit-card"></i>
+                        NewMob Family
+                    </p>
+                    <ul style="list-style:none" class="text-center px-0">
+                        <li>
+                            <a href="{{route('retailers.index')}}">Devenir Partenaire</a>
+                        </li>
+                        <li>
+                            <a href="{{route('login')}} ">Connexion</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="row align-middle my-3 justify-content-center">
+                <span class="d-flex mx-3 px-2 rounded border">
+                    <a href="">
+                        <i class="fa fa-facebook "></i>
+                        Facebook
+                    </a>
+                </span>
+                <span class="d-flex mx-3" >
+                    <a href="">
+                        <i class="fa fa-instagram"></i>
+                        Instagram
+                </a>
+                </span>
+                <span class="d-flex mx-3" >
+                    <a href="">
+                        <i class="fa fa-twitter"></i>
+                        twitter
+                    </a>
+                </span>
+                <span class="d-flex mx-3" >
+                    <a href="">
+                        <i class="fa fa-youtube"></i>
+                        Youtube      
+                    </a>
+                </span>
+    
+            </div>
+            <div class="row py-2 justify-content-center" style="background: #4D7096">
+                <span class="d-flex">
+                    <i class="fas fa fa-copyright fa-sm mr-2"></i>
+                    NewMobOffice
+                </span>
+            </div>
         </footer>
 
         {{-- @guest()

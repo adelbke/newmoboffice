@@ -7,11 +7,25 @@
 
 require('popper.js').default;
 // require('jquery').default;
-// require('./bootstrap');
+require('./bootstrap');
 
 window.Vue = require('vue');
 
-// import ZoomOnHover from "vue-zoom-on-hover";
+// importing VueLazyload
+import VueLazyload from 'vue-lazyload';
+ 
+Vue.use(VueLazyload);
+
+// importing vue-upload-multiple-image
+
+import VueUploadMultipleImage from 'vue-upload-multiple-image';
+ 
+export default {
+  components: {
+    VueUploadMultipleImage,
+  },
+}
+
 import "jquery-zoom";
 
 /**
@@ -31,7 +45,30 @@ Vue.component('product-component',require('./components/ProductComponent.vue').d
 
 Vue.component('largeproduct-component',require('./components/LargeProductComponent.vue').default);
 
+Vue.component('producticon-component',require('./components/ProductIconComponent.vue').default);
+
+Vue.component('productimages-component',require('./components/ProductImagesComponent.vue').default);
+
 Vue.component('productdescription-component',require('./components/ProductDescriptionComponent.vue').default);
+
+Vue.component('disable-retailer',require('./components/DisableRetailer.vue').default);
+
+Vue.component('enable-retailer',require('./components/EnableRetailer.vue').default);
+
+Vue.component('category-form',require('./components/categoryFormComponent.vue').default);
+
+Vue.component('cart-component',require('./components/CartComponent.vue').default);
+
+Vue.component('quantity-component',require('./components/QuantityComponent.vue').default);
+
+Vue.component('cartitems-component',require('./components/CartItemsComponent.vue').default);
+
+Vue.component('searchpage-component',require('./components/SearchPageComponent.vue').default);
+
+Vue.component('ordersdatatable-component',require('./components/OrdersDatatableComponent.vue').default);
+
+Vue.component('ordersbutton-component',require('./components/OrdersButtonComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -41,6 +78,10 @@ Vue.component('productdescription-component',require('./components/ProductDescri
 
 const app = new Vue({
     el: '#app',
+
+    data:{
+      cart:[
+      ]
+    }
 });
 
-$(document).ready(function(){$(".dropdown-menu a.dropdown-toggle").on("click",function(o){var s=$(this);s.toggleClass("active-dropdown");var n=$(this).offsetParent(".dropdown-menu");$(this).next().hasClass("show")||$(this).parents(".dropdown-menu").first().find(".show").removeClass("show");var e=$(this).next(".dropdown-menu");return e.toggleClass("show"),$(this).parent("li").toggleClass("show"),$(this).parents("li.nav-item.dropdown.show").on("hidden.bs.dropdown",function(o){$(".dropdown-menu .show").removeClass("show"),s.removeClass("active-dropdown")}),n.parent().hasClass("navbar-nav")||s.next().css({top:s[0].offsetTop,left:n.outerWidth()-4}),!1})});
