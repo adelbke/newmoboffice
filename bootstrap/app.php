@@ -40,6 +40,8 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
+// Laraver-Phone Register
+$app->register(Propaganistas\LaravelPhone\PhoneServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

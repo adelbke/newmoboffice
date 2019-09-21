@@ -87,7 +87,7 @@ class TypeController extends Controller
             $query->where('image_type','=','card');
         }])->where('type_id','=',$type->id)->paginate(15);
 
-        $productsList = $products->toJson(JSON_PRETTY_PRINT);
+        // $productsList = $products->toJson(JSON_PRETTY_PRINT);
         
         $colors = DB::table('colors')->join('color_product','colors.id','=','color_product.color_id')
             ->join('products','color_product.product_id',"=","products.id")
@@ -100,6 +100,6 @@ class TypeController extends Controller
         // $colors = Color::with('image')->where('');
 
 
-        return view('types.show',compact('products','productsList','type','colors'));
+        return view('types.show',compact('products','type','colors'));
     }
 }

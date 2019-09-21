@@ -9,7 +9,7 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Argon Dashboard') }}</title>
+        <title>NewMobOffice</title>
         <!-- Favicon -->
         {{-- <link href="{{ asset('argon') }}/img/brand/favicon.png" rel="icon" type="image/png"> --}}
         <!-- Fonts -->
@@ -206,7 +206,7 @@
                 <div class="row justify-content-end">
                     <div class="col-lg-6 col-md-8 ">
                         <div class="card bg-light shadow border-0">
-                            <div class="card-header bg-transparent pb-5">
+                            {{-- <div class="card-header bg-transparent pb-5">
                                 <div class="text-muted text-center mt-2 mb-4"><small>{{ __('Sign up with') }}</small></div>
                                 <div class="text-center">
                                     <a href="#" class="btn btn-neutral btn-icon mr-4 shadow rounded text-light" style="background: #3C5A99;">
@@ -221,10 +221,11 @@
                                         <span class="btn-inner--text">{{ __('Google') }}</span>
                                     </a>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="card-body px-lg-5 py-lg-5">
-                                <div class="text-center text-muted mb-4">
-                                    <small>{{ __('Or sign up with credentials') }}</small>
+                                <div class="text-center text-primary mb-4">
+                                    <h2 class="h4">Créez Votre Compte NewMobOffice</h2>
+                                    {{-- <small>{{ __('Or sign up with credentials') }}</small> --}}
                                 </div>
                                 <form role="form" method="POST" action="{{ route('register') }}">
                                     @csrf
@@ -239,6 +240,38 @@
                                         @if ($errors->has('name'))
                                             <span class="invalid-feedback" style="display: block;" role="alert">
                                                 <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+
+
+                                    <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
+                                        <div class="input-group input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa fa-phone"></i>
+                                                </span>
+                                            </div>
+                                            <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" placeholder="{{ __('phone') }}" type="text" name="phone" value="{{ old('phone') }}" required autofocus>
+                                        </div>
+                                        @if ($errors->has('phone'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('phone') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+
+
+                                    <div class="form-group{{ $errors->has('address') ? ' has-danger' : '' }}">
+                                        <div class="input-group input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa fa-address-card"></i></span>
+                                            </div>
+                                            <input class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" placeholder="{{ __('address') }}" type="te    xt" name="address" value="{{ old('address') }}" required autofocus>
+                                        </div>
+                                        @if ($errors->has('address'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('address') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -276,15 +309,15 @@
                                             <input class="form-control" placeholder="{{ __('Confirm Password') }}" type="password" name="password_confirmation" required>
                                         </div>
                                     </div>
-                                    <div class="text-muted font-italic">
+                                    {{-- <div class="text-muted font-italic">
                                         <small>{{ __('password strength') }}: <span class="text-success font-weight-700">{{ __('strong') }}strong</span></small>
-                                    </div>
+                                    </div> --}}
                                     <div class="row my-4">
                                         <div class="col-12">
                                             <div class="custom-control custom-control-alternative custom-checkbox">
-                                                <input class="custom-control-input" id="customCheckRegister" type="checkbox">
+                                                <input class="custom-control-input" name="terms" id="customCheckRegister" type="checkbox">
                                                 <label class="custom-control-label" for="customCheckRegister">
-                                                    <span class="text-muted">{{ __('I agree with the') }} <a href="#!">{{ __('Privacy Policy') }}</a></span>
+                                                    <span class="text-muted">{{ __('J\'accepte les  ') }} <a href="#!" class="text-primary">{{ __('termes et conditions') }}</a></span>
                                                 </label>
                                             </div>
                                         </div>

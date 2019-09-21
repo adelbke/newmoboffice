@@ -60,6 +60,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address'=>['nullable','String'],
+            'phone'=>['phone:DZ','required','String'],
+            'terms'=>['required']
         ]);
     }
 
@@ -78,6 +81,8 @@ class RegisterController extends Controller
         ]);
         $client = new client();
         $client->user_id = $item->id;
+        $client->address = $data['address'];
+        $client->phone=$data['phone'];
         // TODO: Add the address handling
         $client->save();
         return $item;

@@ -92,9 +92,11 @@
             </li>
         </ul>
         <div class="d-inline my-2 my-lg-0 mx-lg-2">
-            <a class="rounded-circle @isset($transparent) @if($transparent == true) text-light @else text-dark @endif  @endisset hvr-fade p-1 text-center" href="/login" style="cursor: pointer;">
-                <i class="fa fas fa-user fa-2x align-middle mx-1" title="Accéder à mon Compte" aria-hidden="true"></i>
-            </a>
+            @guest
+                <a class="rounded-circle @isset($transparent) @if($transparent == true) text-light @else text-dark @endif  @endisset hvr-fade p-1 text-center" href="/login" style="cursor: pointer;">
+                    <i class="fa fas fa-user fa-2x align-middle mx-1" title="Accéder à mon Compte" aria-hidden="true"></i>
+                </a>
+            @endguest
 
             {{-- Component --}}
             <cart-component></cart-component>

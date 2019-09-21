@@ -82,9 +82,9 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <div>
+                                            <span style="width:100px">
                                                 {{ $product->description}}
-                                            </div>
+                                            </span>
                                         </td>
                                         <td>
                                             <a class="text-info font-weight-bold" href="/products/{{$product->id}}/edit">Modifier</a>
