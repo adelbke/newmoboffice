@@ -47,5 +47,8 @@
                 </div>
             @endforeach
         </div>
+        <div class="row">
+            {{$list->links()}}
+        </div>
     </div>
 @endsection

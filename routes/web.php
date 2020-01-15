@@ -56,23 +56,23 @@ Route::get('/search',function (Request $request){
 
 		switch ($request->orderby) {
 			case 'cheaptoexpensive':
-				$list = Product::search($request->search)->orderBy('clientPrice','desc')->get();			
+				$list = Product::search($request->search)->orderBy('clientPrice','desc')->paginate(20);			
 				break;
 			case 'expensivetocheap':
-				$list = Product::search($request->search)->orderBy('clientPrice','asc')->get();
+				$list = Product::search($request->search)->orderBy('clientPrice','asc')->paginate(20);
 				break;
 			case 'popularity':
-				$list = Product::where('name','LIKE','%'.$request->search.'%')->orderBy('visitors','desc')->get();
+				$list = Product::where('name','LIKE','%'.$request->search.'%')->orderBy('visitors','desc')->paginate(20);
 		}
 	}else{
 		if(isset($request->search))
 		{
 			// $list = Product::search($request->search)->get();
-			$list = Product::where('name','LIKE','%'.$request->search.'%')->get();
+			$list = Product::where('name','LIKE','%'.$request->search.'%')->paginate(20);
 		}else{
 			$list= Product::with(['images'=>function($query) {
 				$query->where('image_type','=','card');
-			}])->get();
+			}])->paginate(20);
 		}
 	}
 
