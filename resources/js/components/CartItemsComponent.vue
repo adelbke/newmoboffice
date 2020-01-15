@@ -1,5 +1,6 @@
 <template>
-    <div>
+<div>
+    <div v-if="this.cart.length > 0" >
         <div class="row" v-for="(item,index) in this.cart" v-bind:key="item.rowId">
             <div class="col-12-col-md-3 col-lg-3 p-0">
                 <img v-bind:src="item.image" class="img-fluid float-right" alt="">
@@ -32,6 +33,15 @@
             </h4>
         </div>
     </div>
+    <div v-else class="">
+        <h4 class="h4 text-center">
+            Vôtre Panier est Vide!<br>
+            Remplissez le <a href="/" class="text-primary">ici</a>
+        </h4>
+        <img src="/images/undraw_empty_xct9.svg" alt="Panier Vide" class="img-fluid w-50 d-block rounded mx-auto">
+    </div>
+</div>
+    
 </template>
 
 <script>
@@ -59,7 +69,8 @@ export default {
         totalPrice:function(){
             var sum = 0;
             this.cart.forEach(element => {
-                sum = sum +(parseInt(element.Price) * parseInt(element.quantity));
+                console.log(sum);
+                sum = sum +(parseInt(element.price) * parseInt(element.quantity));
             });
             return sum;
         }

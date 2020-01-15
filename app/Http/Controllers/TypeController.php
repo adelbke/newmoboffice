@@ -24,7 +24,7 @@ class TypeController extends Controller
         // dd(request()->all());
         $data = request()->validate([
             'Name'=>['required','String'],
-            'Category'=>['required','String','in:Meuble de Bureau,Mobilier de Réunion,Mobilier Accueil,Mobilier de Conférence,Bibliothèque & mobilier pour écoles et crèches,Environnement & Accéssoires']
+            'Category'=>['required','String','in:Meuble de Bureau,Mobilier de Réunion,Mobilier Accueil,Mobilier de Conférence,Bibliotheque Mobilier ecoles creches,Environnement & Accéssoires,Chaises']
         ]);
         // Data validated
         // dd($data);
@@ -54,7 +54,7 @@ class TypeController extends Controller
     public function update (Type $type){
         $data = request()->validate([
             'Name'=>['required','String'],
-            'Category'=>['required','String','in:Meuble de Bureau,Mobilier de Réunion,Mobilier Accueil,Mobilier de Conférence,Bibliothèque & mobilier pour écoles et crèches,Environnement & Accéssoires']
+            'Category'=>['required','String','in:Meuble de Bureau,Mobilier de Réunion,Mobilier Accueil,Mobilier de Conférence,Bibliotheque Mobilier ecoles creches,Environnement & Accéssoires,Chaises']
         ]);
 
         // dd($type);
@@ -69,16 +69,17 @@ class TypeController extends Controller
 
     public function getCategory(){
         $data = request()->validate([
-            'category'=>['required'],
+            'category'=>['required','String'],
             'adminId'=>['required','exists:admins,id','numeric']
         ]);
         try {
             $types = Type::all()->where('Category','=',$data['category']);
         } catch (\Throwable $th) {
+            dd($th);
             return null;
         }
         
-        return json_encode($types);
+        return $types->toJson();
     }
 
     public function show(Type $type){
@@ -98,6 +99,8 @@ class TypeController extends Controller
         // dd($products);
         
         // $colors = Color::with('image')->where('');
+
+	//dd($products);
 
 
         return view('types.show',compact('products','type','colors'));

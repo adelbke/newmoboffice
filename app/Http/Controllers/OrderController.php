@@ -13,7 +13,8 @@ class OrderController extends Controller
     {
         // $orders = Order::with(['products.colors','client.user.client.retailer'])->get()->toJson();
 
-        return view('orders.index.auth');
+            return view('orders.index.auth');
+
     }
 
     public function getListJson()
@@ -54,7 +55,4 @@ class OrderController extends Controller
         return $orders->toJson(JSON_PRETTY_PRINT);
     }
 
-    public function create(){
-        
-    }
 }

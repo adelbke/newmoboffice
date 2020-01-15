@@ -1,86 +1,115 @@
 <template>
-	<div class="container my-0">
-		<div class="container">
-			<div class="col-12 col-md-3 offset-md-9">
-				<div class="form-group">
-					<!-- <label for="">R</label> -->
-					<input type="text" class="form-control bg-default" v-model="Search" @change="LoadSearch(Search)" aria-describedby="helpId" placeholder="Recherche">
-				</div>
-
-			</div>
-		</div>
-		<div class="table-responsive">
-			<table class="table table-dark table-hover table-sm">
-				<caption v-text="this.tableData.length+ ' Commandes.'"></caption>
-				<thead class="thead-default">
-					<tr>
-						<th v-for="(column,index) in this.columns" :scope="'col'" :colspan="column.field == 'Status'? 2:1" v-bind:key="index" v-text="column.name" ></th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr v-for="order in this.tableData" v-bind:key="order.id" >
-							<td v-text="order.id"></td>
-							<td v-text="order.nomClient"></td>
-							<td v-text="order.emailClient"></td>
-							<td v-text="order.numeroClient"></td>
-							<td v-text="order.addressClient"></td>
-							<td >
-								<span v-for="(product,index) in order.Products" v-bind:key="index">
-									<a v-bind:href="'/products/' + product.id" >{{product.name}}</a> , {{product.selectedColor.name}}, {{product.reference}}, X{{product.pivot.quantity}}
-									<br>
-								</span>
-							</td>
-							<td v-text="order.Price"></td>
-							<td colspan="2">
-								
-								<div class="form-group" style="width:8rem">
-									<select 
-										v-model="order.Status" 
-										v-bind:class="{ 'text-danger':order.Status == 'requested',
-											'text-warning':order.Status == 'waiting',
-											'text-success':order.Status == 'Ready',
-											'text-light':order.Status == 'Sold',
-											'custom-select bg-default':true }"
-										@change="updateStateChange(order.id,order.Status)"
-											>
-										<option v-for="(state,index) in states" v-bind:key="index" v-bind:value="state.value" :selected="order.Status == state.value ?true:false" :class="state.color" >{{state.name}}</option>
-									</select>
-								</div>
-							</td>
-
-						</tr>
-					</tbody>
-			</table>
-		</div>
-	</div>
+  <div class="container my-0 ">
+      
+      <div class="row">
+          <div class="col-12 offset-md-8 col-md-4 my-3 text-dark">
+                <b-form-group
+                label="Filter"
+                label-cols-sm="3"
+                label-align-sm="right"
+                label-size="sm"
+                label-for="filterInput"
+                class="mb-0">
+                <b-input-group size="sm">
+                    <b-form-input
+                    
+                    v-model="filter"
+                    type="search"
+                    id="filterInput"
+                    placeholder="Type to Search"
+                    ></b-form-input>
+                    <b-input-group-append>
+                        <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+                    </b-input-group-append>
+                </b-input-group>
+            </b-form-group> 
+          </div>
+      </div>
+      
+      <b-table striped hover dark responsive 
+        :items="tableData" :fields="fields"
+        :sort-by.sync="sortBy"
+        :sort-desc.sync="sortDesc"
+        sort-icon-left
+        :filter-included-fields="includedFields"
+        :filter="filter"
+      >
+      <template v-slot:cell(Products)="data">
+        <span v-for="(product,index) in data.value" v-bind:key="index">
+            <a v-bind:href="'/products/' + product.id" >{{product.name}}</a> , {{product.selectedColor.name}}, {{product.reference}}, X{{product.pivot.quantity}}
+            <br>
+        </span>
+      </template>
+      <template v-slot:cell(Status)="data">
+            <div class="form-group">
+                <select 
+                    v-model="data.value" 
+                    v-bind:class="{ 'text-danger':data.value == 'requested',
+                        'text-warning':data.value == 'waiting',
+                        'text-success':data.value == 'Ready',
+                        'text-light':data.value == 'Sold',
+                        'custom-select bg-default':true }"
+                    @change="updateStateChange(data.item.id,data.value)"
+                        >
+                    <option v-for="(state,index) in states" v-bind:key="index" v-bind:value="state.value" :selected="data.value == state.value ?true:false" :class="state.color" >{{state.name}}</option>
+                </select>
+            </div>
+      </template>
+      
+      </b-table>
+  </div>
 </template>
 
 <script>
+import {BTable , BInputGroup, BFormInput, BInputGroupAppend,BButton, BFormGroup	} from 'bootstrap-vue';
 export default {
     mounted(){
-		var vm = this;
-		this.getData('');
-	},
-	methods:{
+        var vm = this;
+        this.getData('');
+    },
+    data : function (){
+        return {
+            filter: null,
+            includedFields:[
+                'nomClient',
+                'emailClient',
+                'Products',
+                'Price',
+            ],
+            sortBy: 'id',
+            sortDesc: false,
+            tableData:[],
+            fields:[
+                {key:'id',label:'id', sortable: true},
+                {key:'nomClient',label:'Nom Client', sortable: true},
+                {key:'emailClient',label:'Email Client', sortable: true},
+                {key:'addressClient',label:'Adresse Client', sortable: true},
+                {key:'Products',label:'Produits', sortable: true},
+                {key:'Price',label:'Prix', sortable: true},
+                {key:'Status',label:'Status', sortable: true},
+            ],
+            states:[
+				{name:"Demandé",value:"requested",color:"text-danger"},
+				{name:"En Attente",value:"waiting",color:"text-warning"},
+				{name:"Prêt",value:"Ready", color:"text-success"},
+				{name:"Vendu",value:"Sold", color:"text-light"},
 
-		LoadSearch:function (){
-			this.getData(this.Search);
-		},
-		updateStateChange: function (orderid,state){
-			axios.post('/orders/update', {
-					orderid:orderid,
-					newstate:state
-			})
-			.then(function (response) {
-			})
-			.catch(function (error) {
-			})
-		},
-		
-		getData:function (searchTerms){
+			],
+        };
+    },
+    components:{
+        BTable,
+        BInputGroup,
+        BFormInput,
+        BInputGroupAppend,
+        BButton,
+        BFormGroup
+    },
+    methods:{
+        getData:function (searchTerms){
 			var vm = this;
 			axios.post('/orders/fullList', {
-				search:searchTerms,
+                search:searchTerms,
 			})
 			.then(function (response) {
 				var table = response.data;
@@ -104,36 +133,23 @@ export default {
 			})
 			.catch(function (error) {
 			})
-		}
-	},
-	data:function (){
-		return {
-			Search: '',
-			tableData:[
-
-			],
-			columns:[
-				{name:'id',field:'id'},
-				{name:'Nom Client',field:'nomClient'},
-				{name:'Email Client',field:'emailClient'},
-				{name:'Numéro Client',field:'numeroClient'},
-				{name:'Adresse Client',field:'addressClient'},
-				{name:'Produits',field:'Products'},
-				{name:'Prix',field:'Price'},
-				{name:'état',field:'Status'}
-				
-			],
-			states:[
-				{name:"Demandé",value:"requested",color:"text-danger"},
-				{name:"En Attente",value:"waiting",color:"text-warning"},
-				{name:"Prêt",value:"Ready", color:"text-success"},
-				{name:"Vendu",value:"Sold", color:"text-light"},
-
-			],
-		};
-	}
+        },
+        updateStateChange: function (orderid,state){
+			axios.post('/orders/update', {
+					orderid:orderid,
+					newstate:state
+			})
+			.then(function (response) {
+			})
+			.catch(function (error) {
+			})
+		},
+    }
 }
 </script>
 
 <style scoped>
+#filterInput{
+    color:var(--gray-dark);
+}
 </style>

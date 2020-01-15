@@ -19,7 +19,7 @@
                 <div class="col-6 col-md-3 col-lg-3">
                         <product-component
                         :id="{{$product->id}}"
-                        path="{{$product->images[0]->path}}"                    
+                        path="{{$product->images->first()['path']}}"                    
                         name="{{$product->name}}"
                         note="{{$product->note}}"
                         :price="{{$product->clientPrice}}"

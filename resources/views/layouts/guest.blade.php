@@ -44,12 +44,12 @@
                 box-shadow:none;
                 outline: none;
             }
-            a{
+            /* a{
                 color: white;
             }
             a:hover{
                 color: white;
-            }
+            } */
         </style>
 
         @auth()
@@ -57,7 +57,7 @@
                 @csrf
             </form>
         @endauth
-        <div class="main-content" id="app">
+        <div class="main-contents" id="app">
             {{-- Header --}}
             <header class="container-fluid bg-light">
                 <div class="row justify-content-end">
@@ -82,158 +82,119 @@
             </header>
 
             <!-- navbar -->
-
                 @include('layouts.navbars.navs.guest',["transparent" => false])        
             
                 {{-- @include('layouts.navbars.navbar') --}}
-            @yield('content')
+                <div class="container">
+                    @yield('content')
+                </div>
         </div>
-        <!-- Footer -->
-        {{-- <footer class="container-fluid bg-primary text-center px-5 pt-5 text-light">
+
+
+
+        {{-- Footer --}}
+        <footer class="container-fluid pt-3 bg-secondary text-center text-light">
             <div class="row">
                 <div class="col-md-4 col-12">
-                    <h5>
-                        <i class="fa fa-file fa-rotate-90"></i>
-                        Services
-                    </h5>
-                    <ul style="list-style:none">
-                        <li>Service de livraison</li>
-                        <li>Montage</li>
-                        <li>Garanties</li>
-                        <li>Conditions de retour</li>
-                        <li>Financement</li>
-
-                    </ul>
+                    <div class="mx-auto d-inline-flex flex-column">
+                        <p class="h4 text-left">
+                            <i class="fa fas fa-address-book"></i>
+                            Contact
+                        </p>
+                    
+                        <ul style="list-style:none;" class="text-left px-0">
+                            <li>
+                                Email: <br>
+                                <a class="ml-4 text-light" href="mailto:Contact@newmoboffice.com">Contact@newmoboffice.com</a>
+                            </li>
+                            <li>
+                                Tèl:
+                                <ul style="list-style:none;" class="px-0">
+                                    {{-- <li><a href="tel:0560735560">0560 73 55 60</a></li> --}}
+                                    <li><span class="font-weight-bold">Service Commerciale:</span> <br>
+                                        <a class="text-light" href="tel:+213560125275">0560 12 52 75</a><br>
+                                        <a class="text-light" href="tel:+213555619000">0555 61 90 00</a>
+                                    </li>
+                                    <li>
+                                        <span class="font-weight-bold">Service Mobillier: </span>
+                                        <br>
+                                        <a class="text-light" href="tel:+213560536039">0560 53 60 39</a> 
+                                    </li>
+                                </ul>         
+                            </li>
+                            
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-4 col-12">
-                    <h5>
-                        <i class="fa fa-comments"></i>
-                        Besoin d'aide
-                    </h5>
-                    <ul style="list-style:none">
-                        <li>Questions/Réponses</li>
-                        <li>Contact</li>
-                        <li>Suivi de commande</li>    
-                    </ul>
+                    <div class="mx-auto d-inline-flex flex-column">
+                        <p class="h4 text-left">
+                            <i class="fas fa fa-comments"></i>
+                            Besoin d'aide
+                        </p>
+                    
+                        <ul style="list-style:none;" class="text-left px-0">
+                            <li>
+                                <a class="text-light h6" href="/contact">Contact</a>
+                            </li>
+                            <li>
+                                <a class="text-light h6" href="{{route('about')}}">À propos</a>
+                            </li>
+                            <li>
+                                <a class="text-light h6" href="{{route('register')}}">Créer un compte</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-4 col-12">
-                    <h5>
-                        <i class="fa fa-credit-card"></i>
-                        New Meuble Family
-                    </h5>
-                    <ul style="list-style:none">
-                        <li>Devenir Partenaire</li>
-                        <li>Avantages</li>
-                        <li>Connexion</li>
-                        <li>Offres</li>    
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row mx-5 mb-5 mt-3 text-center">
-                <div class="col-md-12 col-12">
-                    <ul class="text-center list-inline" style="list-style: none;font-size: 1.25em">
-                        <li class="list-inline-item mx-3">
-                            <a href="" >
-                                <i class="fa fa-facebook"></i>
-                                Facebook
-                            </a>
-                        </li>
-                        <li class="list-inline-item mx-3">
-                            <a href="">
-                                <i class="fa fa-instagram"></i>
-                                Instagram
-                            </a>
-                        </li>
-                        <li class="list-inline-item mx-3">
-                            <a href="">
-                                <i class="fa fa-twitter"></i>
-                                twitter        
-                            </a>
-                        </li>
-                        <li class="list-inline-item mx-3">
-                            <a href="">
-                                <i class="fa fa-youtube"></i>
-                                Youtube        
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-            </div>
-            <div class="row text-center mb-0">
-                <div class="col-md-12 col-12">
-                    <p>© New Meuble Office</p>
-                </div>
-            </div>
-            
-        </footer> --}}
-
-        <footer class="container-fluid bg-primary text-center text-light">
-            <div class="row">
-                <div class="col-md-6 pt-4 col-12">
-                    <p class="h2">
-                        <i class="fas fa fa-comments"></i>
-                        Besoin d'aide
-                    </p>
-                    <ul style="list-style:none;" class="text-center px-0">
-                        <li class="text-center">
-                            <a href="#">Contact</a>
-                        </li>
-                        <li>
-                            <a href="{{route('about')}}">À propos</a>
-                        </li>
-                        <li>
-                            <a href="{{route('register')}}">Créer un compte</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-6 pt-4 col-12">
-                    <p class="h2">
-                        <i class="fa fa-credit-card"></i>
-                        NewMob Family
-                    </p>
-                    <ul style="list-style:none" class="text-center px-0">
-                        <li>
-                            <a href="{{route('retailers.index')}}">Devenir Partenaire</a>
-                        </li>
-                        <li>
-                            <a href="{{route('login')}} ">Connexion</a>
-                        </li>
-                    </ul>
+                    <div class="mx-auto d-inline-flex flex-column">
+                        <p class="h4 text-left">
+                            <i class="fa fa-credit-card"></i>
+                            NewMob Family
+                        </p>
+                        <ul style="list-style:none" class="text-left px-0">
+                            <li>
+                                <a class="text-light h6" href="{{route('retailers.index')}}">Devenir Partenaire</a>
+                            </li>
+                            <li>
+                                <a class="text-light h6" href="{{route('login')}} ">Connexion</a>
+                            </li>
+                        </ul>
+                    </div>
 
                 </div>
             </div>
             <div class="row align-middle my-3 justify-content-center">
-                <span class="d-flex mx-3 px-2 rounded border">
-                    <a href="">
-                        <i class="fa fa-facebook "></i>
+                <span class="d-flex mx-3 px-2">
+                    <a class="text-light" href="https://www.facebook.com/Newmoboffice-114119043302408/">
+                        <i class="fab fa-facebook "></i>
                         Facebook
                     </a>
                 </span>
                 <span class="d-flex mx-3" >
-                    <a href="">
-                        <i class="fa fa-instagram"></i>
+                    <a class="text-light" href="https://www.instagram.com/newmob_office/">
+                        <i class="fab fa-instagram"></i>
                         Instagram
                 </a>
                 </span>
                 <span class="d-flex mx-3" >
-                    <a href="">
-                        <i class="fa fa-twitter"></i>
+                    <a class="text-light" href="https://twitter.com/NewmobOffice">
+                        <i class="fab fa-twitter"></i>
                         twitter
                     </a>
                 </span>
                 <span class="d-flex mx-3" >
-                    <a href="">
-                        <i class="fa fa-youtube"></i>
+                    <a class="text-light" href="https://www.youtube.com/channel/UCFcFx27rEgL5JHmIFBsIYsQ?view_as=subscriber">
+                        <i class="fab fa-youtube    "></i>
                         Youtube      
                     </a>
                 </span>
     
             </div>
-            <div class="row py-2 justify-content-center" style="background: #4D7096">
+            <div class="row py-2 justify-content-center" style="background: #520e01">
                 <span class="d-flex">
-                    <i class="fas fa fa-copyright fa-sm mr-2"></i>
+                    <i class="far fa fa-copyright fa-sm mr-2"></i>
+                    {{-- <i class="far fa-copyright"></i> --}}
                     NewMobOffice
                 </span>
             </div>
@@ -252,5 +213,16 @@
         {{-- <script>AOS.init();</script>     --}}
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async 
+src="https://www.googletagmanager.com/gtag/js?id=UA-139836523-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-139836523-2');
+</script>
+
     </body>
 </html>

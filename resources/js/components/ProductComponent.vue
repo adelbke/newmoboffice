@@ -1,27 +1,27 @@
 <template>
 
-    <div class="hvr-grow">
+    <div class="shadow rounded h-100 hvr-grow">
         <a v-bind:href="this.productpath">
-            <img v-bind:src="this.path" class="img-fluid mx-auto img-product mb-2 rounded  d-block" style="height:210px;width:210px" alt="">
+            <img v-bind:src="this.path" class="img-fluid img-product mb-2 rounded  d-block" style="width:210px" alt="">
         </a>
         <!-- /images/hair-salon-couch.jpg -->
         
-        <a v-bind:href="this.productpath" v-text="this.name" class="text-dark font-weight-bold d-block btn-link">titre produit court</a>
-        <p class="text-left my-0" >{{this.descriptionformatted}}
-            <a href="#" v-if="this.isdescriptionlong && !this.islong" class="text-primary" @click="readmore()">Lire plus</a>
-            <a href="#" v-else-if="this.islong" class="text-primary" @click="readless()">Lire moins</a>
+        <div class=" p-3">
+            <span v-if="this.new == 1" class="badge badge-pill py-1 badge-secondary">Nouveau</span>
+            <a v-bind:href="this.productpath" v-text="this.name" class="text-dark font-weight-bold d-block btn-link">titre produit court</a>
+            <p class="text-left my-0" >
+                <!-- {{this.descriptionformatted}} -->
+                <span v-html="this.descriptionformatted"></span>
+                <a v-if="this.isdescriptionlong && !this.islong" class="text-primary readMore" @click="readmore()">Lire plus</a>
+                <a v-else-if="this.islong" class="text-primary readMore" @click="readless()">Lire moins</a>
 
-        </p>
-        <h4 class="text-left" v-text="this.priceformatted" >11000 Da</h4>
-        <!-- <p class="text-left" style="color: rgb(255, 210, 0);">
-            <i class="fa fas fa-star"></i>
-            <i class="fa fas fa-star"></i>
-            <i class="fa fas fa-star"></i>
-            <i class="fa fa-star-half"></i>
-        </p> -->
-        <p class="text-left">
-            <small class="text-muted text-left" v-text="this.note" >Petite Note</small>
-        </p>
+            </p>
+            <h4 class="text-left" v-text="this.priceformatted" >11000 Da</h4>
+            <p class="text-left">
+                <small class="text-muted text-left" v-text="this.note" >Petite Note</small>
+            </p>
+        </div>
+
     </div>
     
 </template>
@@ -39,7 +39,8 @@ export default {
         name:String,
         note:String,
         price:Number,
-        description:String
+        description:String,
+        new:String
 
     },
     // components:{
@@ -83,6 +84,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.readMore{
+    cursor: pointer;
+}
 
 </style>

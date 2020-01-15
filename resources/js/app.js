@@ -6,7 +6,7 @@
 
 
 require('popper.js').default;
-// require('jquery').default;
+require('jquery').default;
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -19,14 +19,12 @@ Vue.use(VueLazyload);
 // importing vue-upload-multiple-image
 
 import VueUploadMultipleImage from 'vue-upload-multiple-image';
- 
 export default {
   components: {
     VueUploadMultipleImage,
   },
 }
 
-import "jquery-zoom";
 
 /**
  * The following block of code may be used to automatically register your
@@ -68,6 +66,8 @@ Vue.component('searchpage-component',require('./components/SearchPageComponent.v
 Vue.component('ordersdatatable-component',require('./components/OrdersDatatableComponent.vue').default);
 
 Vue.component('ordersbutton-component',require('./components/OrdersButtonComponent.vue').default);
+
+Vue.component('products-datatable',require('./components/ProductsDatatableComponent.vue').default);
 
 
 /**

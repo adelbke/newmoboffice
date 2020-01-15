@@ -16,7 +16,7 @@ class CreateTypesTable extends Migration
         Schema::create('types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('Name')->unique();
-            $table->enum("Category",['Meuble de Bureau','Mobilier de Réunion','Mobilier Accueil','Mobilier de Conférence','Bibliothèque & mobilier pour écoles et crèches','Environnement & Accéssoires']);
+            $table->enum("Category",['Meuble de Bureau','Mobilier de Réunion','Mobilier Accueil','Mobilier de Conférence','Bibliotheque Mobilier ecoles creches','Environnement & Accéssoires,Chaises']);
             $table->timestamps();
         });
     }

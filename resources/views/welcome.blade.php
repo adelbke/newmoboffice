@@ -1,43 +1,45 @@
-{{-- @extends('layouts.app', ['class' => 'bg-default'])
-
-@section('content')
-    <div class="header bg-gradient-primary py-7 py-lg-8">
-        <div class="container">
-            <div class="header-body text-center mt-7 mb-7">
-                <div class="row justify-content-center">
-                    <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white">{{ __('Welcome to Argon Dashboard FREE Laravel Live Preview.') }}</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="separator separator-bottom separator-skew zindex-100">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-            </svg>
-        </div>
-    </div>
-
-    <div class="container mt--10 pb-5"></div>
-@endsection --}}
-
 @extends('layouts.guest', ['class' => 'bg-white'])
 @section('content')
     <!-- Heading -->
     <div class="container mt-3 text-center">
-        <h2 class="display-4 text-primary">Slogan</h2>
+        <h2 class="h1 text-secondary" style="font-family:'Almarai';">رحيق الإتقان و الجودة</h2>
+        <h2 class="h2 text-secondary font-italic">When Quality and Performance Count</h2>
+    </div>
+    <div class="container shadow text-dark my-4 bg-light pt-2 pb-3 px-5" style="border-radius: 1rem;box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgba(0,0,0,0.15);"> 
+        <h4 class="h3 font-weight-bold font-italic text-center">À PROPOS DE NOUS</h4>
+        <p class="text-center h5 font-italic">Fondée en 2018, la Société <strong>NEW MOB OFFICE</strong> se fait fort pour servir ses clients et partenaires à travers toute L’ALGERIE. <br>La spécification de nos articles et la <span class="font-weight-bold">garantie</span> du <span class="font-weight-bold">rapport qualité prix</span> sont nos <span class="font-weight-bold">principes</span> de travaille.</p>
+        <p class="text-center h5 font-italic">"Notre savoir-faire et nos compétences reposent sur des personnels expérimentés et motivés"</p>
+        <p class=" font-italic text-center h5"><strong>New Mob Office</strong>. Du mobilier pour tous les goûts. Notre particularité, c'est de réunir dans une seule entreprise le travail du concepteur et celui du fabriquant. <strong>New Mob Office</strong> Vous propose une large gamme de produits sur mesure et en série.</p>
     </div>
     
     <!-- Image Slider -->
     <div class="container my-5 mx-auto bg-white">
         <div id="main" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#main" data-slide-to="0" class="active"></li>
-                <li data-target="#main" data-slide-to="1"></li>
-                <li data-target="#main" data-slide-to="2"></li>
+                @foreach (range(0,$sliders->count()-1) as $i)
+                    @if ($i == 0)
+                        <li data-target="#main" data-slide-to="{{$i}}" style="background-color:var(--gray);" class="active"></li>                        
+                    @else
+                        <li data-target="#main" data-slide-to="{{$i}}" style="background-color:var(--gray);" class=""></li>                        
+                    @endif
+                @endforeach
             </ol>
             <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active text-center" >
+                @if ($sliders->count()>0)
+                    @foreach (range(0,$sliders->count()-1) as $i)
+                        @if ($i == 0)
+                            <div class="carousel-item active text-center">
+                                <img src="{{$sliders->pop()->image->path}}" class="w-100 img-fluid mx-auto" alt="First slide">       
+                            </div>
+                        @else                         
+                            <div class="carousel-item text-center">
+                                <img src="{{$sliders->pop()->image->path}}" class="w-100 img-fluid mx-auto" alt="First slide">       
+                            </div>
+                            
+                        @endif
+                    @endforeach
+                @endif
+                {{-- <div class="carousel-item text-center" >
                     <img src="images/furniture-unsplash-5.jpg" class="w-100 img-fluid mx-auto" alt="First slide">
                     <div class="carousel-caption d-none d-md-block text-white"style="mix-blend-mode: difference;">
                         <h3 class="hvr-grow d-block">Title 1</h3>
@@ -57,13 +59,13 @@
                         <h3 class="hvr-grow d-block">Title</h3>
                         <p>Description</p>
                     </div>
-                </div>
+                </div> --}}
             </div>
-            <a class="carousel-control-prev" href="#main" role="button" data-slide="prev">
+            <a class="carousel-control-prev" href="#main" style="background:none;" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#main" role="button" data-slide="next">
+            <a class="carousel-control-next" href="#main" style="background:none;" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
@@ -72,172 +74,71 @@
 
     <!-- Products Selection -->
     <div class="container-fluid my-4">
-        <div class="row px-5 justify-content-center">
+        <div class="row justify-content-center">
             <!-- first -->
-            <div class="col-md-3 col-6 rounded p-2">
-                <product-component></product-component>
-            </div>
-
-            <!-- Second -->
-            <div class="col-md-3 col-6 rounded p-2">
-                <product-component></product-component>
-            </div>
-
-            <!-- Third -->
-            <div class="col-md-3 col-6 rounded p-2">
-                <product-component></product-component>
-            </div>
-
-            <!-- Fourth -->
-            <div class="col-md-3 col-6 rounded p-2">
-                <product-component></product-component>
-            </div>
+            @foreach ($products as $product)
+                <div class="col-md-3 col-6 p-2">
+                    <product-component
+                    :id="{{$product->id}}"
+                    path="{{$product->images->first()["path"]}}"                    
+                    name="{{$product->name}}"
+                    note="{{$product->note}}"
+                    :price="{{$product->clientPrice}}"
+                    description="{{$product->description}}"
+                    new="{{$product->new}}"
+                    ></product-component>
+                </div>
+            @endforeach
            
         </div>
     </div>
 
     <!-- Products Link -->
     <div class="container text-center mb-4">
-            <a name="" id="" class="btn btn-primary border border-primary hvr-fade my-4 hvr-icon-forward" href="#" role="button">
+            <a class="btn font-weight-bold border border-primary hvr-fade my-4 hvr-icon-forward" href="/search" role="button">
                 Voir tous les Produits
                 <i class="fa fas fa-chevron-right hvr-icon"></i>
             </a>
     </div>
 
     <!-- Collections -->
-    <div class="container-fluid px-5 mb-5">
-        <div class="row my-3">
-            {{-- Collection 1 --}}
-            <div class="col-md-6 col-12 text-center d-block" >
-                <collection-component></collection-component>
-            </div>
-
-            {{-- Collection 2 --}}
-            
-            <div class="col-md-6 col-12 text-center d-block">
-                <collection-component></collection-component>        
-            </div>
-            
-        </div>
-        <hr>
+    <div class="container mb-5">
+        <h2 class="h2 text-center font-italic">TOUT LE <span class="font-weight-bold">MOBILIER</span> POUR VÔTRE BUREAU !</h2>
         <div class="row mt-5 mb-3">
-
-            {{-- Collection 3 --}}
-            <div class="col-md-6 col-12 text-center d-block" >
-                <collection-component></collection-component>
-            </div>
-
-            {{-- Collection 4 --}}
-            <div class="col-md-6 col-12 text-center d-block" >
-                <collection-component></collection-component>
-            </div>
-            
+            @foreach ($reunion as $item)
+                {{-- Collection 1 --}}
+                <div class="col-md-6 col-12 mb-5 text-center d-block" >
+                    <collection-component
+                    name="{{$item->name}}"
+                    image="{{$item->images->first()["path"]}}"
+                    description="{{$item->description}}"
+                    route="{{route('products.show',$item)}}"
+                    ></collection-component>
+                </div>
+            @endforeach
+            {{-- Collection 1 --}}
         </div>
     </div>
 
     <!-- Cards -->
-    <div class="container mb-3">
+    <div class="container mb-5">
+        <h2 class="h2">Chaises</h2>
         <div class="row">
-            <div class="col-md-3 col-6 pr-2 pb-2 hvr-grow">
-                <a href="" class="text-dark">
-                    <div class="card border-0 shadow">
-                        <img src="images/furniture-unsplash.jpg" class="card-img-top" alt="...">
-                        <div class="card-body text-left">
-                          <h5 class="card-title mb-0">Titre</h5>
-                          <div class="card-text text-black-50">Petite Description</div>
+            @foreach ($accueil as $item)
+                <div class="col-md-3 col-12 hvr-grow">
+                    <a href="{{route('products.show',$item)}}" class="text-dark ">
+                        <div class="card shadow h-100">
+                            <img src="{{$item->images->first()['path']}}" class="card-img-top" alt="...">
+                            <div class="card-body text-left">
+                              <h5 class="card-title mb-0">{{$item->name}}</h5>
+                              <div class="card-text font-weight-bold">{!!$item->clientPrice!!} Da</div>
+                            </div>
                         </div>
-                    </div>
-                </a>             
-            </div>
-
-            <div class="col-md-3 col-6 pr-2 pb-2 hvr-grow">
-                <a href="" class="text-dark">
-                    <div class="card border-0 shadow">
-                        <img src="images/furniture-unsplash-2.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body text-left">
-                            <h5 class="card-title mb-0">Titre</h5>
-                            <div class="card-text text-black-50">Petite Description</div>
-                        </div>
-                    </div>
-                </a>    
-            </div>
-            
-            <div class="col-md-3 col-6 pr-2 pb-2 hvr-grow">
-                <a href="" class="text-dark">
-                    <div class="card border-0 shadow">
-                        <img src="images/furniture-unsplash.jpg" class="card-img-top" alt="...">
-                        <div class="card-body text-left">
-                            <h5 class="card-title mb-0">Titre</h5>
-                            <div class="card-text text-black-50">Petite Description</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-6 pr-2 pb-2 hvr-grow">
-                <a href="" class="text-dark">
-                    <div class="card border-0 shadow">
-                        <img src="images/furniture-unsplash-2.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body text-left">
-                            <h5 class="card-title mb-0">Titre</h5>
-                            <div class="card-text text-black-50">Petite Description</div>
-                        </div>
-                    </div>
-                </a>        
-            </div>
-            <div class="col-md-3 col-6 pr-2 pb-2 hvr-grow">
-                <a href="" class="text-dark">
-                    <div class="card border-0 shadow">
-                        <img src="images/furniture-unsplash.jpg" class="card-img-top" alt="...">
-                        <div class="card-body text-left">
-                            <h5 class="card-title mb-0">Titre</h5>
-                            <div class="card-text text-black-50">Petite Description</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-    
-            <div class="col-md-3 col-6 pr-2 pb-2 hvr-grow">
-                <a href="" class="text-dark">
-                    <div class="card border-0 shadow">
-                        <img src="images/furniture-unsplash-2.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body text-left">
-                            <h5 class="card-title mb-0">Titre</h5>
-                            <div class="card-text text-black-50">Petite Description</div>
-                        </div>
-                    </div>
-                </a>
-        
-            </div>
-                
-            <div class="col-md-3 col-6 pr-2 pb-2 hvr-grow">
-                <a href="" class="text-dark">
-                    <div class="card border-0 shadow">
-                        <img src="images/furniture-unsplash.jpg" class="card-img-top" alt="...">
-                        <div class="card-body text-left">
-                            <h5 class="card-title mb-0">Titre</h5>
-                            <div class="card-text text-black-50">Petite Description</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-6 pr-2 pb-2 hvr-grow">
-                <a href="" class="text-dark">
-                    <div class="card border-0 shadow">
-                        <img src="images/furniture-unsplash-2.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body text-left">
-                            <h5 class="card-title mb-0">Titre</h5>
-                            <div class="card-text text-black-50">Petite Description</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        
+                    </a>             
+                </div>
+            @endforeach
 
         </div>
     </div>
 
-    <div class="container">
-    </div>
 @endsection

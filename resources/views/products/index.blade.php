@@ -2,8 +2,7 @@
 
 @section('content')
     @include('layouts.headers.cards')
-
-    <div class="container p-0 mt--7">
+    <div class="container-fluid p-0 mt--7" style="padding-right: 0px;padding-left:0px;">
         <div class="row p-3">
             <div class="col px-0">
                 <div class="card shadow">
@@ -30,12 +29,12 @@
                         @endif
                     </div>
 
-                    <div class="table-responsive table-dark table-hover">
+                    {{-- <div class="table-responsive table-dark table-hover">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-dark">
                                 <tr>
                                     <th class="text-white font-weight-bold">{{ __('Nom') }}</th>
-                                    
+                                    <th class="text-white font-weight-bold">{{ __('Référence') }}</th>                                    
                                     <th class="text-white font-weight-bold">{{ __('Catégorie') }}</th>
                                     <th class="text-white font-weight-bold">{{ __('Date Création') }}</th>
                                     <th class="text-white font-weight-bold">{{__('Visiteurs')}}</th>
@@ -53,7 +52,9 @@
                                         <th scope="row">
                                             {{ $product->name }}
                                         </th>
-                                        
+                                        <td>
+                                            <a>{{ $product->reference }}</a>
+                                        </td>
                                         <td>
                                             <a>{{ $product->type['Name'] }}</a>
                                         </td>
@@ -101,10 +102,12 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
+                    </div> --}}
+                    <products-datatable :data='{{$products}}' csrf="{{csrf_token()}}"></products-datatable>
+
                     <div class="card-footer py-4">
                         <nav class="d-flex justify-content-center" aria-label="...">
-                            {{ $products->links() }}
+                            {{-- {{ $products->links() }} --}}
                         </nav>
                     </div>
                 </div>

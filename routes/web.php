@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Product;
+use App\Slider;
 use Illuminate\Http\Request;
 
 /*
@@ -16,7 +17,36 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	$products = Product::with(['images'=>function ($query)
+	{
+		$query->where('image_type','=','card');
+	}])->get()->sortByDesc('visitors')->take(4);
+
+	// dd($products);
+
+	// Reunion
+	$reunion = Product::with(['images'=>function ($query){
+		$query->where('image_type','=','product_image')->select('path');
+	}])->whereHas('type',function ($query){
+		$query->where('Category','=','Meuble de Bureau');
+	})
+	->get()->sortByDesc('visitors')->take(4);
+
+	// Accueil
+	$accueil = Product::with(['images'=> function ($query){
+			$query->where('image_type','=','card')->select('path');
+		}
+	])->whereHas('type',function ($query){
+		$query->where('Category','=','Chaises');
+	})->get()->sortByDesc('visitors')->take(4);
+
+
+	// Sliders
+	$sliders = Slider::with('image')->get();
+
+	// dd($sliders->pop());
+
+    return view('welcome',compact('products','reunion','accueil','sliders'));
 });
 Auth::routes();
 
@@ -32,14 +62,18 @@ Route::get('/search',function (Request $request){
 				$list = Product::search($request->search)->orderBy('clientPrice','asc')->get();
 				break;
 			case 'popularity':
-				$list = Product::search($request->search)->orderBy('visitors','desc')->get();
+				$list = Product::where('name','LIKE','%'.$request->search.'%')->orderBy('visitors','desc')->get();
 		}
 	}else{
 		if(isset($request->search))
 		{
-			$list = Product::search($request->search)->get();
+			// $list = Product::search($request->search)->get();
+			$list = Product::where('name','LIKE','%'.$request->search.'%')->get();
+		}else{
+			$list= Product::with(['images'=>function($query) {
+				$query->where('image_type','=','card');
+			}])->get();
 		}
-			$list= Product::all();
 	}
 
 	$search = $request->search;
@@ -47,9 +81,15 @@ Route::get('/search',function (Request $request){
 	return view('search',compact('list','search','orderby'));
 })->name('search');
 
+// About
 Route::get('/about',function (){
 	return view('about');
 })->name('about');
+
+Route::view('/catalogue','catalogue');
+// Contact
+Route::get('/contact','ContactFormController@create');
+Route::post('/contact','ContactFormController@store');
 
 
 // Retailers
@@ -62,13 +102,19 @@ Route::post('/cart/add','CartController@add');
 Route::post('/cart/get','CartController@getContent');
 Route::post('/cart/remove','CartController@remove');
 Route::get('/cart','CartController@index')->name('cart.index');
-Route::post('/cart/update','CartController@update');
 Route::post('/cart','CartController@store')->name('cart.save');
+Route::post('/cart/update','CartController@update');
 
 // Orders
 Route::post('/order/getallorders','OrderController@getUserOrders');
 
 Route::group(['middleware' => 'Admin'], function () {
+
+	// Slider
+	Route::get('/sliders','SliderController@index')->name('sliders.index');
+	Route::get('/sliders/create','SliderController@create')->name('sliders.create');
+	Route::post('/sliders','SliderController@store')->name('sliders.store');
+	Route::delete('/sliders/{slider}','SliderController@destroy')->name('sliders.destroy');
 	
 	// Profiles
 	Route::get('/home', 'HomeController@index')->name('home');
@@ -79,7 +125,7 @@ Route::group(['middleware' => 'Admin'], function () {
 	// Products
 	Route::get('/products','ProductController@index')->name('products.index');	
 	Route::get('/products/create','ProductController@create')->name('products.create');
-	Route::patch('/products/{product}','ProductController@update');
+	Route::patch('/products/{product}','ProductController@update')->name('products.update');
 	Route::get('/products/{product}/edit','ProductController@edit')->name('products.edit');
 	// Route::get('/products/{product}','ProductController@show')->name('products.show');
 	Route::post('/products','ProductController@store');
@@ -101,7 +147,7 @@ Route::group(['middleware' => 'Admin'], function () {
 
 	// Colors
 	Route::get('/colors','ColorController@index')->name('colors.index');
-	Route::post('/colors','ColorsController@store')->name('colors.store');
+	Route::post('/colors','ColorController@store')->name('colors.store');
 	Route::get('/colors/create','ColorController@create')->name('colors.create');
 	Route::delete('/colors/{color}','ColorController@destroy')->name('colors.destroy');
 	Route::get('/colors/{color}/edit','ColorController@edit')->name('colors.edit');

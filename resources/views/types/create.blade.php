@@ -54,6 +54,7 @@
                                             <option value="Mobilier de Conférence">Mobilier de Conférence</option>
                                             <option value="Bibliothèque & Mobilier pour écoles et crèches">Bibliothèque & Mobilier pour écoles et crèches</option>
                                             <option value="Environnement & Accéssoires">Environnement & Accéssoires</option>
+                                            <option value="Chaises">Chaises</option>
                                     </select>
                                 </div>
                                 <div class="text-center">
