@@ -24,7 +24,8 @@
                     @endif
                     <div class="card-body">
                         {{-- {{ Form::open(array('url'=>'/product')) }} --}}
-                        <form action="/colors" method="post">
+                        <form action="/colors" 
+enctype="multipart/form-data" method="post">
                             @csrf
                             {{-- @method('') --}}
 

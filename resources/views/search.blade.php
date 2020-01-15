@@ -2,7 +2,11 @@
 @section('content')
     <div class="container-fluid">
         <h2 class="h4 text-center">
-            "{{$search}}"
+            @if ($search == "")
+                Tous nos Produits
+                @else
+                "{{$search}}"
+            @endif
         </h2>
     </div>
     {{-- <div class="container-fluid">
@@ -34,7 +38,7 @@
                 <div class="col-6 col-md-3 col-lg-3">
                     <product-component
                         :id="{{$product->id}}"
-                        path="{{$product->images[0]->path}}"                    
+                        path="{{$product->images->first()['path']}}"                    
                         name="{{$product->name}}"
                         note="{{$product->note}}"
                         :price="{{$product->clientPrice}}"
@@ -42,6 +46,9 @@
                         ></product-component>
                 </div>
             @endforeach
+        </div>
+        <div class="row">
+            {{$list->links()}}
         </div>
     </div>
 @endsection

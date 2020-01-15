@@ -7,7 +7,7 @@
         </button>
         <div class="dropdown-menu">
             <div class="container-fluid">
-                <div v-for="order in this.allorders" v-bind:key="order.id" class="row border-bottom">
+                <div v-for="order in this.allorders" v-bind:key="order.id" class="row border-bottom border-dark pt-2">
                     <div class="col-12 col-md-12 text-center">
                         <span class="h5" v-text="'Commande n°: ' + order.id" ></span>
                     </div>
@@ -25,7 +25,10 @@
                                 status :
                                 <span v-if="order.state == 'requested'" class="text-orange">En Attente</span>
                                 <span  v-else-if="order.state == 'waiting'" class="text-dark">En Cours de Traitement</span>
-                                <span  v-else-if="order.state == 'Ready'" class="text-success">Prêt</span>                                
+                                <span  v-else-if="order.state == 'Ready'" class="text-success">Prêt</span>                               
+                            </li>
+                            <li class="font-weight-bold">
+                                <span v-text="'Prix: ' + order.price +' Da'"></span>
                             </li>
                         </ul>
                     </div>

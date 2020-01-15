@@ -23,8 +23,8 @@ $gray:rgb(82, 79, 79);
 
 // Modification
     // $primary : #407ab1;
-    $primary: rgb(60,87,116);
-    $secondary: rgb(99,17,1);
+    $primary: #8A827D;
+    $secondary: #631101;
 
     $enable-shadows: true;
     $enable-gradients:true;
@@ -32,6 +32,8 @@ $gray:rgb(82, 79, 79);
 // hover.css Edits
     // $activeColor: rgb(60,87,116);
     $highlightColor: #fff;
+    $activeColor:$primary;
+    // $secondaryColor:$primary;
 
 // imagehover.css Edits
     // $figcaption-bg: rgba(52,144,220, 0.266);

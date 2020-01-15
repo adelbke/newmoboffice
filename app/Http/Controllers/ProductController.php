@@ -9,8 +9,11 @@ use App\Product;
 use App\Image;
 use App\Retailer;
 use App\Type;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image as InterventionImage;
 
 class ProductController extends Controller
@@ -20,29 +23,58 @@ class ProductController extends Controller
     public function edit(Product $product){
         // $this->authorize('update',$product);
 
-        $images = $product->images()->get();
+        $colorList = Color::all();
+        $product->load('colors');
+        // $product->colors()->first()
         // dd($images);
-        return view('products.edit',compact('product','images'));
+        return view('products.edit',compact('product','colorList'));
     }
 
     public function index(){
 
-        $products = Product::with(['colors.image','type'])->paginate(15);
-        $colors = DB::table('colors')->join('color_product','colors.id','=','color_product.color_id')->get();
-        // dd($colors);
-        return view('products.index',compact('products','colors'));
+        $products = Product::with(['colors.image','type'])->get()->each(function ($item,$key)
+        {
+            // Price Formatting
+            $item['Price']= 'Prix Client: ' . $item['clientPrice']. '<br>Prix Revendeur: '.$item['retailerPrice'];
+            unset($item['retailerPrice']);
+            unset($item['clientPrice']);
+
+            // Type formatting
+            if($item['type'] != null){
+                $item['type'] = $item['type']['Category'].': '.$item['type']['Name'];
+            }
+            // Name
+            $item['name']= $item['name'].'<br>'.$item['note'];
+            unset($item['note']);
+            
+            $item['description']= str_replace(['\n','\r'],'',$item['description']);
+
+        })->toJson();
+        // dd($products);
+        return view('products.index',compact('products'));
     }
 
     public function show (Product $product){
+
+        // Increment Visitors Number
+        $product->visitors = $product->visitors + 1;
+        $product->save();
+
+        // Treating product display
+        
         $product->load(['images' => function ($query){
             $query->where('image_type','=','product_image');
         },'colors.image','type']);
         foreach ($product->images as $index => $image) {
-            $smallimage = InterventionImage::make(public_path($image->path))->resize(410, 480);
+            $smallimage = InterventionImage::make(public_path($image->path))->resize(410, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            // $smallimage = InterventionImage::make(public_path($image->path))->resize(410, 480);
             $smallimage->save(public_path('storage/temp/'.$image->id.'.jpg'));
             // $image['small'] = $smallimage;
             $product->images[$index]['small'] = '/storage/temp/'.$image->id.'.jpg';
         }
+        
         $product->price = $product->clientPrice;
         unset($product->clientPrice);
         if(Auth::check()){
@@ -56,10 +88,19 @@ class ProductController extends Controller
         }else{
             unset($product->retailerPrice);            
         }
+        
         // dd($product->images);
 
+        // Similar products creation
 
-        return view ('products.show',compact('product'));
+        // $similar = Product::orderBy('visitors','desc')->where('type_id','=',$product->type->id)->where('id','!=',$product->id)->take(4)->get();
+        $similar = Product::with(['images'=>function($query){
+			$query->where('image_type','=','card')->select('path');
+        }])->where('type_id','=',$product->type->id)->where('id','!=',$product->id)->take(4)->get()->sortBydesc('visitors');
+
+        // $similar = new Collection([]);
+
+        return view ('products.show',compact('product','similar'));
     }
 
     public function destroy(Product $product){
@@ -67,38 +108,97 @@ class ProductController extends Controller
         $product->images()->delete();
         $product->delete();
 
-        return redirect()->back()->with('status','Produit '.$product->name.' supprimé avec Succès');;
+        return redirect()->back()->with('status','Produit '.$name.' supprimé avec Succès');;
     }
 
     public function update(Product $product){
         // Form Validation
         $data = request()->validate([
-            'reference'=>['required','unique:products,'.$product->id],
-            'category'=>['in:Informatique,Ameublement,Electronique'],
-            'clientPrice'=>['required','Numeric','min:0','max:999999','gte:retailerPrice'],
-            'retailerPrice'=>['required','Numeric','min:0','max:999999','lte:clientPrice'],
-            'category'=>['required','in:Meuble de Bureau,Mobilier de Réunion,Mobilier Accueil,Mobilier de Conférence,Bibliothèque & mobilier pour écoles et crèches,Environnement & Accéssoires'],
-            'type'=>['required','exists:types,Name'],
-            'name'=>['required','min:5'],
-            'description'=>['required'],
-            'images'=>['required','array'],
-            'images.*' =>['image'],
+            'clientPrice'=>['Numeric','min:2','max:100000','gte:retailerPrice'],
+            'retailerPrice'=>['Numeric','min:1','max:100000','lte:clientPrice'],
+            'category'=>['in:Meuble de Bureau,Mobilier de Réunion,Mobilier Accueil,Mobilier de Conférence,Bibliothèque & mobilier pour écoles et crèches,Environnement & Accéssoires,Chaises'],
+            'Type'=>['required','exists:types,id'],
+            'new'=>['String','required'],
+            'colors'=>['array'],
+            'colors.*'=>['integer','exists:colors,id'],
+            'name'=>['String'],
+            'note'=>['String'],
+            'description'=>['String'],
+            'imageCard'=>['image'],
+            'imageSlider'=>['image'],
+            'productImage'=>['array'],
+            'productImage.*'=>['image']
         ]);
-        unset($data['images']);
+        
+        $data['description'] = nl2br($data['description']);
+        $data['name'] = ucfirst($data['name']);
+        // dd($data);
+
+        
+        $data['reference']=$product->reference;
+
+        if(isset($data['imageCard'])){
+            $product->images()->wherePivot('image_type','=','card')->delete();
+            $product->images()->wherePivot('image_type','=','card')->detach();
+
+            // Saving the Card Image
+            $path = '/storage/'.request('imageCard')->store('productCardImages','public');
+            $object = new Image();
+            $object->path=$path;
+            // $object->image_type = "card";
+            $object->save();
+            $product->images()->attach($object,['image_type'=>'card']);            
+        }
+        if(isset($data['imageSlider'])){
+            $product->images()->wherePivot('image_type','=','slider')->delete();
+            $product->images()->wherePivot('image_type','=','slider')->detach();
+            
+            if (null !==request('imageSlider')) {
+                $path = '/storage/'.request('imageSlider')->store('productSliderImages','public');
+                $object = new Image();
+                $object->path=$path;
+                // $object->image_type = "slider";
+                $object->save();
+                $product->images()->attach($object,['image_type'=>'slider']);    
+            }
+        }
+        if(isset($data['productImage'])){
+            $product->images()->wherePivot('image_type','=','product_image')->delete();
+            $product->images()->wherePivot('image_type','=','product_image')->detach();
+            foreach (request('productImage') as  $image) {
+                $path = '/storage/'. $image->store('productImages','public');
+                $object = new Image();
+                $object->path=$path;
+                // $object->image_type = "product_image";
+                $object->save();
+                $product->images()->attach($object,['image_type'=>'product_image']);
+            }       
+        }
+
+
+        // Multi image submission Handling
+
+        unset($data['imageCard']);
+        unset($data['productImage']);
+        unset($data['imageSlider']);
+        unset($data['category']);
+        $data['type_id']= intval($data['Type']);
+        unset($data['Type']);
+        $colors = $data['colors'];
+        unset($data['colors']);
+        $data['new'] = 'true' == $data['new'] ? true : false;
+
+        // dd($data);
+
         $product->update($data);
 
-        Image::where('product_id',[$product->id])->delete();
 
-        // foreach (request('images') as  $image) {
-        //     $path = 'storage/'. $image->store('productImages','public');
-        //     $object = new Image();
-        //     $object->path=$path;
-        //     $object->product_id = $product->id;
-        //     $object->save();
-        // }
+        // save the product
+        // $product->save();
+
+        $product->colors()->sync($colors);
         
-
-        return redirect()->back()->with('status','Produit'.$product->name.' Enregistré avec Succès');
+        return redirect()->back()->with('status','Produit'.$product->name.' Modifié avec Succès');
 
     }
     public function create(){
@@ -113,25 +213,30 @@ class ProductController extends Controller
         $data = request()->validate([
             'clientPrice'=>['required','Numeric','min:2','max:100000','gte:retailerPrice'],
             'retailerPrice'=>['required','Numeric','min:1','max:100000','lte:clientPrice'],
-            'category'=>['required','in:Meuble de Bureau,Mobilier de Réunion,Mobilier Accueil,Mobilier de Conférence,Bibliothèque & mobilier pour écoles et crèches,Environnement & Accéssoires'],
+            'category'=>['required','in:Meuble de Bureau,Mobilier de Réunion,Mobilier Accueil,Mobilier de Conférence,Bibliothèque & mobilier pour écoles et crèches,Environnement & Accéssoires,Chaises'],
             'Type'=>['required','exists:types,id'],
+            'new'=>['required','String'],
             'colors'=>['required','array'],
             'colors.*'=>['required','integer','exists:colors,id'],
             'name'=>['required'],
             'note'=>['required','String'],
             'description'=>['required'],
+            // 'imageCard'=>['image','required','dimensions:width=210'],
             'imageCard'=>['image','required'],
-            'imageSlider'=>['image','required'],
+            'imageSlider'=>['image'],
             'productImage'=>['required','array'],
+            // 'productImage.*'=>['image','required','dimensions:width:580']
             'productImage.*'=>['image','required']
         ]);
 
-        // Multi image submission Handling
-
-        
+        // Text formatting
+        $data['description'] = nl2br($data['description']);
+        $data['name'] = ucfirst($data['name']);
+        $data['new'] = 'true' == $data['new'] ? true : false;
         // dd($data);
 
-
+        
+        // Generating reference number
         $data['reference']='NM'.sprintf("%02d",$data['Type']).sprintf("%02d",$data['colors']);
         $tempreference = $data['reference'];
         $count =-1;
@@ -143,6 +248,7 @@ class ProductController extends Controller
 
         $data['reference']=$tempreference;
 
+        // Multi image submission Handling
 
         unset($data['imageCard']);
         unset($data['productImage']);
@@ -183,13 +289,14 @@ class ProductController extends Controller
 
 
         // save slider Image
-        $path = '/storage/'.request('imageSlider')->store('productSliderImages','public');
-        $object = new Image();
-        $object->path=$path;
-        // $object->image_type = "slider";
-        $object->save();
-        $product->images()->attach($object,['image_type'=>'slider']);
-
+        if (null !==request('imageSlider')) {
+            $path = '/storage/'.request('imageSlider')->store('productSliderImages','public');
+            $object = new Image();
+            $object->path=$path;
+            // $object->image_type = "slider";
+            $object->save();
+            $product->images()->attach($object,['image_type'=>'slider']);    
+        }
 
 
         

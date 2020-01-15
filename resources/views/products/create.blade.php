@@ -43,24 +43,15 @@
                                 </div>
 
 
-                                {{-- <div class="form-group @error('category') has-danger @enderror">
-                                    <label for="category" class="form-control-label ">{{__('Catégorie')}}</label>
-                                    <select class="@error('category') is-invalid @enderror form-control form-control-alternative " id="category" name="category">
-                                        <option value="Meuble de Bureau">Meuble de Bureau</option>
-                                        <option value="Mobilier de Réunion">Mobilier de Réunion</option>
-                                        <option value="Mobilier Accueil">Mobilier Accueil</option>
-                                        <option value="Mobilier de Conférence">Mobilier de Conférence</option>
-                                        <option value="Bibliothèque & mobilier pour écoles et crèches">Bibliothèque & mobilier pour écoles et crèches</option>
-                                        <option value="Environnement & Accéssoires">Environnement & Accéssoires</option>
-                                    </select>
-                                    @error('category')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('category') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div> --}}
-
                             <category-form hasError="{{$errors->has('category')}}" adminid="{{auth()->user()->admin->id}}" errormessage="{{$errors->first('category')}}" oldcategory="{{old('category')}}" oldtype="{{old('type')}}"></category-form>
+
+                            <div class="form-group @error('new') has-danger @enderror">
+                                <label for="new-input" class="form-control-label">Nouveauté du Produit</label>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" name="new" id="new-input" value="true" checked>
+                                <label class="custom-control-label" for="new-input">Nouveau</label>
+                                </div>
+                            </div>
 
                             <div class="form-group @error('colors[]') has-danger @enderror">
                                 <label for="colors[]" class="form-control-label">Couleurs disponibles</label>
@@ -94,6 +85,7 @@
                                         </span>
                                     @enderror
                                 </div>
+
 
 
                                 <div class="form-group @error('note') has-danger @enderror">
@@ -132,8 +124,10 @@
                                         <strong>{{ $errors->first('imageCard') }}</strong>
                                     @enderror
                                 </div>
+
                                 <div id="imageCardPreview" class="mb-3">
                                 </div>
+
                                 @push('js')
                                     <script>
                                         function previewCardImages(){
@@ -155,6 +149,7 @@
                                         <strong>{{ $errors->first('imageSlider') }}</strong>
                                     @enderror
                                 </div>
+                                
                                 <div id="imageSliderPreview" class="mb-3">
                                 </div>
                                 @push('js')

@@ -9,7 +9,7 @@
                     <p class="ml-3 text-left lead">description</p>
                 </figcaption>
             </figure>
-            <a name="" id="" class="btn btn-primary border border-primary hvr-back-pulse mb-4 hvr-icon-forward" href="#" role="button">
+            <a name="" id="" class="btn border border-primary hvr-fade mb-4 hvr-icon-forward" href="#" role="button">
                 Voir la Collection
                 <i class="fa fas fa-chevron-right hvr-icon"></i>
             </a>
@@ -36,6 +36,15 @@ figcaption{
 }
 [class^=imghvr-fade]:hover > img{
     opacity: 0.6;
+}
+a.hvr-fade{
+    color:var(--secondary);
+}
+a.hvr-fade:hover{
+    color:white;
+}
+a.btn:hover{
+    background: var(--secondary);
 }
 </style>
 

@@ -7,15 +7,11 @@
             <a href="{{route('login')}}" class="text-info">Se connecter ou créer mon compte</a>
             pour commander plus vite et plus facilement
         @endguest
-        <form action="{{route('cart.save')}}" method="post">
-            @csrf
-            <button type="submit" class="btn btn-primary hvr-fade  d-block mx-auto px-5 my-2">Passer Commande</button>
-
-        </form>
+        
     </div>
 
     <div class="container my-4">
-        <cartitems-component></cartitems-component>
+        <cartitems-component :csrf='{{ csrf_token() }}' ></cartitems-component>
         {{-- <div class="row">
             <div class="col-12-col-md-3 col-lg-3 p-0">
                 <img src="/images/hair-salon-couch.jpg" class="img-fluid float-right" alt="">

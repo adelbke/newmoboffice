@@ -18,9 +18,10 @@ class CreateProductsTable extends Migration
             $table->string('reference')->unique();
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('visitors')->default(0);
-            $table->double('clientPrice',8,10);
-            $table->double('retailerPrice',8,10);
+            $table->double('clientPrice');
+            $table->double('retailerPrice');
             $table->string('name')->unique();
+	    $table->boolean('new')->nullable();
             $table->string('note')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();

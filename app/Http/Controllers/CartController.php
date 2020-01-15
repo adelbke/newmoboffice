@@ -92,7 +92,14 @@ class CartController extends Controller
         if(Auth::check()){
             $content = Cart::content();
             $order = new Order();
-            $order->client_id = auth()->user()->client->id;
+            // $order->client_id = auth()->user()->client->id;
+            try {
+                $order->client_id = auth()->user()->client->id;
+            } catch (\Throwable $th) {
+                if(auth()->user()->Admin->exists()){
+                    return redirect()->back()->with("AdminMessage","Vous êtes un admin, vous ne pouvez pas Commander des Produits");
+                }
+            }
             $order->state="requested";
             $order->price= Cart::total();
             $order->save();

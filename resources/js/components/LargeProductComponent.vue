@@ -6,6 +6,7 @@
 
 
 <script>
+import 'jquery-zoom';
 export default {
     props:{
         image:Object
