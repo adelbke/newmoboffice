@@ -1,15 +1,15 @@
 <template>
     <div class="hvr-grow">
         <a href="#">
-            <h4 class="mb-2">Titre Collection</h4>
+            <h4 class="mb-2" v-text="this.name" >Titre Collection</h4>
             <figure class="imghvr-fade mb-2" >
-                <img src="images/furniture-slide1.png" alt="" class="img-fluid w-100">
+                <img v-bind:src="this.image" alt="" class="img-fluid w-100">
                 <figcaption>
-                    <h3 class="text-left h3">Titre</h3>
-                    <p class="ml-3 text-left lead">description</p>
+                    <h3 class="text-left text-secondary h3" v-text="this.name" ></h3>
+                    <p class="ml-3 text-secondary text-left lead" v-html="this.description" >description</p>
                 </figcaption>
             </figure>
-            <a name="" id="" class="btn border border-primary hvr-fade mb-4 hvr-icon-forward" href="#" role="button">
+            <a name="" id="" class="btn border border-primary hvr-fade mb-4 hvr-icon-forward" v-bind:href="this.route" role="button">
                 Voir la Collection
                 <i class="fa fas fa-chevron-right hvr-icon"></i>
             </a>
@@ -21,6 +21,12 @@
 export default {
     mounted(){
         console.log("ExampleComponent Loaded");
+    },
+    props:{
+        name:String,
+        image:String,
+        description:String,
+        route:String
     }
 }
 </script>
@@ -28,12 +34,9 @@ export default {
 
 <style scoped>
 figure{
-    background-color: #3490dc8c;
+    background-color: white;
 }
 
-figcaption{
-    background-color: #3490dc8c;
-}
 [class^=imghvr-fade]:hover > img{
     opacity: 0.6;
 }
