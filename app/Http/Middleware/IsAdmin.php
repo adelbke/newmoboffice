@@ -20,7 +20,7 @@ class IsAdmin
             return redirect('/');
             
         }else{
-            if(count(auth()->user()->admin()) == 0){
+            if(auth()->user()->admin()->exists()){
                 return redirect('/');              
             }
         }
