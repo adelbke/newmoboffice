@@ -7,7 +7,7 @@
         <!-- /images/hair-salon-couch.jpg -->
         
         <div class=" p-3">
-            <span v-if="this.new == 1" class="badge badge-pill py-1 badge-secondary">Nouveau</span>
+            <span v-if="this.new == 'true'" class="badge badge-pill py-1 badge-secondary">Nouveau</span>
             <a v-bind:href="this.productpath" v-text="this.name" class="text-dark font-weight-bold d-block btn-link">titre produit court</a>
             <p class="text-left my-0" >
                 <!-- {{this.descriptionformatted}} -->

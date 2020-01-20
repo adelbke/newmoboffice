@@ -44,6 +44,11 @@
 
             </div>
         </template>
+        
+
+        <template v-slot:cell(Price)="data">
+            <span v-html="data.item.Price"></span>
+        </template>
 
         <template v-slot:cell(type)="data">
             <span v-if="data.item.type != null">

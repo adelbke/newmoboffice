@@ -85,7 +85,7 @@
                     note="{{$product->note}}"
                     :price="{{$product->clientPrice}}"
                     description="{{$product->description}}"
-                    new="{{$product->new}}"
+                    new={{$product->new== true? "true" : "false"}}
                     ></product-component>
                 </div>
             @endforeach
