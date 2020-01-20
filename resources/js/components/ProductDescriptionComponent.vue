@@ -16,7 +16,7 @@
             </span>
         </p> -->
         <p>
-            <span v-text="product.description" ></span>
+            <span v-html="product.description" ></span>
             <!-- <span id="more" style="display:none">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum commodi consequuntur exercitationem eaque blanditiis quaerat cupiditate enim similique dolor quos tenetur, distinctio quidem neque velit porro, necessitatibus aut, aliquam doloremque.
             </span> -->
