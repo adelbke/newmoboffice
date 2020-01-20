@@ -20,8 +20,8 @@ class IsAdmin
             return redirect('/');
             
         }else{
-            if(auth()->user()->admin()->exists()){
-                return redirect('/');              
+            if(!auth()->user()->Admin()->exists()){
+                return redirect('/');
             }
         }
         return $next($request);
