@@ -7,6 +7,7 @@ use App\Product;
 use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class TypeController extends Controller
 {
@@ -69,7 +70,7 @@ class TypeController extends Controller
 
     public function getCategory(){
         $data = request()->validate([
-            'category'=>['required','String'],
+            'category'=>['required','String',Rule::in(['Meuble de Bureau','Mobilier de Réunion','Mobilier Accueil','Mobilier de Conférence','Bibliotheque Mobilier ecoles creches','Environnement & Accéssoires','Chaises'])],
             'adminId'=>['required','exists:admins,id','numeric']
         ]);
         try {

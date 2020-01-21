@@ -7,8 +7,9 @@
                 <option value="Mobilier de Réunion">Mobilier de Réunion</option>
                 <option value="Mobilier Accueil">Mobilier Accueil</option>
                 <option value="Mobilier de Conférence">Mobilier de Conférence</option>
-                <option value="Bibliothèque & Mobilier pour écoles et crèches">Bibliothèque & Mobilier pour écoles et crèches</option>
+                <option value="Bibliotheque Mobilier ecoles creches">Bibliothèque & Mobilier pour écoles et crèches</option>
                 <option value="Environnement & Accéssoires">Environnement & Accéssoires</option>
+                <option value="Chaises">Chaises</option>
             </select>
         </div>
         
@@ -19,8 +20,9 @@
                 <option value="Mobilier de Réunion">Mobilier de Réunion</option>
                 <option value="Mobilier Accueil">Mobilier Accueil</option>
                 <option value="Mobilier de Conférence">Mobilier de Conférence</option>
-                <option value="Bibliothèque & Mobilier pour écoles et crèches">Bibliothèque & Mobilier pour écoles et crèches</option>
+                <option value="Bibliotheque Mobilier ecoles creches">Bibliothèque & Mobilier pour écoles et crèches</option>
                 <option value="Environnement & Accéssoires">Environnement & Accéssoires</option>
+                <option value="Chaises">Chaises</option>
             </select>
                 <span v-if="haserror" class="invalid-feedback" role="alert">
                     <strong>{{ errormessage }}</strong>
