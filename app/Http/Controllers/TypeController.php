@@ -73,7 +73,7 @@ class TypeController extends Controller
             'adminId'=>['required','exists:admins,id','numeric']
         ]);
         try {
-            $types = Type::all()->where('Category','=',$data['category']);
+            $types = Type::where('Category','=',$data['category'])->get();
         } catch (\Throwable $th) {
             dd($th);
             return null;

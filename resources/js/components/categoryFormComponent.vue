@@ -74,6 +74,9 @@ export default {
                     // "Mobilier pour crèches",
                     // "Rayonnage Métallique",
                     // "Rayonnage Mobile"
+                ],
+                "Chaises":[
+                    
                 ]
             },
             
@@ -90,11 +93,9 @@ export default {
             })
             .then(function (response) {
                 vm.category[vm.selected] = [];
-                for (let i = 0; i < response.data.length; i++) {
-                    const element = response.data[i];
-                    // console.log(vm.category[vm.selected]);
+                response.data.forEach(element => {
                     vm.category[vm.selected].push({Name:element.Name,id:element.id});
-                }
+                });
             })
         }
     }
