@@ -211,6 +211,29 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#collapse4" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse3">
+                        <i class="fas fa-image text-primary"></i>
+                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Slides') }}</span>
+                    </a>
+
+                    <div class="collapse show" id="collapse3">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('sliders.create') }}">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    {{ __('Ajouter Slides') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('sliders.index') }}">
+                                    <i class="fa fa-object-group" aria-hidden="true"></i>
+                                    {{ __('Gérer Slides') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
             
             <!-- Divider -->
