@@ -6,10 +6,11 @@ use App\Type;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+
+class ViewServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register services.
      *
      * @return void
      */
@@ -19,14 +20,15 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      *
      * @return void
      */
     public function boot()
     {
-//        $types = Type::all()->groupBy('Category');
-//        View::share('types',$types);
         //
+        View::composer('*',function ($view){
+            $view->with('types',Type::all()->groupBy('Category'));
+        });
     }
 }

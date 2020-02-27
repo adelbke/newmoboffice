@@ -39,7 +39,7 @@
             input[type="tel"]:focus,
             input[type="color"]:focus,
             button[type="button"]:focus,
-            .uneditable-input:focus {   
+            .uneditable-input:focus {
                 border-color: #eee;
                 box-shadow:none;
                 outline: none;
@@ -64,7 +64,7 @@
                     {{-- <a href="" class="btn-link text-dark mx-2 text-center">test</a> --}}
                     @guest
                         <a href=" {{route('retailers.index')}} " class="btn-link text-dark mx-2 text-center">Espace Partenaires</a>
-                        <a href="/login" class="btn-link text-dark mx-2 text-center">Connexion</a>                
+                        <a href="/login" class="btn-link text-dark mx-2 text-center">Connexion</a>
                     @endguest
                     @auth
                         @if (auth()->user()->admin != null)
@@ -82,8 +82,8 @@
             </header>
 
             <!-- navbar -->
-                @include('layouts.navbars.navs.guest',["transparent" => false])        
-            
+                @include('layouts.navbars.navs.guest',["transparent" => false])
+
                 {{-- @include('layouts.navbars.navbar') --}}
                 <div class="container">
                     @yield('content')
@@ -101,7 +101,7 @@
                             <i class="fa fas fa-address-book"></i>
                             Contact
                         </p>
-                    
+
                         <ul style="list-style:none;" class="text-left px-0">
                             <li>
                                 Email: <br>
@@ -118,11 +118,16 @@
                                     <li>
                                         <span class="font-weight-bold">Service Mobillier: </span>
                                         <br>
-                                        <a class="text-light" href="tel:+213560536039">0560 53 60 39</a> 
+                                        <a class="text-light" href="tel:+213560536039">0560 53 60 39</a>
                                     </li>
-                                </ul>         
+                                    <li>
+                                        <span class="font-weight-bold">Adresse: </span>
+                                        <br>
+                                        <a class="text-light" href="#">106 cité Ben amour khazrouna blida</a>
+                                    </li>
+                                </ul>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -132,7 +137,7 @@
                             <i class="fas fa fa-comments"></i>
                             Besoin d'aide
                         </p>
-                    
+
                         <ul style="list-style:none;" class="text-left px-0">
                             <li>
                                 <a class="text-light h6" href="/contact">Contact</a>
@@ -186,10 +191,10 @@
                 <span class="d-flex mx-3" >
                     <a class="text-light" href="https://www.youtube.com/channel/UCFcFx27rEgL5JHmIFBsIYsQ?view_as=subscriber">
                         <i class="fab fa-youtube    "></i>
-                        Youtube      
+                        Youtube
                     </a>
                 </span>
-    
+
             </div>
             <div class="row py-2 justify-content-center" style="background: #520e01">
                 <span class="d-flex">
@@ -206,15 +211,15 @@
 
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        
+
         @stack('js')
         <script src="{{asset('js/app.js')}}"></script>
-        
+
         {{-- <script>AOS.init();</script>     --}}
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async 
+<script async
 src="https://www.googletagmanager.com/gtag/js?id=UA-139836523-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
