@@ -16,16 +16,16 @@
     <div class="container-fluid mx-2">
         <div class="row mt-4">
             @foreach ($products as $product)
-                <div class="col-6 col-md-3 col-lg-3">
+                <div class="col-6 col-md-3 col-lg-3 pb-2 pb-md-5">
                         <product-component
                         :id="{{$product->id}}"
-                        path="{{$product->images->first()['path']}}"                    
+                        path="{{$product->images->first()['path']}}"
                         name="{{$product->name}}"
                         note="{{$product->note}}"
                         :price="{{$product->clientPrice}}"
                         description="{{$product->description}}"
                         ></product-component>
-                </div>            
+                </div>
             @endforeach
         </div>
     </div>

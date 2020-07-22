@@ -9,42 +9,48 @@ class Product extends Model
 {
     protected $guarded = [];
 
-    use Searchable;
+    // use Searchable;
 
-    public function toSearchableArray()
-    {
-        $array = $this->toArray();
-        // Customize array...
+    // public function toSearchableArray()
+    // {
+    //     $array = $this->toArray();
+    //     // Customize array...
 
-        unset($array['reference']);
+    //     unset($array['reference']);
 
-        return $array;
-    }
-    
+    //     return $array;
+    // }
+
     protected $fillable = [
-        'reference', 'clientPrice','retailerPrice','name','description','type_id','note'
+        'reference', 'clientPrice', 'retailerPrice', 'name', 'description', 'type_id', 'note'
     ];
-    public function images(){
+    public function images()
+    {
         return $this->belongsToMany(Image::class);
     }
 
-    public function colors(){
+    public function colors()
+    {
         return $this->belongsToMany(Color::class);
     }
 
-    public function type(){
+    public function type()
+    {
         return $this->belongsTo(Type::class);
     }
 
-    public function orders(){
-        return $this->belongsToMany(Order::class)->withPivot('quantity','color_id');
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('quantity', 'color_id');
     }
 
-    public function products(){
+    public function products()
+    {
         return $this->hasMany(Product::class);
     }
 
-    public function collections(){
+    public function collections()
+    {
         return $this->belongsToMany(Product::class);
     }
 }
