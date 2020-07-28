@@ -26,7 +26,7 @@
             </form>
             @include('layouts.navbars.sidebar')
         @endauth
-        
+
         <div class="main-content" id="app">
             @include('layouts.navbars.navbar')
             @yield('content')
@@ -38,10 +38,10 @@
 
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        
+
         @stack('js')
         <script src="{{asset('js/app.js')}}"></script>
-        
+
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
     </body>

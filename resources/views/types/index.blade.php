@@ -14,11 +14,11 @@
                             </div>
                             <div class="col-4 text-right">
                                 <a href="{{ route('types.create') }}" class="btn btn-sm btn-primary">{{ __('Ajouter Type') }}</a>
-                                
+
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-12">
                         @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -51,21 +51,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($types as $type)
+                                @foreach ($types as $item)
                                     <tr>
-                                        <td>{{ $type->id }}</td>
-                                        
+                                        <td>{{ $item[0]->id }}</td>
+
                                         <td>
-                                            <a>{{ $type->Name }}</a>
+                                            <a>{{ $item[0]->Name }}</a>
                                         </td>
                                         <td>
-                                            {{$type->Category}}
+                                            {{$item[0]->Category}}
                                         </td>
                                         <td>
-                                                <a class="btn btn-success" href="{{route('types.edit',$type)}}" role="button">Modifier</a>
+                                                <a class="btn btn-success" href="{{route('types.edit',$item[0])}}" role="button">Modifier</a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('types.destroy',$type) }}" method="post">
+                                            <form action="{{ route('types.destroy',$item[0]) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="text-danger p-0 btn btn-link" type="submit">Supprimer</button>
@@ -79,7 +79,7 @@
                 </div>
             </div>
         </div>
-            
+
         @include('layouts.footers.auth')
     </div>
 @endsection

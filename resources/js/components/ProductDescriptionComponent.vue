@@ -16,7 +16,7 @@
             </span>
         </p> -->
         <p>
-            <span v-html="product.description" ></span>
+            <span style="white-space: pre" v-text="product.description" ></span>
             <!-- <span id="more" style="display:none">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum commodi consequuntur exercitationem eaque blanditiis quaerat cupiditate enim similique dolor quos tenetur, distinctio quidem neque velit porro, necessitatibus aut, aliquam doloremque.
             </span> -->
@@ -36,7 +36,7 @@
         <div class="my-3">
             <h4>Couleurs Disponibles</h4>
             <div class="form-check mb-2" v-for="(color,index) in product.colors" v-bind:key="color.id">
-                
+
                 <input class="form-check-input" v-if="index == 0" checked type="radio" name="color" v-bind:id="color.name+'-input'" v-bind:value="color.id">
 
                 <input class="form-check-input" v-else type="radio" v-model="selectedcolor" name="color" v-bind:id="color.name+'-input'" v-bind:value="index">
@@ -46,7 +46,7 @@
                     {{color.name}}
                 </label>
             </div>
-            
+
         </div>
         <div class="my-3">
             <button type="button" name="Buy" id="Buy" @click="addToCart()" class="btn btn-primary btn-lg btn-block">
@@ -105,7 +105,7 @@ export default {
                 'image':this.product.images[0].path,
                 'description':this.product.description
             };
-            
+
             // var vm = this;
             axios.post('/cart/add', {
                 productid:this.product.id,

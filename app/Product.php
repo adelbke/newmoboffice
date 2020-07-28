@@ -22,11 +22,11 @@ class Product extends Model
     // }
 
     protected $fillable = [
-        'reference', 'clientPrice', 'retailerPrice', 'name', 'description', 'type_id', 'note'
+        'reference', 'clientPrice', 'retailerPrice', 'name', 'description', 'type_id', 'note', 'new'
     ];
     public function images()
     {
-        return $this->belongsToMany(Image::class);
+        return $this->belongsToMany(Image::class)->withPivot('image_type');
     }
 
     public function colors()
