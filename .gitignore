@@ -12,3 +12,4 @@ yarn-error.log
 
 # Added this one
 /storage/*.index
+/run
