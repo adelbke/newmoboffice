@@ -1,12 +1,12 @@
 version: "3.5"
 
 services:
-  laravel-app:
+  newmoboffice_app:
     build:
       context: "."
       args:
         UID: ${UID}
-    container_name: laravel-app
+    container_name: newmoboffice_app
     environment:
       - APACHE_RUN_USER=#1000
       - APACHE_RUN_GROUP=#1000
@@ -17,11 +17,11 @@ services:
     networks:
       backend:
         aliases:
-          - laravel-app
+          - newmoboffice_app
 
-  mysql-db:
+  newmob_mysql_db:
     image: mysql:5.7
-    container_name: mysql-db
+    container_name: newmob_mysql_db
     volumes:
       - ./run/var:/var/lib/mysql
     environment:
