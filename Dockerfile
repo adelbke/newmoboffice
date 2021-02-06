@@ -45,7 +45,7 @@ RUN docker-php-ext-install \
     zip
 
 # 5. composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer
 
 # 6. we need a user with the same UID/GID with host user
 # so when we execute CLI commands, all the host file's ownership remains intact
@@ -55,4 +55,10 @@ RUN useradd -G www-data,root -u $uid -d /home/devuser devuser
 RUN mkdir -p /home/devuser/.composer && \
     chown -R devuser:devuser /home/devuser
 
-RUN cd /var/www/html &&  rm public/storage && cp .env.example .env && php artisan artisan key:generate php artisan storage:link
+COPY . /var/www/html
+
+RUN composer install
+
+RUN cp .env.example .env && \
+    php artisan key:generate && \
+    php artisan storage:link
