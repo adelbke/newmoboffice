@@ -14,9 +14,9 @@ class TypeController extends Controller
     //
     public function index()
     {
-        $types = DB::table('types')->get();
-        // dd($types[0]->Name);
-        return view('types.index', compact('types'));
+        $typeList = Type::all();
+        // dd($types[0]['id']);
+        return view('types.index', compact('typeList'));
     }
 
     public function create()

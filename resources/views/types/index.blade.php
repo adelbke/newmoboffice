@@ -51,21 +51,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($types as $item)
+                                @foreach ($typeList as $item)
                                     <tr>
-                                        <td>{{ $item[0]->id }}</td>
+                                        <td>{{ $item["id"] }}</td>
 
                                         <td>
-                                            <a>{{ $item[0]->Name }}</a>
+                                            <a>{{ $item["Name"] }}</a>
                                         </td>
                                         <td>
-                                            {{$item[0]->Category}}
+                                            {{ $item["Category"] }}
                                         </td>
                                         <td>
-                                                <a class="btn btn-success" href="{{route('types.edit',$item[0])}}" role="button">Modifier</a>
+                                                <a class="btn btn-success" href="{{route('types.edit',$item)}}" role="button">Modifier</a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('types.destroy',$item[0]) }}" method="post">
+                                            <form action="{{ route('types.destroy',$item) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="text-danger p-0 btn btn-link" type="submit">Supprimer</button>

@@ -5,9 +5,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="/">
-            {{-- <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="..."> --}}
-            <h2>{{ ("NewMobOffice")}}</h2>
+        <a href="/">
+            <img src="/asset/logo.png" class="img-fluid" alt="...">
+            <!-- <h2>{{ ("NewMobOffice")}}</h2> -->
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
