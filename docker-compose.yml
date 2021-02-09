@@ -1,23 +1,17 @@
 version: "3.5"
 
 services:
-  newmoboffice_app:
+  newmobofficeapp:
     build:
       context: "."
       args:
         UID: ${UID}
-    container_name: newmoboffice_app
+    container_name: newmobofficeapp
     environment:
       - APACHE_RUN_USER=#1000
       - APACHE_RUN_GROUP=#1000
     volumes:
       - .:/var/www/html
-    ports:
-      - 8000:80
-    networks:
-      backend:
-        aliases:
-          - newmoboffice_app
 
   newmob_mysql_db:
     image: mysql:5.7
@@ -29,11 +23,3 @@ services:
       - MYSQL_DATABASE=db
       - MYSQL_USER=dbuser
       - MYSQL_PASSWORD=secret
-    networks:
-      backend:
-        aliases:
-          - db
-
-networks:
-  backend:
-    name: backend-network
