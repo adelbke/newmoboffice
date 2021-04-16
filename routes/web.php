@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     $products = Product::with(['images' => function ($query) {
         $query->where('image_type', '=', 'card');
-    }])->get()->sortByDesc('visitors')->take(4);
+    }])->get()->sortByDesc('visitors')->take(3);
 
     // dd($products);
 

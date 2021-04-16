@@ -61,12 +61,8 @@
                     </div>
                 </div>
                 
-                
-                
-                {{--  --}}
-                
             </li>
-            <li class="nav-item   text-dark    my-3 pl-3"><i class="fa fas fa-headset fa-2x"></i> <a href="tel:+213560536039" class="h5 font-weight-bold ml-2" style="color: inherit;">0560 78 89 29</a></li>
+            <li class="nav-item   text-dark    my-3 pl-3"><i class="fa fas fa-headset fa-2x"></i> <a href="tel:{{ config('app.phone') }}" class="h5 font-weight-bold ml-2" style="color: inherit;">{{ config('app.phone') }}</a></li>
             
         </ul>
         <div class="d-inline my-2 my-lg-0 mx-lg-2">
@@ -89,6 +85,8 @@
         </form> --}}
     </div>
 </nav>
+
+
 
 @isset($transparent)
 @if($transparent == false)

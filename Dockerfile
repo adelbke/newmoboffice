@@ -20,7 +20,7 @@ RUN apt-get install -y \
     libmcrypt-dev \
     libreadline-dev \
     libfreetype6-dev \
-    g++
+    g++ \
 
 # 2. apache configs + document root
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
@@ -42,7 +42,12 @@ RUN docker-php-ext-install \
     calendar \
     mbstring \
     pdo_mysql \
-    zip
+    zip \
+    gd
+
+# Configure GD for JPEG Support
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ &&
+    docker-php-ext-install -j$(nproc) gd
 
 # 5. composer
 COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer

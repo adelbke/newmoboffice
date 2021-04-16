@@ -11,73 +11,15 @@
         <p class="text-center h5 font-italic">"Notre savoir-faire et nos compétences reposent sur des personnels expérimentés et motivés"</p>
         <p class=" font-italic text-center h5"><strong>New Mob Office</strong>. Du mobilier pour tous les goûts. Notre particularité, c'est de réunir dans une seule entreprise le travail du concepteur et celui du fabriquant. <strong>New Mob Office</strong> Vous propose une large gamme de produits sur mesure et en série.</p>
     </div>
-    
-    <!-- Image Slider -->
-    <div class="container my-5 mx-auto bg-white">
-        <div id="main" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                @foreach (range(0,$sliders->count()-1) as $i)
-                    @if ($i == 0)
-                        <li data-target="#main" data-slide-to="{{$i}}" style="background-color:var(--gray);" class="active"></li>                        
-                    @else
-                        <li data-target="#main" data-slide-to="{{$i}}" style="background-color:var(--gray);" class=""></li>                        
-                    @endif
-                @endforeach
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                @if ($sliders->count()>0)
-                    @foreach (range(0,$sliders->count()-1) as $i)
-                        @if ($i == 0)
-                            <div class="carousel-item active text-center">
-                                <img src="{{$sliders->pop()->image->path}}" class="w-100 img-fluid mx-auto" alt="First slide">       
-                            </div>
-                        @else                         
-                            <div class="carousel-item text-center">
-                                <img src="{{$sliders->pop()->image->path}}" class="w-100 img-fluid mx-auto" alt="First slide">       
-                            </div>
-                            
-                        @endif
-                    @endforeach
-                @endif
-                {{-- <div class="carousel-item text-center" >
-                    <img src="images/furniture-unsplash-5.jpg" class="w-100 img-fluid mx-auto" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block text-white"style="mix-blend-mode: difference;">
-                        <h3 class="hvr-grow d-block">Title 1</h3>
-                        <p>Description</p>
-                    </div>
-                </div>
-                <div class="carousel-item text-center" >
-                    <img src="images/furniture-unsplash-3.jpg" class="w-100 img-fluid mx-auto" alt="Second slide">
-                    <div class="carousel-caption d-none d-md-block text-white"style="mix-blend-mode: difference;">
-                        <h3 class="hvr-grow d-block">Title</h3>
-                        <p>Description</p>
-                    </div>
-                </div>
-                <div class="carousel-item text-center" >
-                    <img src="images/furniture-unsplash-4.jpg" class="w-100 img-fluid mx-auto" alt="Third slide">
-                    <div class="carousel-caption d-none d-md-block text-white"style="mix-blend-mode: difference;">
-                        <h3 class="hvr-grow d-block">Title</h3>
-                        <p>Description</p>
-                    </div>
-                </div> --}}
-            </div>
-            <a class="carousel-control-prev" href="#main" style="background:none;" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#main" style="background:none;" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
+    <!-- Image Slider -->        
+    <carousel :slides="{{$sliders}}"></carousel>
 
     <!-- Products Selection -->
     <div class="container-fluid my-4">
         <div class="row justify-content-center">
             <!-- first -->
             @foreach ($products as $product)
-                <div class="col-md-3 col-6 p-2">
+                <div class="col-md-4 col-12 p-2">
                     <product-component
                     :id="{{$product->id}}"
                     path="{{$product->images->first()["path"]}}"                    

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="shadow rounded h-100 border hvr-grow py-2"
+    class="d-flex flex-row align-items-center justify-content-center d-md-block shadow w-100 rounded h-100 border hvr-grow py-2"
     :class="{'border-secondary':hovered}"
     @mouseover="hovered=true"
     @mouseleave="hovered=false"

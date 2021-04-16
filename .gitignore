@@ -13,3 +13,6 @@ yarn-error.log
 # Added this one
 /storage/*.index
 /run
+
+data.sql
+public.tar.gz

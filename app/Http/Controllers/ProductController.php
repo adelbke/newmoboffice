@@ -283,7 +283,8 @@ class ProductController extends Controller
             $path = '/storage/' . $image->store('productImages', 'public');
             $object = new Image();
             $object->path = $path;
-            // $object->image_type = "product_image";
+            // $image['small'] = $smallimage;
+            $product->images[$index]['small'] = '/storage/temp/' . $image->id . '.jpg';
             $object->save();
             $product->images()->attach($object, ['image_type' => 'product_image']);
         }

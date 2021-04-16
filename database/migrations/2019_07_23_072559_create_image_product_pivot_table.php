@@ -17,7 +17,7 @@ class CreateImageProductPivotTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('image_id');
-            $table->enum('image_type',['card','slider','collection_card','product_image']);
+            $table->enum('image_type',['card','slider','collection_card','product_image','small_product_image']);
             $table->timestamps();
         });
     }

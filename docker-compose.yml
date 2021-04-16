@@ -12,9 +12,8 @@ services:
       - APACHE_RUN_GROUP=#1000
     volumes:
       - .:/var/www/html
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.newmob.rule=Host(`newmoboffice.com`)"
+    ports:
+      - "80:80"
 
   newmob_mysql_db:
     image: mysql:5.7
@@ -26,5 +25,3 @@ services:
       - MYSQL_DATABASE=db
       - MYSQL_USER=dbuser
       - MYSQL_PASSWORD=secret
-    labels:
-      - "traefik.enable=false"
