@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->double('clientPrice');
             $table->double('retailerPrice');
             $table->string('name')->unique();
-	    $table->boolean('new')->nullable();
+	        $table->boolean('new')->nullable();
             $table->string('note')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();

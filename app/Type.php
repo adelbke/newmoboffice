@@ -10,7 +10,7 @@ class Type extends Model
     //
     protected $guarded = [];
     
-    use Searchable;
+    // use Searchable;
 
     public function toSearchableArray()
     {

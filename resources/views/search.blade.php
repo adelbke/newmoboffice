@@ -35,7 +35,7 @@
     <div class="container my-2 mx-2">
         <div class="row">
             @foreach ($list as $product)
-                <div class="col-6 col-md-3 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-3 col-lg-3">
                     <product-component
                         :id="{{$product->id}}"
                         path="{{$product->images->first()['path']}}"                    
