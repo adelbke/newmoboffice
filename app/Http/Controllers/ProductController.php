@@ -122,8 +122,8 @@ class ProductController extends Controller
     {
         // Form Validation
         $data = request()->validate([
-            'clientPrice' => ['Numeric', 'min:2', 'max:100000', 'gte:retailerPrice'],
-            'retailerPrice' => ['Numeric', 'min:1', 'max:100000', 'lte:clientPrice'],
+            'clientPrice' => ['Numeric', 'min:2', 'max:1000000', 'gte:retailerPrice'],
+            'retailerPrice' => ['Numeric', 'min:1', 'max:1000000', 'lte:clientPrice'],
             'category' => ['in:Meuble de Bureau,Mobilier de Réunion,Mobilier Accueil,Mobilier de Conférence,Bibliothèque & mobilier pour écoles et crèches,Environnement & Accéssoires,Chaises'],
             'Type' => ['required', 'exists:types,id'],
             'new' => ['String'],
@@ -220,8 +220,8 @@ class ProductController extends Controller
         // dd($request->all());
         // Form Validation
         $data = request()->validate([
-            'clientPrice' => ['required', 'Numeric', 'min:2', 'max:100000', 'gte:retailerPrice'],
-            'retailerPrice' => ['required', 'Numeric', 'min:1', 'max:100000', 'lte:clientPrice'],
+            'clientPrice' => ['required', 'Numeric', 'min:2', 'max:1000000', 'gte:retailerPrice'],
+            'retailerPrice' => ['required', 'Numeric', 'min:1', 'max:1000000', 'lte:clientPrice'],
             'category' => ['required', 'in:Meuble de Bureau,Mobilier de Réunion,Mobilier Accueil,Mobilier de Conférence,Bibliothèque & mobilier pour écoles et crèches,Environnement & Accéssoires,Chaises'],
             'Type' => ['required', 'exists:types,id'],
             'new' => ['required', 'String'],
