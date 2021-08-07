@@ -3,23 +3,53 @@ version: "3.5"
 services:
   newmobofficeapp:
     build:
-      context: "."
-      args:
-        UID: ${UID}
+      context: "./laravel/"
     container_name: newmobofficeapp
     environment:
       - APACHE_RUN_USER=#1000
       - APACHE_RUN_GROUP=#1000
     volumes:
-      - .:/var/www/html
+      - ./laravel:/var/www/
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    user: "$UID:$GID"
+    links:
+      - newmob_mysql_db
+    depends_on: 
+      - newmob_mysql_db
+    # args:
+    #   USER_ID: $UID
+    #   GROUP_ID: $GID
+
+  frontend:
+    image: node:12.19.0-alpine
+    container_name: newmob_frontend
+    volumes:
+      - ./frontend:/app
+    user: "$UID:$GID"
+    working_dir: /app
+    command: yarn dev
+  
+  proxy:
+    image: nginx:1.19.1-alpine
+    container_name: newmob_proxy
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./proxy/error.log:/var/log/nginx/error.log
+      - ./laravel:/var/www/
     ports:
       - "80:80"
-
+    user: "$UID:$GID"
+    links:
+      - frontend
+      - newmobofficeapp
+    command: [nginx-debug, '-g', 'daemon off;']
+    
   newmob_mysql_db:
     image: mysql:5.7
     container_name: newmob_mysql_db
     volumes:
       - ./run/var:/var/lib/mysql
+    user: "$UID:$GID"
     environment:
       - MYSQL_ROOT_PASSWORD=toor
       - MYSQL_DATABASE=db

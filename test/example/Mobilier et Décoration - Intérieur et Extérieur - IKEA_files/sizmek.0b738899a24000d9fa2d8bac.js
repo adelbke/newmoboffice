@@ -1,1 +1,0 @@
-"use strict";var ebSession="[SessionID]",ebRand=Math.random()+"";ebRand*=1e6,document.write('<script src="//bs.serving-sys.com/Serving/ActivityServer.bs?cn=as&amp;ActivityID=1098508&amp;rnd='+ebRand+"&amp;Session="+ebSession+'"><\/script>');
