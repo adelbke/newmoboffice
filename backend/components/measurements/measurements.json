@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_measurements_measurements",
+  "info": {
+    "name": "measurements",
+    "icon": "ruler-combined"
+  },
+  "options": {},
+  "attributes": {
+    "width": {
+      "type": "float",
+      "required": true
+    },
+    "height": {
+      "type": "float",
+      "required": true
+    },
+    "depth": {
+      "type": "float",
+      "required": true
+    }
+  }
+}

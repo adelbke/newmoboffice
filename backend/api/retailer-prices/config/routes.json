@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/retailer-prices",
+      "handler": "retailer-prices.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/retailer-prices/count",
+      "handler": "retailer-prices.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/retailer-prices/:id",
+      "handler": "retailer-prices.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/retailer-prices",
+      "handler": "retailer-prices.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/retailer-prices/:id",
+      "handler": "retailer-prices.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/retailer-prices/:id",
+      "handler": "retailer-prices.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "retailer_prices",
+  "info": {
+    "name": "prix revendeur",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "price": {
+      "type": "float",
+      "unique": false,
+      "required": true
+    }
+  }
+}

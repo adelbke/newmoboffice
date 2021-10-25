@@ -1,0 +1,84 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "name": "product",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "category": {
+      "via": "products",
+      "model": "category"
+    },
+    "new": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "cover_images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "description": {
+      "type": "richtext",
+      "required": true,
+      "minLength": 40
+    },
+    "product_images": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "thumbnail_images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "product_colors": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product-colors.product-colors"
+    },
+    "sizes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sizes.sizes"
+    },
+    "in_stock": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

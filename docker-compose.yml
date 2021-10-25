@@ -1,0 +1,25 @@
+version: '3'
+services:
+  strapi:
+    image: node:14-alpine
+    volumes:
+      - ./backend:/home/node/app
+    working_dir: /home/node/app
+    user: node
+    environment:
+      - HOST=0.0.0.0
+    ports:
+      - '1337:1337'
+    command: yarn run develop
+  
+  newmob_frontend:
+    image: node:14-alpine
+    volumes:
+      - ./frontend:/home/node/app
+    working_dir: /home/node/app
+    user: node
+    environment:
+      - NUXT_HOST=0.0.0.0
+    ports:
+      - '3000:3000'
+    command: yarn develop

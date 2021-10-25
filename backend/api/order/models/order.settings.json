@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "name": "Order",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "client": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "orders"
+    },
+    "product_order": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product-order.product-order",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "annule",
+        "livre",
+        "transit",
+        "pret",
+        "attente",
+        "retourne"
+      ],
+      "default": "attente",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_sizes_sizes",
+  "info": {
+    "name": "sizes",
+    "icon": "pencil-ruler"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "height": {
+      "type": "float",
+      "required": true
+    },
+    "width": {
+      "type": "float",
+      "required": true
+    },
+    "depth": {
+      "type": "float",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "prix_revendeur": {
+      "model": "retailer-prices"
+    }
+  }
+}
