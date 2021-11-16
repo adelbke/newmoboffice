@@ -1,21 +1,24 @@
 <template>
   <!-- <Products :products="products" :error="error" :storeUrl="storeUrl" /> -->
   <div class="container mx-auto relative">
-    <large-carousel></large-carousel>
+    <large-carousel :slides="sliders"></large-carousel>
     <four-features></four-features>
     <perf-count></perf-count>
     <div class="flex flex-row flex-wrap md:py-8 py-2">
-      <div class="w-full py-1 md:py-0 md:w-1/2">
-        <product></product>
-      </div>
-      <div class="w-full py-1 md:py-0 md:w-1/2">
-        <product></product>
+      <div
+        v-for="product in featuredProducts"
+        :key="product.id"
+        class="w-full py-1 md:py-0 md:w-1/2"
+      >
+        <product :product="product"></product>
       </div>
     </div>
     <two-covers class="md:py-8 py-2"></two-covers>
     <landing-item></landing-item>
-    <h2 class="text-3xl md:text-4xl text-center capitalize mt-4">Des Solutions personalisables pour tout les goûts</h2>
-    <large-color-carousel></large-color-carousel>
+    <h2 class="section-title mt-4">
+      Des Solutions personalisables pour tout les goûts
+    </h2>
+    <large-color-carousel :colors="colors"></large-color-carousel>
   </div>
 </template>
 
@@ -28,7 +31,16 @@ import largeColorCarousel from '~/components/large-color-carousel.vue'
 import twoCovers from '~/components/two-covers.vue'
 import largeCarousel from '~/components/large-carousel.vue'
 
+
 export default {
+  async asyncData ({ $strapi }){
+    const featuredProducts = $strapi.find('products',{_limit: 2})
+    const sliders = $strapi.find('sliders', { _limit: 5})
+    const colors = $strapi.find('colors', { _limit: 5 })
+
+    let apiData = await Promise.all([featuredProducts, sliders, colors])
+    return { featuredProducts: apiData[0], sliders: apiData[1], colors: apiData[2] }
+  },
   components: {
     product,
     landingItem,
@@ -42,7 +54,4 @@ export default {
 </script>
 
 <style scoped>
-.section-title{
-  @apply text-3xl md:text-4xl text-center capitalize
-}
 </style>

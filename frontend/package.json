@@ -22,7 +22,9 @@
     "vue-js-modal": "^2.0.1",
     "vue-loader": "^15.9.8",
     "vue-meta": "^2.4.0",
-    "vue-tasty-burgers": "^1.2.3"
+    "vue-tailwind": "^2.5.0",
+    "vue-tasty-burgers": "^1.2.3",
+    "vuejs-paginate": "^2.1.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^6.0.1",

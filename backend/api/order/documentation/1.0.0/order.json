@@ -518,7 +518,8 @@
         "required": [
           "id",
           "product_order",
-          "status"
+          "status",
+          "phone"
         ],
         "properties": {
           "id": {
@@ -567,6 +568,9 @@
                   "type": "string"
                 }
               },
+              "phone": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -595,9 +599,10 @@
                     "title",
                     "slug",
                     "description",
-                    "product_images",
-                    "thumbnail_images",
-                    "in_stock"
+                    "images",
+                    "sizes",
+                    "in_stock",
+                    "price"
                   ],
                   "properties": {
                     "id": {
@@ -615,19 +620,13 @@
                     "new": {
                       "type": "boolean"
                     },
-                    "cover_images": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
+                    "cover_image": {
+                      "type": "string"
                     },
                     "description": {
                       "type": "string"
                     },
-                    "product_images": {
-                      "type": "string"
-                    },
-                    "thumbnail_images": {
+                    "images": {
                       "type": "array",
                       "items": {
                         "type": "string"
@@ -641,6 +640,9 @@
                     },
                     "in_stock": {
                       "type": "boolean"
+                    },
+                    "price": {
+                      "type": "number"
                     },
                     "created_by": {
                       "type": "string"
@@ -664,13 +666,20 @@
               "attente",
               "retourne"
             ]
+          },
+          "phone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
           }
         }
       },
       "NewOrder": {
         "required": [
           "product_order",
-          "status"
+          "status",
+          "phone"
         ],
         "properties": {
           "client": {
@@ -696,9 +705,10 @@
                     "title",
                     "slug",
                     "description",
-                    "product_images",
-                    "thumbnail_images",
-                    "in_stock"
+                    "images",
+                    "sizes",
+                    "in_stock",
+                    "price"
                   ],
                   "properties": {
                     "id": {
@@ -716,19 +726,13 @@
                     "new": {
                       "type": "boolean"
                     },
-                    "cover_images": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
+                    "cover_image": {
+                      "type": "string"
                     },
                     "description": {
                       "type": "string"
                     },
-                    "product_images": {
-                      "type": "string"
-                    },
-                    "thumbnail_images": {
+                    "images": {
                       "type": "array",
                       "items": {
                         "type": "string"
@@ -742,6 +746,9 @@
                     },
                     "in_stock": {
                       "type": "boolean"
+                    },
+                    "price": {
+                      "type": "number"
                     },
                     "created_by": {
                       "type": "string"
@@ -765,6 +772,12 @@
               "attente",
               "retourne"
             ]
+          },
+          "phone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
           },
           "created_by": {
             "type": "string"

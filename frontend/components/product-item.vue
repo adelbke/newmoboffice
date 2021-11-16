@@ -6,43 +6,56 @@
       border-newmob-red border-2
       rounded-tl-xl rounded-br-xl
       p-2
-      shadow-lg
       m-1
       md:m-2
     "
   >
     <div class="w-full lg:w-1/2 h-64">
-      <splide :options="slideOptions">
-        <splide-slide>
-          <img src="/product-image.png" alt="" />
-        </splide-slide>
-        <splide-slide>
-          <img src="/product-image.png" alt="" />
-        </splide-slide>
-        <splide-slide>
-          <img src="/product-image.png" alt="" />
-        </splide-slide>
-        <splide-slide>
-          <img src="/product-image.png" alt="" />
-        </splide-slide>
-      </splide>
+      <client-only>
+        <splide :options="slideOptions">
+          <splide-slide v-for="image in product.images" :key="image.id">
+            <img :src="getStrapiMedia(image.formats.thumbnail.url)" alt="" />
+          </splide-slide>
+        </splide>
+      </client-only>
     </div>
     <!-- <div class="w-1/2 h-64">
       </div> -->
     <div class="w-10/12 lg:w-5/12 flex flex-col p-2">
-      <h2 class="md:text-xl text-md font-nunito font-bold leading-5">
-        Bureau SAM
-      </h2>
-      <small class="text-xs text-gray-700 font-light">1.60m /1.60m</small>
-      <pre class="md:text-sm text-xs font-nunito whitespace-pre-line">
-- Bureau de direction SAM
-- Avec caisson et retour fixe
-- 50% MDF Couleur teak blanc + mélaminé gris
-- 50% MDF Couleur panama marron gloss + mélaminé gris
-        </pre
+      <NuxtLink
+        :to="'/product/' + product.slug"
+        class="
+          md:text-xl
+          text-md
+          font-nunito
+          hover:underline
+          font-bold
+          leading-5
+        "
+        v-text="product.title"
       >
+        Bureau SAM
+      </NuxtLink>
+      <NuxtLink
+        class="
+          text-xs text-gray-700
+          hover:underline hover:font-normal
+          font-light
+        "
+        :to="'/category/' + product.category.slug"
+        v-text="product.category.name"
+        >1.60m /1.60m</NuxtLink
+      >
+      <pre
+        class="md:text-sm text-xs font-nunito whitespace-pre-line"
+        v-text="product.description"
+      ></pre>
+      <span class="text-lg font-nunito font-bold capitalize">à partir de {{ this.product.price }}</span>
     </div>
-    <div class="w-2/12 lg:w-1/12 flex flex-col justify-between items-center">
+    <div
+      v-if="product.new"
+      class="w-2/12 lg:w-1/12 flex flex-col justify-between items-center"
+    >
       <div
         class="
           rounded-full
@@ -50,8 +63,7 @@
           text-white
           md:text-sm
           text-xs
-          md:-ml-4
-          md:px-2
+          md:-ml-4 md:px-2
           px-1
         "
       >
@@ -59,15 +71,16 @@
       </div>
       <div>
         <img
-          v-for="i in [1, 2, 3]"
-          :key="i"
-          v-tooltip.left="{ content: 'Teak Blanc', classes: tooltipClasses }"
-          src="/wood_color.png"
+          v-for="color in product.product_colors"
+          :key="color.id"
+          v-tooltip.left="{
+            content: color.color.name,
+            classes: tooltipClasses,
+          }"
+          :src="getStrapiMedia(color.color.image.formats.thumbnail.url)"
           alt=""
-          class="rounded-full w-6 md:w-8 my-1"
+          class="rounded-full w-6 md:w-12 my-1"
         />
-        <!-- <img src="/wood_color.png" alt="" class="rounded-full w-8 my-1">
-          <img src="/wood_color.png" alt="" class="rounded-full w-8 my-1"> -->
       </div>
     </div>
   </article>
@@ -76,11 +89,17 @@
 <script>
 // tooltip component
 import { VTooltip } from "v-tooltip";
-
+import {
+  getStrapiMedia
+} from '~/utils/medias'
 export default {
   directives: {
     tooltip: VTooltip,
   },
+  methods:{
+    getStrapiMedia
+  },
+  props:['product'],
   data() {
     return {
       slideOptions: {
@@ -106,8 +125,16 @@ export default {
   background-image: url("/product-image.png");
 }
 
-.splide__pagination__page.is-active{
+.splide__pagination__page.is-active {
   background: #aaa;
   transform: scale(1.4);
+}
+.grow-hover{
+  @apply transition-transform duration-100 ease-in transform hover:scale-105
+}
+.red-shadow{
+  box-shadow: 11px 11px 17px 1px rgba(99,17,1,0.75);
+-webkit-box-shadow: 11px 11px 17px 1px rgba(99,17,1,0.75);
+-moz-box-shadow: 11px 11px 17px 1px rgba(99,17,1,0.75);
 }
 </style>

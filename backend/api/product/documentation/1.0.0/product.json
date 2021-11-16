@@ -522,9 +522,10 @@
           "title",
           "slug",
           "description",
-          "product_images",
-          "thumbnail_images",
-          "in_stock"
+          "images",
+          "sizes",
+          "in_stock",
+          "price"
         ],
         "properties": {
           "id": {
@@ -539,6 +540,7 @@
           "category": {
             "required": [
               "id",
+              "name",
               "slug"
             ],
             "properties": {
@@ -578,81 +580,7 @@
             "type": "boolean",
             "default": false
           },
-          "cover_images": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name",
-                "hash",
-                "mime",
-                "size",
-                "url",
-                "provider"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "alternativeText": {
-                  "type": "string"
-                },
-                "caption": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer"
-                },
-                "height": {
-                  "type": "integer"
-                },
-                "formats": {
-                  "type": "object"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ext": {
-                  "type": "string"
-                },
-                "mime": {
-                  "type": "string"
-                },
-                "size": {
-                  "type": "number"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "previewUrl": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "provider_metadata": {
-                  "type": "object"
-                },
-                "related": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "description": {
-            "type": "string",
-            "minLength": 40
-          },
-          "product_images": {
+          "cover_image": {
             "required": [
               "id",
               "name",
@@ -719,7 +647,11 @@
               }
             }
           },
-          "thumbnail_images": {
+          "description": {
+            "type": "string",
+            "minLength": 40
+          },
+          "images": {
             "type": "array",
             "items": {
               "required": [
@@ -803,7 +735,10 @@
                 },
                 "color": {
                   "required": [
-                    "id"
+                    "id",
+                    "name",
+                    "image",
+                    "reference"
                   ],
                   "properties": {
                     "id": {
@@ -909,7 +844,7 @@
                 "height",
                 "width",
                 "depth",
-                "price"
+                "added_price"
               ],
               "properties": {
                 "id": {
@@ -927,28 +862,8 @@
                 "depth": {
                   "type": "number"
                 },
-                "price": {
+                "added_price": {
                   "type": "number"
-                },
-                "prix_revendeur": {
-                  "required": [
-                    "id",
-                    "price"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "price": {
-                      "type": "number"
-                    },
-                    "created_by": {
-                      "type": "string"
-                    },
-                    "updated_by": {
-                      "type": "string"
-                    }
-                  }
                 }
               }
             }
@@ -956,6 +871,9 @@
           "in_stock": {
             "type": "boolean",
             "default": true
+          },
+          "price": {
+            "type": "number"
           }
         }
       },
@@ -964,7 +882,9 @@
           "title",
           "slug",
           "description",
-          "in_stock"
+          "sizes",
+          "in_stock",
+          "price"
         ],
         "properties": {
           "title": {
@@ -998,7 +918,10 @@
                 },
                 "color": {
                   "required": [
-                    "id"
+                    "id",
+                    "name",
+                    "image",
+                    "reference"
                   ],
                   "properties": {
                     "id": {
@@ -1104,7 +1027,7 @@
                 "height",
                 "width",
                 "depth",
-                "price"
+                "added_price"
               ],
               "properties": {
                 "id": {
@@ -1122,28 +1045,8 @@
                 "depth": {
                   "type": "number"
                 },
-                "price": {
+                "added_price": {
                   "type": "number"
-                },
-                "prix_revendeur": {
-                  "required": [
-                    "id",
-                    "price"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "price": {
-                      "type": "number"
-                    },
-                    "created_by": {
-                      "type": "string"
-                    },
-                    "updated_by": {
-                      "type": "string"
-                    }
-                  }
                 }
               }
             }
@@ -1151,6 +1054,9 @@
           "in_stock": {
             "type": "boolean",
             "default": true
+          },
+          "price": {
+            "type": "number"
           },
           "created_by": {
             "type": "string"

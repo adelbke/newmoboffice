@@ -2,7 +2,8 @@
   "collectionName": "components_sizes_sizes",
   "info": {
     "name": "sizes",
-    "icon": "pencil-ruler"
+    "icon": "pencil-ruler",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -22,12 +23,9 @@
       "type": "float",
       "required": true
     },
-    "price": {
+    "added_price": {
       "type": "decimal",
       "required": true
-    },
-    "prix_revendeur": {
-      "model": "retailer-prices"
     }
   }
 }

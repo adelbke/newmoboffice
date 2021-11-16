@@ -13,9 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "client": {
+      "via": "orders",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "orders"
+      "model": "user"
     },
     "product_order": {
       "type": "component",
@@ -35,6 +35,15 @@
       ],
       "default": "attente",
       "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "address": {
+      "type": "string",
+      "required": false
     }
   }
 }

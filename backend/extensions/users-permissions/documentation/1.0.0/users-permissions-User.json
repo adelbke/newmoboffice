@@ -1257,7 +1257,8 @@
               "required": [
                 "id",
                 "product_order",
-                "status"
+                "status",
+                "phone"
               ],
               "properties": {
                 "id": {
@@ -1280,6 +1281,12 @@
                     "retourne"
                   ]
                 },
+                "phone": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -1288,6 +1295,9 @@
                 }
               }
             }
+          },
+          "phone": {
+            "type": "string"
           }
         }
       },
@@ -1335,6 +1345,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "phone": {
+            "type": "string"
           },
           "created_by": {
             "type": "string"

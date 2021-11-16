@@ -311,7 +311,7 @@
         "parameters": []
       }
     },
-    "/categories/{id}": {
+    "/categories/{slug}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -363,7 +363,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "slug",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -373,7 +373,9 @@
             }
           }
         ]
-      },
+      }
+    },
+    "/categories/{id}": {
       "put": {
         "deprecated": false,
         "description": "Update a record",
@@ -510,70 +512,6 @@
           }
         ]
       }
-    },
-    "/categories/{slug}": {
-      "get": {
-        "deprecated": false,
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Category"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Category"
-        ],
-        "parameters": [
-          {
-            "name": "slug",
-            "in": "path",
-            "description": "",
-            "deprecated": false,
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
     }
   },
   "components": {
@@ -581,6 +519,7 @@
       "Category": {
         "required": [
           "id",
+          "name",
           "slug"
         ],
         "properties": {
@@ -596,6 +535,7 @@
           "parent": {
             "required": [
               "id",
+              "name",
               "slug"
             ],
             "properties": {
@@ -636,6 +576,7 @@
             "items": {
               "required": [
                 "id",
+                "name",
                 "slug"
               ],
               "properties": {
@@ -680,9 +621,10 @@
                 "title",
                 "slug",
                 "description",
-                "product_images",
-                "thumbnail_images",
-                "in_stock"
+                "images",
+                "sizes",
+                "in_stock",
+                "price"
               ],
               "properties": {
                 "id": {
@@ -700,19 +642,13 @@
                 "new": {
                   "type": "boolean"
                 },
-                "cover_images": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                "cover_image": {
+                  "type": "string"
                 },
                 "description": {
                   "type": "string"
                 },
-                "product_images": {
-                  "type": "string"
-                },
-                "thumbnail_images": {
+                "images": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -727,6 +663,9 @@
                 "in_stock": {
                   "type": "boolean"
                 },
+                "price": {
+                  "type": "number"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -740,6 +679,7 @@
       },
       "NewCategory": {
         "required": [
+          "name",
           "slug"
         ],
         "properties": {

@@ -3,58 +3,43 @@ export default {
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
    */
-  target: 'static',
+  target: 'server',
   /*
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head
    */
-
-  //  <script src="https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.js"></script>
-
   head: {
-    htmlAttrs:{
-      lang:'fr'
+    htmlAttrs: {
+      lang: 'fr'
     },
-    title: "Buy stickers with Strapi, Nuxt.js and Snipcart",
+    title: "NewmobOffice",
     meta: [{
-        charset: 'utf-8'
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
-      },
-      {
-        hid: 'description',
-        name: 'description',
-        content: "e-commerce starter using Strapi, Nuxt.js and Snipcart"
-      }
+      charset: 'utf-8'
+    },
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1'
+    },
+    {
+      hid: 'description',
+      name: 'description',
+      content: "Bienvenue chez NewMobOffice"
+    }
     ],
     link: [
       // Nunito from Google font
       {
-        rel:'preconnect',
-        href:'https://fonts.googleapis.com'
-      },
-      {
-        rel:'preconnect',
-        href:'https://fonts.gstatic.com',
-        crossorigin:true
-      },
-      {
-        href:'https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap',
-        rel:'stylesheet'
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com'
       },
       {
         rel: 'preconnect',
-        href: "https://app.snipcart.com"
+        href: 'https://fonts.gstatic.com',
+        crossorigin: true
       },
       {
-        rel: 'preconnect',
-        href: "https://cdn.snipcart.com"
-      },
-      {
-        rel: 'stylesheet',
-        href: "https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.css"
+        href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap',
+        rel: 'stylesheet'
       },
       {
         rel: 'icon',
@@ -62,9 +47,15 @@ export default {
         href: '/favicon.ico'
       }
     ],
-    script: [{
-      src: 'https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.js'
-    }]
+    script: [
+      {
+        async: true,
+        defer: true,
+        crossorigin: "anonymous",
+        src: "https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v12.0&appId=257374912241023&autoLogAppEvents=1",
+        nonce: "4ix8sWb7"
+      }
+    ]
   },
   /*
    ** Global CSS
@@ -108,17 +99,22 @@ export default {
     STRAPI_URL: 'http://localhost:1337',
     storeUrl: process.env.STORE_URL || "http://localhost:1337"
   },
-  
+
+
+  // router:{
+  //   middleware: 'authenticated'
+  // },
+
   privateRuntimeConfig: {
-    strapi:{
-      url:'http://strapi:1337',
+    strapi: {
+      url: 'http://strapi:1337',
       entities: [
         'Products',
         'Categories'
       ],
     }
   },
-  
+
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/

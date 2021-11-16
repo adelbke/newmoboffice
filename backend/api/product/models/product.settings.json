@@ -30,8 +30,8 @@
       "default": false,
       "required": false
     },
-    "cover_images": {
-      "collection": "file",
+    "cover_image": {
+      "model": "file",
       "via": "related",
       "allowedTypes": [
         "images"
@@ -45,17 +45,7 @@
       "required": true,
       "minLength": 40
     },
-    "product_images": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": true,
-      "pluginOptions": {}
-    },
-    "thumbnail_images": {
+    "images": {
       "collection": "file",
       "via": "related",
       "allowedTypes": [
@@ -73,12 +63,19 @@
     "sizes": {
       "type": "component",
       "repeatable": true,
-      "component": "sizes.sizes"
+      "component": "sizes.sizes",
+      "required": true
     },
     "in_stock": {
       "type": "boolean",
       "default": true,
       "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "max": 500000
     }
   }
 }

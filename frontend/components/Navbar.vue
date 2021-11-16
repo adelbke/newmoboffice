@@ -30,8 +30,7 @@
             flex-1 flex
             items-center
             justify-center
-            sm:items-center
-            sm:justify-center
+            sm:items-center sm:justify-center
           "
         >
           <div class="flex items-center">
@@ -47,20 +46,12 @@
                 ></nav-item>
               </div>
             </div>
-            <img
-              class="block lg:hidden w-auto"
-              src="~assets/svg/logo-newmob.svg"
-              alt=""
-            />
-            <img
-              class="hidden lg:block w-auto"
-              src="~assets/svg/logo-newmob.svg"
-              alt=""
-            />
+            <NuxtLink to="/">
+              <logo class="transition-transform duration-75 ease-in transform hover:scale-105 w-56 md:w-auto"></logo>
+            </NuxtLink>
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <nav-item
                 v-for="item in navItemsRight"
                 :key="item.name"
@@ -78,37 +69,22 @@
             sm:right-0
             flex
             items-center
-            pr-2
-            sm:absolute
-            sm:inset-auto
-            sm:ml-6
-            sm:pr-0
+            text-gray-600
+            sm:absolute sm:inset-auto sm:ml-6 sm:pr-0
           "
         >
-          <button class="right-nav snipcart-checkout relative">
-            <img class="" src="~assets/svg/bag.svg" alt="" />
-            <span
-              class="
-                rounded-full
-                text-xs
-                text-white
-                bg-newmob-red
-                top-0
-                p-1
-                absolute
-                snipcart-total-items
-              "
-            ></span>
-          </button>
-          <button class="right-nav">
+          <cart class="right-nav relative"></cart>
+          <!-- <button class="right-nav" v-if="!!$strapi.getToken()">
             <img class="" src="~assets/svg/user.svg" alt="" />
-          </button>
+          </button> -->
+          <profile-menu class="right-nav"></profile-menu>
           <button class="right-nav" @click="$modal.show('search-modal')">
-            <img class="" src="~assets/svg/search.svg" alt="" />
+            <search-icon></search-icon>
           </button>
 
           <!-- search Modal -->
-          <modal
+          <search-modal></search-modal>
+          <!-- <modal
             height="auto"
             width="75%"
             :classes="'flex flex-shrink w-36 overflow-visible shadow-lg'"
@@ -119,18 +95,7 @@
                 class="text-gray-300"
                 @click="$modal.hide('search-modal')"
               >
-                <svg
-                  class="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
+                <close-icon></close-icon>
               </button>
             </div>
             <input
@@ -149,7 +114,7 @@
               name="search"
               autofocus
             />
-          </modal>
+          </modal> -->
         </div>
       </div>
     </div>
@@ -176,11 +141,24 @@
 
 <script>
 import navItem from '~/components/navigation-components/nav-item.vue'
+import cart from '~/components/cart.vue'
+import closeIcon from '~/components/icons/close.vue'
+import searchIcon from '~/components/icons/search.vue'
+
+import profileMenu from '~/components/auth/profile-menu.vue'
+import searchModal from '~/components/search-modal.vue'
+import logo from '~/components/icons/logo.vue'
 import 'animate.css';
 
 export default {
   components:{
-    navItem
+    logo,
+    navItem,
+    closeIcon,
+    cart,
+    searchModal,
+    profileMenu,
+    searchIcon
   },
   methods:{
     toggleNav (){
@@ -199,7 +177,7 @@ export default {
         },
         {
           name: "catalogue",
-          page: "/catalogue",
+          link: "https://heyzine.com/flip-book/6efcfd76d5.html",
         },
       ],
       navItemsRight:[
@@ -227,6 +205,6 @@ export default {
   @apply text-gray-500 hover:text-gray-700 font-nunito capitalize bg-white px-3 py-2 rounded-md text-sm font-semibold;
 }
 .right-nav {
-  @apply bg-white px-1 sm:px-2 py-1 outline-none sm:mx-2;
+  @apply bg-white text-gray-700 px-1 sm:px-2 py-1 outline-none sm:mx-2;
 }
 </style>

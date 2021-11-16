@@ -1,0 +1,12 @@
+{
+    "routes":[
+        {
+        "method": "POST",
+        "path": "/payment/get-gateways",
+        "handler": "payment.getGateways",
+        "config": {
+            "policies": []
+            }
+        }
+    ]
+}

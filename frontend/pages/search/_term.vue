@@ -1,0 +1,81 @@
+<template>
+  <main>
+    <h2 v-if="!!$route.params.term" class="main-title">
+      Résultats de recherche pour "{{ searchTerm }}"
+    </h2>
+    <h2 class="main-title" v-else>Nos produits</h2>
+    <section class="container mx-auto flex flex-row flex-wrap">
+      <div
+        class="w-full md:w-1/2"
+        v-for="product in products"
+        :key="product.id"
+      >
+        <product-item :product="product"></product-item>
+      </div>
+    </section>
+    <t-pagination
+      :total-items="productsCount"
+      :per-page="10"
+      v-model="currentPage"
+    />
+  </main>
+</template>
+
+<script>
+import productItem from '~/components/product-item.vue'
+import { TPagination } from 'vue-tailwind/dist/components'
+import Vue from 'vue'
+import VueTailwind from 'vue-tailwind'
+
+Vue.use(VueTailwind, {
+  't-pagination':{
+    component: TPagination
+  }
+})
+export default {
+  async asyncData({ params, $strapi, route }){
+
+    let page = parseInt(!!route.query.page ? route.query.page : 0)
+    const searchTerm = params.term;
+    const qs = require('qs')
+    const filter = { 
+      _where: { _or: [
+        { title_contains: searchTerm },
+        { 'category.name_contains': searchTerm },
+        { description_contains: searchTerm } ]
+      }, 
+      _start: page * 10,
+      _limit: 10
+    }
+
+    const products = $strapi.find('products',qs.stringify(filter))
+    const productsCount = $strapi.count('products', qs.stringify(filter))
+    let dataResult = await Promise.all([products, productsCount])
+    return { searchTerm, products:dataResult[0], productsCount:dataResult[1] }
+  },
+  components: { 
+    productItem
+  },
+  computed:{
+    currentPage:{
+      get(){
+        return parseInt(!!this.$route.query.page ? this.$route.query.page : 0);
+      },
+      set(value){
+        this.$router.push(`/search/${this.searchTerm}?page=${value}`)
+      }
+    }
+  },
+  methods:{
+    goToPage(page){
+      this.$router.push(`/search/${this.searchTerm}?page=${page}`)
+    }
+  }
+}
+</script>
+
+<style>
+.main-title {
+  @apply text-center font-bold text-lg md:text-xl font-nunito md:py-4;
+}
+</style>

@@ -26,7 +26,8 @@ module.exports = {
   },
   variants: {
     extend:{
-      fontWeight:['hover']
+      fontWeight:['hover'],
+      width:['hover']
     }
   },
   plugins: [],

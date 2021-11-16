@@ -516,7 +516,10 @@
     "schemas": {
       "Colors": {
         "required": [
-          "id"
+          "id",
+          "name",
+          "image",
+          "reference"
         ],
         "properties": {
           "id": {
@@ -602,6 +605,10 @@
         }
       },
       "NewColors": {
+        "required": [
+          "name",
+          "reference"
+        ],
         "properties": {
           "name": {
             "type": "string"

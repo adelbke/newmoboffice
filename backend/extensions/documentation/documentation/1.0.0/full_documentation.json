@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "10/17/2021 4:22:34 PM"
+    "x-generation-date": "11/13/2021 2:08:27 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -356,7 +356,7 @@
         "parameters": []
       }
     },
-    "/categories/{id}": {
+    "/categories/{slug}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -408,7 +408,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "slug",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -418,7 +418,9 @@
             }
           }
         ]
-      },
+      }
+    },
+    "/categories/{id}": {
       "put": {
         "deprecated": false,
         "description": "Update a record",
@@ -545,70 +547,6 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "description": "",
-            "deprecated": false,
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/categories/{slug}": {
-      "get": {
-        "deprecated": false,
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Category"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Category"
-        ],
-        "parameters": [
-          {
-            "name": "slug",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -1640,6 +1578,77 @@
             }
           }
         ]
+      }
+    },
+    "/payment/get-gateways": {
+      "post": {
+        "deprecated": false,
+        "description": "Create a new record",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Payment"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "foo": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/products": {
@@ -5422,6 +5431,7 @@
       "Category": {
         "required": [
           "id",
+          "name",
           "slug"
         ],
         "properties": {
@@ -5437,6 +5447,7 @@
           "parent": {
             "required": [
               "id",
+              "name",
               "slug"
             ],
             "properties": {
@@ -5477,6 +5488,7 @@
             "items": {
               "required": [
                 "id",
+                "name",
                 "slug"
               ],
               "properties": {
@@ -5521,9 +5533,10 @@
                 "title",
                 "slug",
                 "description",
-                "product_images",
-                "thumbnail_images",
-                "in_stock"
+                "images",
+                "sizes",
+                "in_stock",
+                "price"
               ],
               "properties": {
                 "id": {
@@ -5541,19 +5554,13 @@
                 "new": {
                   "type": "boolean"
                 },
-                "cover_images": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                "cover_image": {
+                  "type": "string"
                 },
                 "description": {
                   "type": "string"
                 },
-                "product_images": {
-                  "type": "string"
-                },
-                "thumbnail_images": {
+                "images": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -5568,6 +5575,9 @@
                 "in_stock": {
                   "type": "boolean"
                 },
+                "price": {
+                  "type": "number"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -5581,6 +5591,7 @@
       },
       "NewCategory": {
         "required": [
+          "name",
           "slug"
         ],
         "properties": {
@@ -5615,7 +5626,10 @@
       },
       "Colors": {
         "required": [
-          "id"
+          "id",
+          "name",
+          "image",
+          "reference"
         ],
         "properties": {
           "id": {
@@ -5701,6 +5715,10 @@
         }
       },
       "NewColors": {
+        "required": [
+          "name",
+          "reference"
+        ],
         "properties": {
           "name": {
             "type": "string"
@@ -5724,7 +5742,8 @@
         "required": [
           "id",
           "product_order",
-          "status"
+          "status",
+          "phone"
         ],
         "properties": {
           "id": {
@@ -5773,6 +5792,9 @@
                   "type": "string"
                 }
               },
+              "phone": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -5801,9 +5823,10 @@
                     "title",
                     "slug",
                     "description",
-                    "product_images",
-                    "thumbnail_images",
-                    "in_stock"
+                    "images",
+                    "sizes",
+                    "in_stock",
+                    "price"
                   ],
                   "properties": {
                     "id": {
@@ -5821,19 +5844,13 @@
                     "new": {
                       "type": "boolean"
                     },
-                    "cover_images": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
+                    "cover_image": {
+                      "type": "string"
                     },
                     "description": {
                       "type": "string"
                     },
-                    "product_images": {
-                      "type": "string"
-                    },
-                    "thumbnail_images": {
+                    "images": {
                       "type": "array",
                       "items": {
                         "type": "string"
@@ -5847,6 +5864,9 @@
                     },
                     "in_stock": {
                       "type": "boolean"
+                    },
+                    "price": {
+                      "type": "number"
                     },
                     "created_by": {
                       "type": "string"
@@ -5870,13 +5890,20 @@
               "attente",
               "retourne"
             ]
+          },
+          "phone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
           }
         }
       },
       "NewOrder": {
         "required": [
           "product_order",
-          "status"
+          "status",
+          "phone"
         ],
         "properties": {
           "client": {
@@ -5902,9 +5929,10 @@
                     "title",
                     "slug",
                     "description",
-                    "product_images",
-                    "thumbnail_images",
-                    "in_stock"
+                    "images",
+                    "sizes",
+                    "in_stock",
+                    "price"
                   ],
                   "properties": {
                     "id": {
@@ -5922,19 +5950,13 @@
                     "new": {
                       "type": "boolean"
                     },
-                    "cover_images": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
+                    "cover_image": {
+                      "type": "string"
                     },
                     "description": {
                       "type": "string"
                     },
-                    "product_images": {
-                      "type": "string"
-                    },
-                    "thumbnail_images": {
+                    "images": {
                       "type": "array",
                       "items": {
                         "type": "string"
@@ -5948,6 +5970,9 @@
                     },
                     "in_stock": {
                       "type": "boolean"
+                    },
+                    "price": {
+                      "type": "number"
                     },
                     "created_by": {
                       "type": "string"
@@ -5972,6 +5997,12 @@
               "retourne"
             ]
           },
+          "phone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
           "created_by": {
             "type": "string"
           },
@@ -5986,9 +6017,10 @@
           "title",
           "slug",
           "description",
-          "product_images",
-          "thumbnail_images",
-          "in_stock"
+          "images",
+          "sizes",
+          "in_stock",
+          "price"
         ],
         "properties": {
           "id": {
@@ -6003,6 +6035,7 @@
           "category": {
             "required": [
               "id",
+              "name",
               "slug"
             ],
             "properties": {
@@ -6042,81 +6075,7 @@
             "type": "boolean",
             "default": false
           },
-          "cover_images": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name",
-                "hash",
-                "mime",
-                "size",
-                "url",
-                "provider"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "alternativeText": {
-                  "type": "string"
-                },
-                "caption": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer"
-                },
-                "height": {
-                  "type": "integer"
-                },
-                "formats": {
-                  "type": "object"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ext": {
-                  "type": "string"
-                },
-                "mime": {
-                  "type": "string"
-                },
-                "size": {
-                  "type": "number"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "previewUrl": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "provider_metadata": {
-                  "type": "object"
-                },
-                "related": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "description": {
-            "type": "string",
-            "minLength": 40
-          },
-          "product_images": {
+          "cover_image": {
             "required": [
               "id",
               "name",
@@ -6183,7 +6142,11 @@
               }
             }
           },
-          "thumbnail_images": {
+          "description": {
+            "type": "string",
+            "minLength": 40
+          },
+          "images": {
             "type": "array",
             "items": {
               "required": [
@@ -6267,7 +6230,10 @@
                 },
                 "color": {
                   "required": [
-                    "id"
+                    "id",
+                    "name",
+                    "image",
+                    "reference"
                   ],
                   "properties": {
                     "id": {
@@ -6373,7 +6339,7 @@
                 "height",
                 "width",
                 "depth",
-                "price"
+                "added_price"
               ],
               "properties": {
                 "id": {
@@ -6391,28 +6357,8 @@
                 "depth": {
                   "type": "number"
                 },
-                "price": {
+                "added_price": {
                   "type": "number"
-                },
-                "prix_revendeur": {
-                  "required": [
-                    "id",
-                    "price"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "price": {
-                      "type": "number"
-                    },
-                    "created_by": {
-                      "type": "string"
-                    },
-                    "updated_by": {
-                      "type": "string"
-                    }
-                  }
                 }
               }
             }
@@ -6420,6 +6366,9 @@
           "in_stock": {
             "type": "boolean",
             "default": true
+          },
+          "price": {
+            "type": "number"
           }
         }
       },
@@ -6428,7 +6377,9 @@
           "title",
           "slug",
           "description",
-          "in_stock"
+          "sizes",
+          "in_stock",
+          "price"
         ],
         "properties": {
           "title": {
@@ -6462,7 +6413,10 @@
                 },
                 "color": {
                   "required": [
-                    "id"
+                    "id",
+                    "name",
+                    "image",
+                    "reference"
                   ],
                   "properties": {
                     "id": {
@@ -6568,7 +6522,7 @@
                 "height",
                 "width",
                 "depth",
-                "price"
+                "added_price"
               ],
               "properties": {
                 "id": {
@@ -6586,28 +6540,8 @@
                 "depth": {
                   "type": "number"
                 },
-                "price": {
+                "added_price": {
                   "type": "number"
-                },
-                "prix_revendeur": {
-                  "required": [
-                    "id",
-                    "price"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "price": {
-                      "type": "number"
-                    },
-                    "created_by": {
-                      "type": "string"
-                    },
-                    "updated_by": {
-                      "type": "string"
-                    }
-                  }
                 }
               }
             }
@@ -6615,6 +6549,9 @@
           "in_stock": {
             "type": "boolean",
             "default": true
+          },
+          "price": {
+            "type": "number"
           },
           "created_by": {
             "type": "string"
@@ -6866,6 +6803,9 @@
                     "type": "string"
                   }
                 },
+                "phone": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -6985,7 +6925,8 @@
               "required": [
                 "id",
                 "product_order",
-                "status"
+                "status",
+                "phone"
               ],
               "properties": {
                 "id": {
@@ -7008,6 +6949,12 @@
                     "retourne"
                   ]
                 },
+                "phone": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -7016,6 +6963,9 @@
                 }
               }
             }
+          },
+          "phone": {
+            "type": "string"
           }
         }
       },
@@ -7064,6 +7014,9 @@
               "type": "string"
             }
           },
+          "phone": {
+            "type": "string"
+          },
           "created_by": {
             "type": "string"
           },
@@ -7105,6 +7058,9 @@
     },
     {
       "name": "Order"
+    },
+    {
+      "name": "Payment"
     },
     {
       "name": "Product"
