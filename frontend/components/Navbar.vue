@@ -173,7 +173,6 @@ export default {
         {
           name: "produits",
           page: "/products",
-          link: "http://google.com",
         },
         {
           name: "catalogue",
