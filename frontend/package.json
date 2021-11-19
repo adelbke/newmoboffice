@@ -1,12 +1,13 @@
 {
-  "name": "nuxt-strapi-snipcart",
+  "name": "newmoboffice-nuxtjs",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "develop": "nuxt",
     "start": "nuxt start",
     "serve": "nuxt serve",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "build": "nuxt build"
   },
   "dependencies": {
     "@nuxtjs/strapi": "^0.1.3",
