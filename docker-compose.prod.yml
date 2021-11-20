@@ -4,6 +4,11 @@ services:
     image: node:14-alpine
     volumes:
       - ./backend:/home/node/app
+    environment:
+      - DATABASE_HOST=mysql_database
+      - DATABASE_NAME=newmob-db
+      - DATABASE_USERNAME=newmobuser
+      - DATABASE_PASSWORD=qJ4dRwP+FM9fBDq&
     working_dir: /home/node/app
     user: node
     command: yarn run strapi
