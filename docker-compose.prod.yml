@@ -4,14 +4,20 @@ services:
     image: node:14-alpine
     volumes:
       - ./backend:/home/node/app
+    networks:
+      - nginx_proxy
+      - default
+      - mysql_database_network
     environment:
+      - NODE_ENV=production
       - DATABASE_HOST=mysql_database
+      - DATABASE_PORT=3306
       - DATABASE_NAME=newmob-db
       - DATABASE_USERNAME=newmobuser
       - DATABASE_PASSWORD=qJ4dRwP+FM9fBDq&
     working_dir: /home/node/app
     user: node
-    command: yarn run strapi
+    command: yarn start
   
   prod_frontend:
     image: node:14-alpine
@@ -19,8 +25,12 @@ services:
       - ./frontend:/home/node/app
     working_dir: /home/node/app
     user: node
+    # ports:
+    #   - 3000:3000
     environment:
       - NUXT_HOST=0.0.0.0
+      - API_URL=http://beta.newmoboffice.com
+      - API_LOCAL_URL=http://newmob_v2_prod_strapi_1:1337
     networks:
       - nginx_proxy
       - default      
@@ -30,3 +40,6 @@ networks:
   nginx_proxy:
     external: true
     name: nginx_proxy_manager_default
+  mysql_database_network:
+    external: true
+    name: mysql_database_network

@@ -107,7 +107,7 @@ export default {
 
   privateRuntimeConfig: {
     strapi: {
-      url: 'http://strapi:1337',
+      url: process.env.API_LOCAL_URL || 'http://strapi:1337',
       entities: [
         'Products',
         'Categories'
