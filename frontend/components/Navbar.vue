@@ -84,37 +84,6 @@
 
           <!-- search Modal -->
           <search-modal></search-modal>
-          <!-- <modal
-            height="auto"
-            width="75%"
-            :classes="'flex flex-shrink w-36 overflow-visible shadow-lg'"
-            name="search-modal"
-          >
-            <div slot="top-right">
-              <button
-                class="text-gray-300"
-                @click="$modal.hide('search-modal')"
-              >
-                <close-icon></close-icon>
-              </button>
-            </div>
-            <input
-              class="
-                w-full
-                text-xl
-                font-semibold
-                bg-gray-200
-                text-gray-800
-                p-2
-                rounded-md
-                outline-none
-              "
-              placeholder="Recherchez nos produits"
-              type="text"
-              name="search"
-              autofocus
-            />
-          </modal> -->
         </div>
       </div>
     </div>
