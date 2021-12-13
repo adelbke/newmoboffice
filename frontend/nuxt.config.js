@@ -95,10 +95,10 @@ export default {
       'Categories'
     ],
   },
-  env: {
-    STRAPI_URL: 'http://localhost:1337',
-    storeUrl: process.env.STORE_URL || "http://localhost:1337"
-  },
+  // env: {
+  //   STRAPI_URL: 'http://beta.newmoboffice.com/api',
+  //   storeUrl: process.env.STORE_URL || "http://beta.newmoboffice.com/api"
+  // },
 
 
   // router:{
@@ -107,7 +107,7 @@ export default {
 
   privateRuntimeConfig: {
     strapi: {
-      url: process.env.API_LOCAL_URL || 'http://strapi:1337',
+      url: 'http://newmob_v2_prod_strapi_1:1337',
       entities: [
         'Products',
         'Categories'

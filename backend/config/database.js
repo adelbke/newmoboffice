@@ -21,6 +21,9 @@ module.exports = ({ env }) => ({
         database: env("DATABASE_NAME", "dbsejarah01"),
         username: env("DATABASE_USERNAME", "username"),
         password: env("DATABASE_PASSWORD", "password"),
+      },
+      options: {
+        autoMigration: true
       }
     }
   },
