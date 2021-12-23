@@ -38,7 +38,7 @@
       </NuxtLink>
       <NuxtLink
         class="
-          text-xs text-gray-700
+          text-sm text-gray-800
           hover:underline hover:font-normal
           font-light
         "
@@ -46,11 +46,14 @@
         v-text="product.category.name"
         >1.60m /1.60m</NuxtLink
       >
-      <pre
+      <!-- <pre
         class="md:text-sm text-xs font-nunito whitespace-pre-line"
         v-text="product.description"
-      ></pre>
-      <span class="text-lg font-nunito font-bold capitalize">à partir de {{ this.product.price }}</span>
+      ></pre> -->
+      <p class="prose text-xs h-48 mt-2 ml-2 truncate" v-html="markedParse(product.description)"></p>
+      <span class="text-lg font-nunito font-bold capitalize"
+        >à partir de {{ this.product.price }}</span
+      >
     </div>
     <div
       v-if="product.new"
@@ -79,7 +82,7 @@
           }"
           :src="getStrapiMedia(color.color.image.formats.thumbnail.url)"
           alt=""
-          class="rounded-full w-6 md:w-12 my-1"
+          class="rounded-full w-6 h-6 md:w-12 md:h-12 my-1"
         />
       </div>
     </div>
@@ -89,6 +92,8 @@
 <script>
 // tooltip component
 import { VTooltip } from "v-tooltip";
+// library that converts markdown (rich text) to HTML
+import { marked } from 'marked';
 import {
   getStrapiMedia
 } from '~/utils/medias'
@@ -97,7 +102,8 @@ export default {
     tooltip: VTooltip,
   },
   methods:{
-    getStrapiMedia
+    getStrapiMedia,
+    markedParse: marked.parse
   },
   props:['product'],
   data() {
@@ -129,12 +135,12 @@ export default {
   background: #aaa;
   transform: scale(1.4);
 }
-.grow-hover{
-  @apply transition-transform duration-100 ease-in transform hover:scale-105
+.grow-hover {
+  @apply transition-transform duration-100 ease-in transform hover:scale-105;
 }
-.red-shadow{
-  box-shadow: 11px 11px 17px 1px rgba(99,17,1,0.75);
--webkit-box-shadow: 11px 11px 17px 1px rgba(99,17,1,0.75);
--moz-box-shadow: 11px 11px 17px 1px rgba(99,17,1,0.75);
+.red-shadow {
+  box-shadow: 11px 11px 17px 1px rgba(99, 17, 1, 0.75);
+  -webkit-box-shadow: 11px 11px 17px 1px rgba(99, 17, 1, 0.75);
+  -moz-box-shadow: 11px 11px 17px 1px rgba(99, 17, 1, 0.75);
 }
 </style>

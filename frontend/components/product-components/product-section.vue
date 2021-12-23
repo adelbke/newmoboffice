@@ -27,14 +27,17 @@
           <chevron-right v-if="index != product.parents.length - 1" :key="'chevron-' + category.id" class="w-4 h-4 sm:w-6 sm:h-6"></chevron-right>
         </template>
       </div>
-      <h4 class="text-lg font-semibold md:text-2xl my-4">
+      <h4 v-if="price > 0" class="text-lg font-semibold md:text-2xl my-4">
+        {{ price }} DA
+      </h4>
+      <h4 v-else class="text-lg font-semibold md:text-2xl my-4">
         <span v-if="product.sizes.length > 1">À partir de </span>
         {{ this.product.price }} DA
       </h4>
-      <pre
-        class="text-sm whitespace-pre-line"
-        v-text="product.description"
-      ></pre>
+      <p
+        class="prose text-sm ml-4"
+        v-html="markdownParse(product.description)"
+      ></p>
       <h4 class="text-lg font-semibold md:text-2xl mt-2 sm:mt-4">
         Critères du Produit:
       </h4>
@@ -48,10 +51,9 @@
             v-on:sizeSelection="updateSize($event)"
           ></size-selector>
         </div>
-        <div class="w-full lg:w-1/2 mb-2 sm:mb-0">
+        <div v-if="product.product_colors.length > 1" class="w-full lg:w-1/2 mb-2 sm:mb-0">
           <h6 class="font-semibold font-nunito text-md md:text-lg">Couleurs</h6>
           <color-selector
-            v-if="product.product_colors.length > 1"
             :colors="product.product_colors"
             v-on:colorSelection="updateColor($event)"
           ></color-selector>
@@ -98,6 +100,9 @@ import imageViewer from '~/components/product-components/image-viewer.vue'
 import sizeSelector from '~/components/product-components/size-selector.vue'
 import colorSelector from '~/components/product-components/color-selector.vue'
 import chevronRight from '~/components/icons/chevron-right.vue'
+
+import { marked } from 'marked'
+
 import counter from '~/components/cart/counter.vue'
 export default {
     components:{
@@ -109,6 +114,7 @@ export default {
     },
     props:['product'],
     methods:{
+    markdownParse: marked.parse,
     updateSize(id){
       this.selectedSize = this.product.sizes.find(x => x.id == id)
     },

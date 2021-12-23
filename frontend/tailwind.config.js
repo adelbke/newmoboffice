@@ -6,31 +6,33 @@
 */
 module.exports = {
   theme: {
-    extend:{
-      spacing:{
-        '4/5':'80%'
+    extend: {
+      spacing: {
+        '4/5': '80%'
       },
-      colors:{
-        'newmob-red':'#631101',
+      colors: {
+        'newmob-red': '#631101',
         'newmob-red-100': '#7E1601',
-        'newmob-silver':'#A0ACBE',
-        'newmob-gray':'#F1F2F4'
+        'newmob-silver': '#A0ACBE',
+        'newmob-gray': '#F1F2F4'
       },
       borderRadius: {
         'xl': '25px'
       },
-      fontFamily:{
-        'nunito':['Nunito', 'sans-serif']
+      fontFamily: {
+        'nunito': ['Nunito', 'sans-serif']
       }
     }
   },
   variants: {
-    extend:{
-      fontWeight:['hover'],
-      width:['hover']
+    extend: {
+      fontWeight: ['hover'],
+      width: ['hover']
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography')
+  ],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === 'production',
