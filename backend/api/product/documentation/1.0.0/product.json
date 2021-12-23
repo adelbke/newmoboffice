@@ -726,8 +726,7 @@
             "items": {
               "type": "object",
               "required": [
-                "id",
-                "image"
+                "id"
               ],
               "properties": {
                 "id": {
@@ -909,8 +908,7 @@
             "items": {
               "type": "object",
               "required": [
-                "id",
-                "image"
+                "id"
               ],
               "properties": {
                 "id": {
