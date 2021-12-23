@@ -16,11 +16,11 @@ module.exports = ({ env }) => ({
       connector: 'bookshelf',
       settings: {
         client: 'mysql',
-        host: env('DATABASE_HOST', 'localhost'),
+        host: env('DATABASE_HOST', 'mysql_database'),
         port: env('DATABASE_PORT', 3306),
-        database: env("DATABASE_NAME", "dbsejarah01"),
-        username: env("DATABASE_USERNAME", "username"),
-        password: env("DATABASE_PASSWORD", "password"),
+        database: env("DATABASE_NAME", "newmob-db"),
+        username: env("DATABASE_USERNAME", "newmobuser"),
+        password: env("DATABASE_PASSWORD", "qJ4dRwP+FM9fBDq&"),
       },
       options: {
         autoMigration: true
