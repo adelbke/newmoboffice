@@ -17,14 +17,24 @@
     >
       <h2 class="font-semibold md:text-3xl text-3xl">{{ product.title }}</h2>
       <div class="flex flex-row flex-wrap items-center">
-        <template v-for="category, index in product.parents">
+        <template v-for="(category, index) in product.parents">
           <NuxtLink
-            class="text-xs sm:text-sm font-light sm:mx-1 hover:underline hover:font-normal"
+            class="
+              text-xs
+              sm:text-sm
+              font-light
+              sm:mx-1
+              hover:underline hover:font-normal
+            "
             :key="category.id"
             v-text="category.name"
             :to="'/category/' + category.slug"
           ></NuxtLink>
-          <chevron-right v-if="index != product.parents.length - 1" :key="'chevron-' + category.id" class="w-4 h-4 sm:w-6 sm:h-6"></chevron-right>
+          <chevron-right
+            v-if="index != product.parents.length - 1"
+            :key="'chevron-' + category.id"
+            class="w-4 h-4 sm:w-6 sm:h-6"
+          ></chevron-right>
         </template>
       </div>
       <h4 v-if="price > 0" class="text-lg font-semibold md:text-2xl my-4">
@@ -34,10 +44,12 @@
         <span v-if="product.sizes.length > 1">À partir de </span>
         {{ this.product.price }} DA
       </h4>
-      <p
-        class="prose text-sm ml-4"
-        v-html="markdownParse(product.description)"
-      ></p>
+      <client-only>
+        <p
+          class="prose text-sm ml-4"
+          v-html="markdownParse(product.description)"
+        ></p>
+      </client-only>
       <h4 class="text-lg font-semibold md:text-2xl mt-2 sm:mt-4">
         Critères du Produit:
       </h4>
@@ -51,7 +63,10 @@
             v-on:sizeSelection="updateSize($event)"
           ></size-selector>
         </div>
-        <div v-if="product.product_colors.length > 1" class="w-full lg:w-1/2 mb-2 sm:mb-0">
+        <div
+          v-if="product.product_colors.length > 1"
+          class="w-full lg:w-1/2 mb-2 sm:mb-0"
+        >
           <h6 class="font-semibold font-nunito text-md md:text-lg">Couleurs</h6>
           <color-selector
             :colors="product.product_colors"

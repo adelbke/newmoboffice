@@ -50,7 +50,9 @@
         class="md:text-sm text-xs font-nunito whitespace-pre-line"
         v-text="product.description"
       ></pre> -->
-      <p class="prose text-xs h-48 mt-2 ml-2 truncate" v-html="markedParse(product.description)"></p>
+      <client-only>
+        <p class="prose text-xs h-48 mt-2 ml-2 truncate" v-html="markedParse(product.description)"></p>
+      </client-only>
       <span class="text-lg font-nunito font-bold capitalize"
         >à partir de {{ this.product.price }}</span
       >
