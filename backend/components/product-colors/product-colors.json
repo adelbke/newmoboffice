@@ -2,22 +2,13 @@
   "collectionName": "components_product_colors_product_colors",
   "info": {
     "name": "product-colors",
-    "icon": "paint-brush"
+    "icon": "paint-brush",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "color": {
       "model": "colors"
-    },
-    "image": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": true,
-      "pluginOptions": {}
     }
   }
 }

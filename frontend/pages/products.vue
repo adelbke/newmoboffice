@@ -20,7 +20,8 @@
 
 <script>
 import productItem from '~/components/product-item.vue'
-import { TPagination } from 'vue-tailwind/dist/components'
+// import { TPagination } from 'vue-tailwind/dist/components'
+import TPagination from 'vue-tailwind/dist/t-pagination';
 import Vue from 'vue'
 import VueTailwind from 'vue-tailwind'
 
@@ -52,13 +53,13 @@ export default {
         return parseInt(!!this.$route.query.page ? this.$route.query.page : 0);
       },
       set(value){
-        this.$router.push(`/search/${this.searchTerm}?page=${value}`)
+        this.$router.push(`/products?page=${value}`)
       }
     }
   },
   methods:{
     goToPage(page){
-      this.$router.push(`/search/${this.searchTerm}?page=${page}`)
+      this.$router.push(`/products?page=${value}`)
     }
   }
 }

@@ -41,11 +41,23 @@ export default {
     return { product, similar_products }
   },
   head(){
-    let { title, description } = this.product
+    let { title, description, cover_image } = this.product
+    let dynamic_section = []
+    if(!!cover_image){
+      dynamic_section.push(
+        { property:'og:image', content: getStrapiMedia(cover_image.url)},
+        { name: 'twitter:image', content: getStrapiMedia(cover_image.url)}
+      )
+    }
     return {
       title:'Newmoboffice - ' + title,
       meta:[
-        { hid: 'description', name: 'description', content: description }
+        { hid: 'description', name: 'description', content: description },
+        // facebook description
+        { property:'og:description', content: description },
+        // twitter
+        { name: 'twitter:description', content: description },
+        ...dynamic_section
       ]
     }
   },
