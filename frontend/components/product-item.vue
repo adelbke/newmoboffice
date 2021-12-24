@@ -5,6 +5,7 @@
       bg-white
       border-newmob-red border-2
       rounded-tl-xl rounded-br-xl
+      shadow-lg
       p-2
       m-1
       md:m-2
@@ -51,7 +52,7 @@
         v-text="product.description"
       ></pre> -->
       <client-only>
-        <p class="prose text-xs h-48 mt-2 ml-2 truncate" v-html="markedParse(product.description)"></p>
+        <p class="prose text-xs h-48 mt-2 ml-2 overflow-ellipsis overflow-hidden" v-html="markedParse(product.description)"></p>
       </client-only>
       <span class="text-lg font-nunito font-bold capitalize"
         >à partir de {{ this.product.price }}</span

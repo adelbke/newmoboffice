@@ -47,7 +47,7 @@
               </div>
             </div>
             <NuxtLink to="/">
-              <logo class="transition-transform duration-75 ease-in transform hover:scale-105 w-56 md:w-auto"></logo>
+              <logo class="transition-transform duration-75 ease-in transform hover:scale-105"></logo>
             </NuxtLink>
           </div>
           <div class="hidden sm:block sm:ml-6">
@@ -154,8 +154,8 @@ export default {
           page: "/contact",
         },
         {
-          name: "à propos",
-          page: "/about",
+          name: "Blog",
+          page: "/blog",
         },
       ]
     };
@@ -169,9 +169,6 @@ export default {
 </script>
 
 <style scoped>
-.nav-item-lg {
-  @apply text-gray-500 hover:text-gray-700 font-nunito capitalize bg-white px-3 py-2 rounded-md text-sm font-semibold;
-}
 .right-nav {
   @apply bg-white text-gray-700 px-1 sm:px-2 py-1 outline-none sm:mx-2;
 }

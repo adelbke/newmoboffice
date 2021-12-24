@@ -38,7 +38,7 @@
         </template>
       </div>
       <h4 v-if="price > 0" class="text-lg font-semibold md:text-2xl my-4">
-        {{ price }} DA
+        Prix: {{ price }} DA
       </h4>
       <h4 v-else class="text-lg font-semibold md:text-2xl my-4">
         <span v-if="product.sizes.length > 1">À partir de </span>

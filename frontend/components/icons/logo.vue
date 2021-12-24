@@ -1,5 +1,5 @@
 <template>
-  <svg width="270" height="87" viewBox="0 0 270 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg :class="[{'w-56 md:w-auto': responsive}]" width="270" height="87" viewBox="0 0 270 87" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       
       d="M157.282 62.1051c-4.262-2.4813-8.35 3.5398-5.026 6.7956 4.55 4.289 10.271-3.6809 5.026-6.7956zm-.064 5.8675c-2.802 2.677-6.643-1.6689-4.035-4.2954 2.764-2.7801 6.624 1.7278 4.035 4.2954z"
@@ -305,6 +305,10 @@ export default {
     white:{
       type: Boolean,
       default: false
+    },
+    responsive:{
+      type: Boolean,
+      default: true
     }
   }
 }
