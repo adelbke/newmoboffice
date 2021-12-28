@@ -91,7 +91,7 @@ export default {
         return parseInt(!!this.$route.query.page ? this.$route.query.page : 1);
       },
       set(value) {
-        this.$router.push(`/products?page=${value}`);
+        this.$router.push({ path:`/products?page=${value}`});
       },
     },
   },

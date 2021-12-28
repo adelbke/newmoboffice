@@ -90,13 +90,8 @@ export default {
         return parseInt(!!this.$route.query.page ? this.$route.query.page : 1);
       },
       set(value){
-        this.$router.push(`/search/${this.searchTerm}?page=${value}`)
+        this.$router.push({ path: `/search/${this.searchTerm}?page=${value}`})
       }
-    }
-  },
-  methods:{
-    goToPage(page){
-      this.$router.push(`/search/${this.searchTerm}?page=${page}`)
     }
   }
 }
