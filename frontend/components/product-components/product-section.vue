@@ -64,7 +64,7 @@
           ></size-selector>
         </div>
         <div
-          v-if="product.product_colors.length > 1"
+          v-if="product.product_colors.length > 0"
           class="w-full lg:w-1/2 mb-2 sm:mb-0"
         >
           <h6 class="font-semibold font-nunito text-md md:text-lg">Couleurs</h6>
@@ -85,9 +85,9 @@
           </div>
         </div>
       </div>
-      <div class="text-lg font-semibold md:text-2xl mb-2 sm:my-4">
+      <!-- <div class="text-lg font-semibold md:text-2xl mb-2 sm:my-4">
         Prix Actuel: {{ price > 0 ? price : "" }}
-      </div>
+      </div> -->
       <button
         @click="buyProduct"
         class="

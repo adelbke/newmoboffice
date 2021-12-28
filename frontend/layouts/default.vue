@@ -29,6 +29,9 @@ import NavBar from './../components/Navbar'
 import Footer from './../components/Footer'
 
 export default {
+  mounted(){
+    this.$store.dispatch('fetchCredentials')
+  },
   components: {
     NavBar,
     Footer,

@@ -10,26 +10,20 @@
         <product-item :product="product"></product-item>
       </div>
     </section>
-    <t-pagination
-      :total-items="productsCount"
-      :per-page="10"
-      v-model="currentPage"
-    />
+      <pagination
+        :listCount="productsCount"
+        v-model="currentPage"
+      >
+      </pagination>
+      <!-- <v-paginator :per-page="10" layout="div" :total="productsCount" @changePage="pageChange"/> -->
   </main>
 </template>
 
 <script>
 import productItem from '~/components/product-item.vue'
-// import { TPagination } from 'vue-tailwind/dist/components'
-import TPagination from 'vue-tailwind/dist/t-pagination';
-import Vue from 'vue'
-import VueTailwind from 'vue-tailwind'
+// import VPaginator from 'v-paginator'
+import pagination from '~/components/navigation-components/pagination.vue'
 
-Vue.use(VueTailwind, {
-  't-pagination':{
-    component: TPagination
-  }
-})
 export default {
   async asyncData({ $strapi, route }){
     let page = parseInt(!!route.query.page ? route.query.page : 0)
@@ -45,12 +39,13 @@ export default {
     return { products:dataResult[0], productsCount:dataResult[1] }
   },
   components: { 
-    productItem
+    productItem,
+    pagination
   },
   computed:{
     currentPage:{
       get(){
-        return parseInt(!!this.$route.query.page ? this.$route.query.page : 0);
+        return parseInt(!!this.$route.query.page ? this.$route.query.page : 1);
       },
       set(value){
         this.$router.push(`/products?page=${value}`)
@@ -59,7 +54,10 @@ export default {
   },
   methods:{
     goToPage(page){
-      this.$router.push(`/products?page=${value}`)
+      this.$router.push(`/products?page=${page}`)
+    },
+    pageChange(pInfo){
+      console.log(pInfo)
     }
   }
 }
@@ -67,6 +65,6 @@ export default {
 
 <style>
 .main-title {
-  @apply text-center font-bold text-lg md:text-xl font-nunito md:py-4;
+  @apply text-center font-bold text-lg md:text-3xl text-gray-800 font-nunito md:py-4;
 }
 </style>

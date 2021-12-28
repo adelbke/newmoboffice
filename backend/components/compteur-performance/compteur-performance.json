@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_compteur_performance_compteur_performances",
+  "info": {
+    "name": "compteur_performance",
+    "icon": "percent",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "titre_performance": {
+      "type": "string",
+      "required": true
+    },
+    "valeur_performance": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}
