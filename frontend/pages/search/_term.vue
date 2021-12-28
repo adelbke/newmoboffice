@@ -94,7 +94,7 @@ export default {
         let vm = this
         this.$router.push({
           name: 'search',
-          params: { vm.searchTerm },
+          params: { searchTerm: vm.searchTerm },
           query: { page: value }
         })
       }
@@ -105,7 +105,7 @@ export default {
       let vm = this
       this.$router.push({
         name:'search',
-        params: { vm.searchTerm },
+        params: { searchTerm: vm.searchTerm },
         query: { page }
       })
     }
