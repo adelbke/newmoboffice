@@ -11,6 +11,7 @@
       </div>
     </section>
       <t-pagination
+        class="my-2"
         :total-items="productsCount"
         :per-page="10"
         v-model="currentPage"
@@ -83,6 +84,20 @@ export default {
   },
   components: {
     productItem
+  },
+  watch: {
+    async $route(to, from) {
+      if(to.name === from.name){
+        let page = parseInt(!!to.query.page ? to.query.page : 1);
+        const qs = require("qs");
+        const filter = {
+          _start: (page - 1) * 10,
+          _limit: 10,
+        };
+        this.products = await $strapi.find("products", qs.stringify(filter));
+        this.productsCount = await $strapi.count("products", qs.stringify(filter));
+      }
+    }
   },
   computed: {
     currentPage: {
