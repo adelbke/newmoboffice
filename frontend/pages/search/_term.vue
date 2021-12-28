@@ -73,7 +73,7 @@ export default {
         { 'category.name_contains': searchTerm },
         { description_contains: searchTerm } ]
       }, 
-      _start: (page -1 ) * 10,
+      _start: (page - 1) * 10,
       _limit: 10
     }
 
@@ -91,6 +91,7 @@ export default {
         return parseInt(!!this.$route.query.page ? this.$route.query.page : 1);
       },
       set(value){
+<<<<<<< HEAD
         let vm = this
         this.$router.push({
           name: 'search',
@@ -109,6 +110,11 @@ export default {
         query: { page }
       })
     }
+=======
+        this.$router.push({ path: `/search/${this.searchTerm}?page=${value}`})
+      }
+    }
+>>>>>>> v2_strapi
   }
 }
 </script>
