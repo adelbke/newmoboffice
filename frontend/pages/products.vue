@@ -16,7 +16,6 @@
         :per-page="10"
         v-model="currentPage"
       />
-      </pagination>
       <!-- <v-paginator :per-page="10" layout="div" :total="productsCount" @changePage="pageChange"/> -->
   </main>
 </template>
@@ -83,11 +82,11 @@ export default {
     return { products: dataResult[0], productsCount: dataResult[1] };
   },
   components: {
-    productItem
+    productItem,
   },
   watch: {
     async $route(to, from) {
-      if(to.name === from.name){
+      if (to.name === from.name) {
         let page = parseInt(!!to.query.page ? to.query.page : 1);
         const qs = require("qs");
         const filter = {
@@ -95,9 +94,12 @@ export default {
           _limit: 10,
         };
         this.products = await $strapi.find("products", qs.stringify(filter));
-        this.productsCount = await $strapi.count("products", qs.stringify(filter));
+        this.productsCount = await $strapi.count(
+          "products",
+          qs.stringify(filter)
+        );
       }
-    }
+    },
   },
   computed: {
     currentPage: {
@@ -105,7 +107,7 @@ export default {
         return parseInt(!!this.$route.query.page ? this.$route.query.page : 1);
       },
       set(value) {
-        this.$router.push({ path:`/products?page=${value}`});
+        this.$router.push({ path: `/products?page=${value}` });
       },
     },
   },
