@@ -83,7 +83,6 @@ export default {
   },
   components: {
     productItem,
-    pagination,
   },
   computed: {
     currentPage: {
