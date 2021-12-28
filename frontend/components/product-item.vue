@@ -15,7 +15,7 @@
       <client-only>
         <splide :options="slideOptions">
           <splide-slide v-for="image in product.images" :key="image.id">
-            <img :src="getStrapiMedia(image.formats.small.url)" alt="" />
+            <img :src="getStrapiMedia(!!image.formats.small.url ? image.formats.small.url : '')" alt="" />
           </splide-slide>
         </splide>
       </client-only>
@@ -83,7 +83,7 @@
             content: color.color.name,
             classes: tooltipClasses,
           }"
-          :src="getStrapiMedia(color.color.image.formats.thumbnail.url)"
+          :src="getStrapiMedia(!! color.color.image.formats.thumbnail.url ? color.color.image.formats.thumbnail.url : '')"
           alt=""
           class="rounded-full w-6 h-6 md:w-12 md:h-12 my-1"
         />
