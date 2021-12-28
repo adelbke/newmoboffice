@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "info_contacts",
+  "info": {
+    "name": "info contact"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "page_facebook": {
+      "type": "string",
+      "required": false
+    },
+    "page_insta": {
+      "type": "string"
+    },
+    "num_tel": {
+      "type": "string"
+    },
+    "adresse": {
+      "type": "string"
+    }
+  }
+}

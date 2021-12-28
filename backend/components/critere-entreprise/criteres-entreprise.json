@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_critere_entreprise_criteres_entreprises",
+  "info": {
+    "name": "criteres_entreprise",
+    "icon": "check-circle"
+  },
+  "options": {},
+  "attributes": {
+    "titre": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "icone": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    }
+  }
+}

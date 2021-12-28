@@ -15,7 +15,7 @@
       <client-only>
         <splide :options="slideOptions">
           <splide-slide v-for="image in product.images" :key="image.id">
-            <img :src="getStrapiMedia(image.formats.thumbnail.url)" alt="" />
+            <img :src="getStrapiMedia(image.formats.small.url)" alt="" />
           </splide-slide>
         </splide>
       </client-only>
