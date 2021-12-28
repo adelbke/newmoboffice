@@ -14,6 +14,7 @@
       </div>
     </section>
     <t-pagination
+      class="my-2"
       :total-items="productsCount"
       :per-page="10"
       v-model="currentPage"
