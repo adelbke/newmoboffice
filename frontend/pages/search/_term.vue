@@ -63,7 +63,7 @@ Vue.use(VueTailwind, settings)
 export default {
   async asyncData({ params, $strapi, route }){
 
-    let page = parseInt(!!route.query.page ? route.query.page : 0)
+    let page = parseInt(!!route.query.page ? route.query.page : 1)
     const searchTerm = params.term;
     const qs = require('qs')
     const filter = { 
@@ -72,7 +72,7 @@ export default {
         { 'category.name_contains': searchTerm },
         { description_contains: searchTerm } ]
       }, 
-      _start: page * 10,
+      _start: (page -1 ) * 10,
       _limit: 10
     }
 
