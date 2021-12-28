@@ -11,6 +11,7 @@
       </div>
     </section>
     <t-pagination
+      class="my-2"
       :total-items="productsCount"
       :per-page="10"
       v-model="currentPage"
@@ -68,10 +69,10 @@ const settings = {
 Vue.use(VueTailwind, settings);
 export default {
   async asyncData({ $strapi, route }) {
-    let page = parseInt(!!route.query.page ? route.query.page : 0);
+    let page = parseInt(!!route.query.page ? route.query.page : 1);
     const qs = require("qs");
     const filter = {
-      _start: page * 10,
+      _start: (page - 1) * 10,
       _limit: 10,
     };
 
@@ -81,7 +82,7 @@ export default {
     return { products: dataResult[0], productsCount: dataResult[1] };
   },
   components: {
-    productItem
+    productItem,
   },
   computed: {
     currentPage: {
@@ -89,13 +90,19 @@ export default {
         return parseInt(!!this.$route.query.page ? this.$route.query.page : 1);
       },
       set(value) {
-        this.$router.push(`/products?page=${value}`);
+        this.$router.push({
+          name: 'products',
+          query: { page: value}
+        });
       },
     },
   },
   methods: {
     goToPage(page) {
-      this.$router.push(`/products?page=${page}`);
+      this.$router.push({
+          name: 'products',
+          query: { page: value}
+        });
     },
     pageChange(pInfo) {
       console.log(pInfo);

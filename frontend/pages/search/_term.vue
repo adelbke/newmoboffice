@@ -14,6 +14,7 @@
       </div>
     </section>
     <t-pagination
+      class="my-2"
       :total-items="productsCount"
       :per-page="10"
       v-model="currentPage"
@@ -90,13 +91,23 @@ export default {
         return parseInt(!!this.$route.query.page ? this.$route.query.page : 1);
       },
       set(value){
-        this.$router.push(`/search/${this.searchTerm}?page=${value}`)
+        let vm = this
+        this.$router.push({
+          name: 'search',
+          params: { vm.searchTerm },
+          query: { page: value }
+        })
       }
     }
   },
   methods:{
     goToPage(page){
-      this.$router.push(`/search/${this.searchTerm}?page=${page}`)
+      let vm = this
+      this.$router.push({
+        name:'search',
+        params: { vm.searchTerm },
+        query: { page }
+      })
     }
   }
 }
