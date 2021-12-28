@@ -93,8 +93,8 @@ export default {
           _start: (page - 1) * 10,
           _limit: 10,
         };
-        this.products = await $strapi.find("products", qs.stringify(filter));
-        this.productsCount = await $strapi.count(
+        this.products = await this.$strapi.find("products", qs.stringify(filter));
+        this.productsCount = await this.$strapi.count(
           "products",
           qs.stringify(filter)
         );
