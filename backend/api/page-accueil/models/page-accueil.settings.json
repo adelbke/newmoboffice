@@ -1,0 +1,43 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_accueils",
+  "info": {
+    "name": "page accueil"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titre_criteres": {
+      "type": "string",
+      "required": true
+    },
+    "criteres_entreprise": {
+      "type": "component",
+      "repeatable": true,
+      "component": "critere-entreprise.criteres-entreprise",
+      "required": true
+    },
+    "titre_compteur": {
+      "type": "string",
+      "required": true
+    },
+    "sous_titre_compteur": {
+      "type": "string",
+      "required": true
+    },
+    "compteur_performance": {
+      "type": "component",
+      "repeatable": true,
+      "component": "compteur-performance.compteur-performance",
+      "required": true
+    },
+    "description_text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
