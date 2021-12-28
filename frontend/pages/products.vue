@@ -69,10 +69,10 @@ const settings = {
 Vue.use(VueTailwind, settings);
 export default {
   async asyncData({ $strapi, route }) {
-    let page = parseInt(!!route.query.page ? route.query.page : 0);
+    let page = parseInt(!!route.query.page ? route.query.page : 1);
     const qs = require("qs");
     const filter = {
-      _start: page * 10,
+      _start: (page - 1) * 10,
       _limit: 10,
     };
 
@@ -82,8 +82,7 @@ export default {
     return { products: dataResult[0], productsCount: dataResult[1] };
   },
   components: {
-    productItem,
-    pagination,
+    productItem
   },
   computed: {
     currentPage: {
