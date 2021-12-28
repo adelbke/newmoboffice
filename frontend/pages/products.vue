@@ -81,8 +81,7 @@ export default {
     return { products: dataResult[0], productsCount: dataResult[1] };
   },
   components: {
-    productItem,
-    pagination,
+    productItem
   },
   computed: {
     currentPage: {
