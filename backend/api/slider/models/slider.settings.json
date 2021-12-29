@@ -2,12 +2,13 @@
   "kind": "collectionType",
   "collectionName": "sliders",
   "info": {
-    "name": "Slider"
+    "name": "Slider",
+    "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
