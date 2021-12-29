@@ -597,10 +597,6 @@
           },
           "reference": {
             "type": "uid"
-          },
-          "published_at": {
-            "type": "string",
-            "format": "date-time"
           }
         }
       },
@@ -615,10 +611,6 @@
           },
           "reference": {
             "type": "uid"
-          },
-          "published_at": {
-            "type": "string",
-            "format": "date-time"
           },
           "created_by": {
             "type": "string"

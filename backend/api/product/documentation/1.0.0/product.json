@@ -752,9 +752,6 @@
                     "reference": {
                       "type": "uid"
                     },
-                    "published_at": {
-                      "type": "string"
-                    },
                     "created_by": {
                       "type": "string"
                     },
@@ -866,9 +863,6 @@
                     },
                     "reference": {
                       "type": "uid"
-                    },
-                    "published_at": {
-                      "type": "string"
                     },
                     "created_by": {
                       "type": "string"
