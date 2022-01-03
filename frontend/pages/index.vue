@@ -18,7 +18,7 @@
       </div>
     </div>
     <two-covers class="md:py-8 py-2"></two-covers>
-    <landing-item :description="accueil.description_text" buttonLink="/products"></landing-item>
+    <landing-item :description="accueil.description_text" buttonLink="https://goo.gl/maps/UjBNnSr6SqqRtGdW8"></landing-item>
     <h2 class="section-title mt-4">
       Des Solutions personalisables pour tout les goûts
     </h2>

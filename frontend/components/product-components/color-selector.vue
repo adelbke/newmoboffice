@@ -49,8 +49,8 @@ export default {
       let url = ''
       let color = this.colors.find(x => x.id == id)
         // url = color.image.formats.thumbnail.url
-        url = color.color.image.formats.thumbnail.url
-      return `background-image: url('${getStrapiMedia(url)}')`
+        url = color?.color?.image?.formats?.thumbnail?.url
+      return `background-image: url('${getStrapiMedia(url)}'); background-size: cover;`
     },
     selectColor(id){
       this.$emit('colorSelection',id)

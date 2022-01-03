@@ -332,7 +332,10 @@
           "num_tel": {
             "type": "string"
           },
-          "adresse": {
+          "adresse_maps": {
+            "type": "string"
+          },
+          "address_text": {
             "type": "string"
           }
         }
@@ -348,7 +351,10 @@
           "num_tel": {
             "type": "string"
           },
-          "adresse": {
+          "adresse_maps": {
+            "type": "string"
+          },
+          "address_text": {
             "type": "string"
           },
           "created_by": {

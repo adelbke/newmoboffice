@@ -47,7 +47,7 @@ export default {
     getStrapiMedia,
     show() {
         this.$viewerApi({
-          images: this.images,
+          images: this.fullSizeImages,
         })
     },
     backgroundImage(url){
