@@ -1,6 +1,9 @@
 <template>
   <article class="flex flex-col">
-    <div class="rounded-t-lg h-48 background-style" :style="'background-image: url(' + getStrapiMedia(color.image.url) + ');'"></div>
+    <div
+      class="rounded-t-lg h-48 background-style"
+      :style="'background-image: url(' + colorImage(color) + ');'"
+    ></div>
     <div
       class="
         bg-white
@@ -11,9 +14,7 @@
         py-1
       "
       v-text="color.name"
-    >
-    
-    </div>
+    ></div>
   </article>
 </template>
 
@@ -24,7 +25,10 @@ import {
 export default {
   props:['color'],
   methods:{
-    getStrapiMedia
+    getStrapiMedia,
+    colorImage(color){
+      return getStrapiMedia(color?.image?.url ? color?.image?.url : '')
+    }
   }
 };
 </script>

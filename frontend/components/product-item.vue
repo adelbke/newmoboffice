@@ -15,7 +15,14 @@
       <client-only>
         <splide :options="slideOptions">
           <splide-slide v-for="image in product.images" :key="image.id">
-            <img :src="getStrapiMedia(!!image.formats.small.url ? image.formats.small.url : '')" alt="" />
+            <img
+              :src="
+                getStrapiMedia(
+                  !!image.formats.small.url ? image.formats.small.url : ''
+                )
+              "
+              alt=""
+            />
           </splide-slide>
         </splide>
       </client-only>
@@ -52,17 +59,20 @@
         v-text="product.description"
       ></pre> -->
       <client-only>
-        <p class="prose text-xs h-48 mt-2 ml-2 overflow-ellipsis overflow-hidden" v-html="markedParse(product.description)"></p>
+        <p
+          class="prose text-xs h-48 mt-2 ml-2 overflow-ellipsis overflow-hidden"
+          v-html="markedParse(product.description)"
+        ></p>
       </client-only>
       <span class="text-lg font-nunito font-bold capitalize"
         >à partir de {{ this.product.price }}</span
       >
     </div>
     <div
-      v-if="product.new"
       class="w-2/12 lg:w-1/12 flex flex-col justify-between items-center"
     >
       <div
+        v-if="product.new"
         class="
           rounded-full
           bg-newmob-red
@@ -83,7 +93,13 @@
             content: color.color.name,
             classes: tooltipClasses,
           }"
-          :src="getStrapiMedia(!! color.color.image.formats.thumbnail.url ? color.color.image.formats.thumbnail.url : '')"
+          :src="
+            getStrapiMedia(
+              !!color.color.image.formats.thumbnail.url
+                ? color.color.image.formats.thumbnail.url
+                : ''
+            )
+          "
           alt=""
           class="rounded-full w-6 h-6 md:w-12 md:h-12 my-1"
         />
@@ -106,7 +122,10 @@ export default {
   },
   methods:{
     getStrapiMedia,
-    markedParse: marked.parse
+    markedParse: marked.parse,
+    colorImage(color){
+      return getStrapiMedia(!! color?.color?.image?.formats?.thumbnail?.url ? color?.color?.image?.formats?.thumbnail?.url : '')
+    }
   },
   props:['product'],
   data() {

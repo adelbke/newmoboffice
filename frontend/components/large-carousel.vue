@@ -6,8 +6,7 @@
           class="
             section-title
             text-white
-            font-bold
-            font-nunito
+            font-bold font-nunito
             text-shadow-dark
             absolute
             bottom-12
@@ -28,7 +27,7 @@
           "
           v-text="slide.small_description"
         ></p>
-        <img :src="getStrapiMedia(slide.image.url)" alt="" />
+        <img :src="slideImage(slide)" alt="" />
       </splide-slide>
     </splide>
   </client-only>
@@ -40,7 +39,10 @@ import {
 } from '~/utils/medias'
 export default {
   methods:{
-    getStrapiMedia
+    getStrapiMedia,
+    slideImage(slide){
+      return getStrapiMedia(slide?.image?.url ? slide?.image?.url : '')
+    }
   },
   props:['slides'],
   data() {
@@ -57,7 +59,7 @@ export default {
         }
       },
     };
-  },
+  }
 };
 </script>
 

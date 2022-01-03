@@ -2,7 +2,7 @@
   <div class="bg-newmob-gray">
     <div
       v-if="!!product.cover_image"
-      class="h-72 w-full bg-image"
+      class="h-72 lg:h-96 w-full bg-image"
       :style="
         'background-image: url(' + getStrapiMedia(product.cover_image.url) + ')'
       "
