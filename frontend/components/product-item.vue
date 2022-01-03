@@ -54,10 +54,6 @@
         v-text="product.category.name"
         >1.60m /1.60m</NuxtLink
       >
-      <!-- <pre
-        class="md:text-sm text-xs font-nunito whitespace-pre-line"
-        v-text="product.description"
-      ></pre> -->
       <client-only>
         <p
           class="prose text-xs h-48 mt-2 ml-2 overflow-ellipsis overflow-hidden"
@@ -90,16 +86,10 @@
           v-for="color in product.product_colors"
           :key="color.id"
           v-tooltip.left="{
-            content: color.color.name,
+            content: colorName(color),
             classes: tooltipClasses,
           }"
-          :src="
-            getStrapiMedia(
-              !!color.color.image.formats.thumbnail.url
-                ? color.color.image.formats.thumbnail.url
-                : ''
-            )
-          "
+          :src="colorImage(color)"
           alt=""
           class="rounded-full w-6 h-6 md:w-12 md:h-12 my-1"
         />
@@ -125,6 +115,9 @@ export default {
     markedParse: marked.parse,
     colorImage(color){
       return getStrapiMedia(!! color?.color?.image?.formats?.thumbnail?.url ? color?.color?.image?.formats?.thumbnail?.url : '')
+    },
+    colorName(color){
+      return color?.color?.name
     }
   },
   props:['product'],

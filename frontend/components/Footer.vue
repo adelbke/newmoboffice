@@ -35,9 +35,7 @@
           <h4 class="text-lg font-nunito font-bold text-white text-center">
             Localisation Maps
           </h4>
-          <center>
-            <maps></maps>
-          </center>
+            <maps class="w-full" style="height: 400px;"></maps>
         </client-only>
       </div>
     </div>
