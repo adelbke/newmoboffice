@@ -15,7 +15,14 @@
       <client-only>
         <splide :options="slideOptions">
           <splide-slide v-for="image in product.images" :key="image.id">
-            <img :src="getStrapiMedia(!!image.formats.small.url ? image.formats.small.url : '')" alt="" />
+            <img
+              :src="
+                getStrapiMedia(
+                  !!image.formats.small.url ? image.formats.small.url : ''
+                )
+              "
+              alt=""
+            />
           </splide-slide>
         </splide>
       </client-only>
@@ -52,14 +59,17 @@
         v-text="product.description"
       ></pre> -->
       <client-only>
-        <p class="prose text-xs h-48 mt-2 ml-2 overflow-ellipsis overflow-hidden" v-html="markedParse(product.description)"></p>
+        <p
+          class="prose text-xs h-48 mt-2 ml-2 overflow-ellipsis overflow-hidden"
+          v-html="markedParse(product.description)"
+        ></p>
       </client-only>
       <span class="text-lg font-nunito font-bold capitalize"
         >à partir de {{ this.product.price }}</span
       >
     </div>
-    <div
-      class="w-2/12 lg:w-1/12 flex flex-col justify-between items-center"
+    <div class="w-2/12 lg:w-1/12 flex flex-col items-center"
+    :class="[{'justify-between': product.new, 'justify-end': !product.new}]"
     >
       <div
         v-if="product.new"
@@ -76,7 +86,14 @@
         Nouveau
       </div>
       <div>
-        <img
+        <color-circle
+          v-for="color in product.product_colors"
+          :key="color.id"
+          :name="color.color.name"
+          :url="color.color.image.formats.thumbnail.url"
+          class="my-1"
+        ></color-circle>
+        <!-- <img
           v-for="color in product.product_colors"
           :key="color.id"
           v-tooltip.left="{
@@ -86,7 +103,7 @@
           :src="getStrapiMedia(!! color.color.image.formats.thumbnail.url ? color.color.image.formats.thumbnail.url : '')"
           alt=""
           class="rounded-full w-6 h-6 md:w-12 md:h-12 my-1"
-        />
+        /> -->
       </div>
     </div>
   </article>
@@ -94,16 +111,20 @@
 
 <script>
 // tooltip component
-import { VTooltip } from "v-tooltip";
+// import { VTooltip } from "v-tooltip";
 // library that converts markdown (rich text) to HTML
 import { marked } from 'marked';
 import {
   getStrapiMedia
 } from '~/utils/medias'
+import colorCircle from './product-components/colors/color-circle.vue'
 export default {
-  directives: {
-    tooltip: VTooltip,
+  components:{
+    colorCircle
   },
+  // directives: {
+  //   tooltip: VTooltip,
+  // },
   methods:{
     getStrapiMedia,
     markedParse: marked.parse
@@ -117,13 +138,13 @@ export default {
         height: "15rem",
         autoplay: true,
       },
-      tooltipClasses: [
-        "bg-newmob-red",
-        "text-white",
-        "text-xs",
-        "rounded-full",
-        "p-1 mr-1",
-      ],
+      // tooltipClasses: [
+      //   "bg-newmob-red",
+      //   "text-white",
+      //   "text-xs",
+      //   "rounded-full",
+      //   "p-1 mr-1",
+      // ],
     };
   },
 };

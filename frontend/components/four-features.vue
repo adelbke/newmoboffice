@@ -12,8 +12,8 @@
         class="flex flex-row w-full md:w-1/2 md:p-4 lg:p-6 p-3"
       >
         <div class="flex flex-col">
-          <div class="bg-white p-3 md:p-4 rounded-full">
-            <img class="w-14" :src="getStrapiMedia(feature.icone.url)" alt="" />
+          <div class="flex bg-white w-14 h-14 p-2 rounded-full">
+            <img class="w-full block m-auto" :src="getStrapiMedia(feature.icone.url)" alt="" />
           </div>
         </div>
         <div class="flex flex-col pl-2">

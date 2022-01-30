@@ -2,12 +2,12 @@
   <section class="flex flex-row flex-wrap p-8 max-screen-lg justify-evenly">
     <div class="w-full md:w-1/2 flex flex-col pb-4 md:pb-0">
       <div class="flex flex-row justify-center items-end mb-2">
-        <div class="w-7/12 mr-2 h-80 first-image"></div>
-        <div class="w-5/12 ml-2 h-4/5 second-image"></div>
+        <div class="w-7/12 mr-2 h-36 md:h-80 bg-image first-image"></div>
+        <div class="w-5/12 ml-2 h-4/5 bg-image second-image"></div>
       </div>
       <div class="flex flex-row justify-center items-start mt-2">
-        <div class="w-5/12 mr-2 h-4/5 second-image"></div>
-        <div class="w-7/12 ml-2 h-80 first-image"></div>
+        <div class="w-5/12 mr-2 h-4/5 bg-image third-image"></div>
+        <div class="w-7/12 ml-2 h-36 md:h-80 bg-image fourth-image"></div>
       </div>
     </div>
     <div class="w-full md:w-1/2 flex flex-col justify-center max-w-lg">
@@ -56,14 +56,22 @@ export default {
 </script>
 
 <style scoped>
-.first-image {
-  background: url("/Image1.png") no-repeat;
+.bg-image {
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
+.first-image {
+  background-image: url('/arc_beige.jpg');
+}
 .second-image {
-  background: url("/Image2.png") no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-image: url('/brown_desk.jpg');
+}
+.third-image {
+  background-image: url('/arc_marron.jpg');
+
+}
+.fourth-image {
+  background-image: url('/station_blanc.jpg');
 }
 </style>

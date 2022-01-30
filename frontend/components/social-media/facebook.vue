@@ -1,7 +1,7 @@
 <template>
   <div
     class="fb-page"
-    data-href="https://www.facebook.com/Newmoboffice-114119043302408"
+    data-href="http://www.facebook.com/Newmoboffice-114119043302408"
     data-tabs="timeline"
     data-width=""
     data-height=""
@@ -9,6 +9,7 @@
     data-adapt-container-width="true"
     data-hide-cover="false"
     data-show-facepile="false"
+    defer
   >
     <blockquote
       cite="https://www.facebook.com/Newmoboffice-114119043302408"
