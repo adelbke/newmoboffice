@@ -59,10 +59,10 @@
       >
     </div>
     <div
-      v-if="product.new"
       class="w-2/12 lg:w-1/12 flex flex-col justify-between items-center"
     >
       <div
+        v-if="product.new"
         class="
           rounded-full
           bg-newmob-red
