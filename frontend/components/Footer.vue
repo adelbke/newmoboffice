@@ -4,7 +4,7 @@
       <div
         class="w-1/3 h-64 md:h-96 overflow-hidden flex flex-row justify-center"
       >
-        <!-- <facebook></facebook> -->
+        <facebook></facebook>
       </div>
       <div class="w-2/3 h-64 md:h-96">
         <client-only>
@@ -46,13 +46,13 @@
         <div class="flex flex-row">
           <a
             v-if="!!$store.state.contactInfo.num_tel"
-            class="mr-1 md:mr-2"
+            class="mr-1 md:mr-2 hover:text-white"
             :href="`tel:${$store.state.contactInfo.num_tel}`"
           >
             <phone-icon></phone-icon>
           </a>
           <a
-            class="mr-1 md:mr-2"
+            class="mr-1 md:mr-2 hover:text-white"
             v-if="!!$store.state.contactInfo.page_facebook"
             :href="$store.state.contactInfo.page_facebook"
           >
@@ -61,6 +61,7 @@
           <a
             v-if="!!$store.state.contactInfo.page_insta"
             :href="$store.state.contactInfo.page_insta"
+            class="mr-1 md:mr-2 hover:text-white"
           >
             <instagram-logo></instagram-logo>
           </a>
