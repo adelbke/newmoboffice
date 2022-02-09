@@ -26,12 +26,12 @@
     <div class="max-w-screen-lg mx-auto p-4">
       <logo white></logo>
     </div>
-    <div class="flex flex-row justify-center p-4">
+    <div class="flex flex-row justify-center p-2 md:p-4">
       <NuxtLink
         class="
           text-gray-300
           hover:text-white hover:font-bold hover:underline
-          mx-2
+          mx-1 md:mx-2
           capitalize
         "
         v-for="link in links"
@@ -85,7 +85,7 @@ export default {
     facebookLogo,
     facebook,
     instagramLogo,
-    phoneIcon,
+    phoneIcon
   },
   data() {
     return {
