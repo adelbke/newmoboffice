@@ -1,12 +1,8 @@
 <template>
   <div class="flex flex-col items-center bg-newmob-red-100">
-    <div class="flex flex-row w-full py-2 md:py-4 px-2 md:px-4">
-      <div
-        class="w-1/3 h-64 md:h-96 overflow-hidden flex flex-row justify-center"
-      >
-        <facebook></facebook>
-      </div>
-      <div class="w-2/3 h-64 md:h-96">
+    <div class="flex flex-row flex-wrap w-full py-2 md:py-4 px-2 md:px-4">
+      
+      <div class="w-full md:w-2/3 mb-2 md:mb-0 h-64 md:h-96">
         <client-only>
           <iframe
             src="http://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3207.1724673939575!2d2.8469992153449493!3d36.50169868001116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128f0bcefa9476d7%3A0x327387a486e50ff3!2sNew%20Mob%20Office!5e0!3m2!1sen!2sdz!4v1643553056031!5m2!1sen!2sdz"
@@ -17,6 +13,13 @@
             loading="lazy"
             defer
           ></iframe>
+        </client-only>
+      </div>
+      <div
+        class="w-full md:w-1/3 h-64 md:h-96 overflow-hidden flex flex-row justify-center"
+      >
+        <client-only>
+          <facebook></facebook>
         </client-only>
       </div>
     </div>
