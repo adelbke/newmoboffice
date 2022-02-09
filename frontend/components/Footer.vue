@@ -85,8 +85,7 @@ export default {
     facebookLogo,
     facebook,
     instagramLogo,
-    phoneIcon,
-    maps
+    phoneIcon
   },
   data() {
     return {
