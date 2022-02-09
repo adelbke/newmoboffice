@@ -7,6 +7,18 @@
         class="flex flex-col items-center px-2"
       >
         <div
+          class="border-4 rounded-full"
+          :class="[{ 'border-newmob-red': color.id == selected }]"
+          @click="selectColor(color.id)"
+        >
+          <color-circle
+            :name="color.color.name"
+            :url="color.color.image.formats.thumbnail.url"
+          ></color-circle>
+          <input type="radio" name="color" v-model="selected" class="hidden" />
+          <div class="block sm:hidden" v-text="color.color.name"></div>
+        </div>
+        <!-- <div
           class="mr-2 border-4 rounded-full shadow-lg"
           :class="[{ ' border-newmob-red': color.id == selected }]"
           v-tooltip.top="{
@@ -28,20 +40,20 @@
           ></div>
           <input type="radio" name="color" v-model="selected" class="hidden" />
         </div>
-        <div class="block sm:hidden" v-text="color.color.name"></div>
+        <div class="block sm:hidden" v-text="color.color.name"></div> -->
       </div>
     </client-only>
   </div>
 </template>
 
 <script>
-import { VTooltip } from "v-tooltip";
+import colorCircle from './colors/color-circle.vue'
 import {
   getStrapiMedia
 } from '~/utils/medias'
 export default {
-  directives: {
-    tooltip: VTooltip,
+  components:{
+    colorCircle
   },
   methods:{
     getStrapiMedia,
@@ -59,14 +71,7 @@ export default {
   },
   data(){
     return {
-      selected: {},
-      tooltipClasses: [
-        "bg-newmob-red",
-        "text-white",
-        "text-sm",
-        "rounded-full",
-        "p-1 ml-1",
-      ]
+      selected: {}
     }
   },
   props:{

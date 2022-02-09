@@ -1,23 +1,26 @@
 <template>
-  <div
-    class="fb-page"
-    data-href="https://www.facebook.com/Newmoboffice-114119043302408"
-    data-tabs="timeline"
-    data-width=""
-    data-height=""
-    data-small-header="false"
-    data-adapt-container-width="true"
-    data-hide-cover="false"
-    data-show-facepile="false"
-  >
-    <blockquote
-      cite="https://www.facebook.com/Newmoboffice-114119043302408"
-      class="fb-xfbml-parse-ignore"
+  <div>
+    <div
+      class="fb-page"
+      data-href="http://www.facebook.com/Newmoboffice-114119043302408"
+      data-tabs="timeline"
+      data-width=""
+      data-height=""
+      data-small-header="false"
+      data-adapt-container-width="true"
+      data-hide-cover="false"
+      data-show-facepile="false"
+      defer
     >
-      <a href="https://www.facebook.com/Newmoboffice-114119043302408"
-        >Newmoboffice</a
+      <blockquote
+        cite="https://www.facebook.com/Newmoboffice-114119043302408"
+        class="fb-xfbml-parse-ignore"
       >
-    </blockquote>
+        <a href="https://www.facebook.com/Newmoboffice-114119043302408"
+          >Newmoboffice</a
+        >
+      </blockquote>
+    </div>
   </div>
 </template>
 

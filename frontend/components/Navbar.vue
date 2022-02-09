@@ -36,6 +36,7 @@
           <div class="flex items-center">
             <div class="hidden sm:block sm:mr-6">
               <div class="flex space-x-4">
+                <products-dropdown></products-dropdown>
                 <nav-item
                   v-for="item in navItemsLeft"
                   :key="item.name"
@@ -95,6 +96,7 @@
     >
       <div class="px-2 pt-2 pb-3 space-y-1">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+        <products-dropdown></products-dropdown>
         <nav-item
           v-for="item in navItems"
           :key="item.name"
@@ -114,6 +116,8 @@ import cart from '~/components/cart.vue'
 import closeIcon from '~/components/icons/close.vue'
 import searchIcon from '~/components/icons/search.vue'
 
+import productsDropdown from '~/components/navigation-components/products-dropdown.vue'
+
 import profileMenu from '~/components/auth/profile-menu.vue'
 import searchModal from '~/components/search-modal.vue'
 import logo from '~/components/icons/logo.vue'
@@ -121,6 +125,7 @@ import 'animate.css';
 
 export default {
   components:{
+    productsDropdown,
     logo,
     navItem,
     closeIcon,
@@ -139,10 +144,10 @@ export default {
       navMenuClosed: true,
       searchModalIsOpen: false,
       navItemsLeft: [
-        {
-          name: "produits",
-          page: "/products",
-        },
+        // {
+        //   name: "produits",
+        //   page: "/products",
+        // },
         {
           name: "catalogue",
           link: "https://heyzine.com/flip-book/6efcfd76d5.html",

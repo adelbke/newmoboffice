@@ -53,7 +53,7 @@ export default {
         defer: true,
         crossorigin: "anonymous",
         src: "https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v12.0&appId=257374912241023&autoLogAppEvents=1",
-        nonce: "4ix8sWb7"
+        nonce: "YnF9LQqm"
       }
     ]
   },
