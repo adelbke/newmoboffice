@@ -18,9 +18,9 @@
 import productItem from '~/components/product-item.vue'
 export default {
 async asyncData ({ params, $strapi }){
-    const category = await $strapi.findOne('categories',params.slug)
+    const categoryPromise = $strapi.findOne('categories',params.slug)
     const productsPromise = $strapi.find('products',[['category.slug',params.slug]])
-    const [category, products] = await Promise.all([ productsPromise])
+    const [category, products] = await Promise.all([categoryPromise, productsPromise])
     return { category, products }
   },
   components:{
