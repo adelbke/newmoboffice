@@ -1,7 +1,6 @@
 <template>
   <div class="flex flex-col items-center bg-newmob-red-100">
     <div class="flex flex-row flex-wrap w-full py-2 md:py-4 px-2 md:px-4">
-      
       <div class="w-full md:w-2/3 mb-2 md:mb-0 h-64 md:h-96">
         <client-only>
           <iframe
@@ -16,7 +15,15 @@
         </client-only>
       </div>
       <div
-        class="w-full md:w-1/3 h-64 md:h-96 overflow-hidden flex flex-row justify-center"
+        class="
+          w-full
+          md:w-1/3
+          h-64
+          md:h-96
+          overflow-hidden
+          flex flex-row
+          justify-center
+        "
       >
         <client-only>
           <facebook></facebook>
@@ -31,7 +38,8 @@
         class="
           text-gray-300
           hover:text-white hover:font-bold hover:underline
-          mx-1 md:mx-2
+          mx-1
+          md:mx-2
           capitalize
         "
         v-for="link in links"
@@ -47,13 +55,23 @@
       >
         <span class="text-md font-medium">&copy; Newmoboffice 2021 </span>
         <div class="flex flex-row">
-          <a
-            v-if="!!$store.state.contactInfo.num_tel"
-            class="mr-1 md:mr-2 hover:text-white"
-            :href="`tel:${$store.state.contactInfo.num_tel}`"
+          <template
+            v-for="number in numbers"
           >
-            <phone-icon></phone-icon>
-          </a>
+            <a
+              v-if="number"
+              class="mr-1 md:mr-2 hover:text-white"
+              :href="'tel:' + number"
+              :key="number"
+            >
+              <phone-icon
+                v-tooltip.top="{
+                  content: number,
+                  classes: 'bg-white p-1 text-gray-800 rounded-full text-newmob-red',
+                }"
+              ></phone-icon>
+            </a>
+          </template>
           <a
             class="mr-1 md:mr-2 hover:text-white"
             v-if="!!$store.state.contactInfo.page_facebook"
@@ -79,6 +97,8 @@ import facebookLogo from "~/components/icons/facebook.vue";
 import phoneIcon from "~/components/icons/phone.vue";
 import instagramLogo from '~/components/icons/instagram.vue'
 import facebook from '~/components/social-media/facebook.vue'
+import { VTooltip } from "v-tooltip";
+
 export default {
   components: {
     logo,
@@ -86,6 +106,9 @@ export default {
     facebook,
     instagramLogo,
     phoneIcon
+  },
+  directives: {
+    tooltip: VTooltip,
   },
   data() {
     return {
@@ -109,6 +132,11 @@ export default {
       ],
     };
   },
+  computed:{
+    numbers(){
+      return this.$store.state.contactInfo.num_tel.split(',')
+    }
+  }
 };
 </script>
 

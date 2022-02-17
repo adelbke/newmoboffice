@@ -159,8 +159,8 @@ export default {
           page: "/contact",
         },
         {
-          name: "Blog",
-          page: "/blog",
+          name: "Produits",
+          page: "/products",
         },
       ]
     };
