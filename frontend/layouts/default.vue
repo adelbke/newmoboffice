@@ -1,6 +1,7 @@
 <template>
   <div class="self-stretch">
     <div id="fb-root"></div>
+    <call-us></call-us>
     <div class="bg-newmob-red flex flex-row justify-end px-1 sm:px-2">
       <NuxtLink
         v-if="!loggedIn"
@@ -27,7 +28,7 @@
 <script>
 import NavBar from './../components/Navbar'
 import Footer from './../components/Footer'
-
+import callUs from './../components/social-media/call-us.vue'
 export default {
   mounted(){
     this.$store.dispatch('fetchCredentials')
@@ -35,6 +36,7 @@ export default {
   components: {
     NavBar,
     Footer,
+    callUs
   },
   computed:{
     loggedIn(){

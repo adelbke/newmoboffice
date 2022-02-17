@@ -17,10 +17,20 @@
 <script>
 import productItem from '~/components/product-item.vue'
 export default {
-async asyncData ({ params, $strapi }){
-    const categoryPromise = $strapi.findOne('categories',params.slug)
-    const productsPromise = $strapi.find('products',[['category.slug',params.slug]])
-    const [category, products] = await Promise.all([categoryPromise, productsPromise])
+async asyncData ({ params, $strapi, store }){
+    let categories = await $strapi.find('categories')
+    store.dispatch('category/setCategories', categories)
+
+    let category = categories.find((x) => x.slug === params.slug)
+    let filter = store.getters['category/childrenFilterBySlug'](params.slug)
+    const qs = require("qs");
+    let query = qs.stringify({
+      _where: {
+        _or:filter
+      }
+    })
+
+    const products = await $strapi.find('products', query)
     return { category, products }
   },
   components:{

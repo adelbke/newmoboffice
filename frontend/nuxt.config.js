@@ -54,6 +54,12 @@ export default {
         crossorigin: "anonymous",
         src: "https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v12.0&appId=257374912241023&autoLogAppEvents=1",
         nonce: "YnF9LQqm"
+      },
+      {
+        async: true,
+        crossorigin: '*',
+        charset: 'UTF-8',
+        src: 'https://embed.tawk.to/620e8f4d1ffac05b1d7a6cc6/1fs4dvimu'
       }
     ]
   },
