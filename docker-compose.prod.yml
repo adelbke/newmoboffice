@@ -29,8 +29,8 @@ services:
     #   - 3000:3000
     environment:
       - NUXT_HOST=0.0.0.0
-      - STRAPI_URL=http://beta.newmoboffice.com/api
-      - API_URL=http://beta.newmoboffice.com/api
+      - STRAPI_URL=http://newmoboffice.com/api
+      - API_URL=http://newmoboffice.com/api
       - API_LOCAL_URL=http://newmob_v2_prod_strapi_1:1337
     networks:
       - nginx_proxy
