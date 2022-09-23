@@ -1,5 +1,5 @@
 <template>
-  <v-popover trigger="hover" delay="100" :auto-hide="false" placement="bottom-end" class="flex">
+  <v-popover trigger="hover" :container="false" :auto-hide="false" placement="bottom-end">
     <nav-item
       :name="name"
       :page="link"
@@ -73,7 +73,7 @@ export default {
     },
     link(){
       if(this.id == null){
-        return '/products'
+        return '#'
       }else{
         return '/category/' + this.$store.getters['category/byId'](this.id).slug
       }
