@@ -15,11 +15,11 @@
     >
       Contactez nous
     </h2>
-    <div class="order-last sm:order-first flex flex-row flex-wrap">
-      <div class="w-full sm:w-1/2">
+    <div class="flex flex-row flex-wrap">
+      <div class="w-full sm:w-1/2 order-last md:order-none">
         <contact-form></contact-form>
       </div>
-      <div class="w-full pl-24 md:w-1/2">
+      <div class="w-full md:pl-24 sm:w-1/2 order-first md:order-none">
         <div class="flex mx-4 flex-row my-5">
           <svg
             class="w-16 text-newmob-red fill-current"
@@ -31,7 +31,7 @@
           </svg>
           <div class="ml-4">
             <h2 class="font-nunito text-2xl">E-mail</h2>
-            <span class="text-sm">contact@bmgraphic.com</span>
+            <span class="text-sm">conception@newmoboffice.com</span>
           </div>
         </div>
         <div class="flex mx-4 flex-row my-5">
@@ -53,7 +53,7 @@
             ><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg> -->
           <div class="ml-4">
             <h2 class="font-nunito text-2xl">Téléphone</h2>
-            <span class="text-sm">0560 89 16 49</span>
+            <a href="tel:+2130560788929" class="text-sm">0560 78 89 29</a>
           </div>
         </div>
         <div class="flex mx-4 flex-row my-5">

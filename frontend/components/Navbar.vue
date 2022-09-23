@@ -48,7 +48,15 @@
               </div>
             </div>
             <NuxtLink to="/">
-              <logo class="transition-transform duration-75 ease-in transform hover:scale-105"></logo>
+              <logo
+                class="
+                  transition-transform
+                  duration-75
+                  ease-in
+                  transform
+                  hover:scale-105
+                "
+              ></logo>
             </NuxtLink>
           </div>
           <div class="hidden sm:block sm:ml-6">
@@ -74,26 +82,54 @@
             sm:absolute sm:inset-auto sm:ml-6 sm:pr-0
           "
         >
-          <cart class="right-nav relative"></cart>
-          <!-- <button class="right-nav" v-if="!!$strapi.getToken()">
+          <cart class="right-nav text-gray-700 relative"></cart>
+          <!-- <button class="right-nav text-gray-700" v-if="!!$strapi.getToken()">
             <img class="" src="~assets/svg/user.svg" alt="" />
           </button> -->
-          <profile-menu class="right-nav"></profile-menu>
-          <button class="right-nav" @click="$modal.show('search-modal')">
+          <profile-menu class="right-nav text-gray-700"></profile-menu>
+          <button
+            class="right-nav text-gray-700"
+            @click="$modal.show('search-modal')"
+          >
             <search-icon></search-icon>
           </button>
 
           <!-- search Modal -->
           <search-modal></search-modal>
+          <a
+            class="
+              hidden
+              sm:flex
+              right-nav
+              text-newmob-red
+              hover:scale-110
+              transition-transform
+              transform-gpu
+            "
+            :href="$store.state.contactInfo.page_facebook"
+          >
+            <facebook-icon></facebook-icon>
+          </a>
+          <a
+            class="
+              hidden
+              sm:flex
+              right-nav
+              text-newmob-red
+              hover:scale-110
+              transition-transform
+              transform-gpu
+            "
+            :href="$store.state.contactInfo.page_insta"
+          >
+            <instagram-icon></instagram-icon>
+          </a>
         </div>
       </div>
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div
-      class="sm:hidden animate__animated animate__fadeInDown z-0"
-      :class="{ hidden: navMenuClosed }"
-    >
+    <div class="sm:hidden z-0" :class="{ hidden: navMenuClosed }">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
         <products-dropdown></products-dropdown>
@@ -121,8 +157,8 @@ import productsDropdown from '~/components/navigation-components/products-dropdo
 import profileMenu from '~/components/auth/profile-menu.vue'
 import searchModal from '~/components/search-modal.vue'
 import logo from '~/components/icons/logo.vue'
-import 'animate.css';
-
+import facebookIcon from '~/components/icons/facebook.vue'
+import instagramIcon from '~/components/icons/instagram.vue'
 export default {
   components:{
     productsDropdown,
@@ -132,7 +168,9 @@ export default {
     cart,
     searchModal,
     profileMenu,
-    searchIcon
+    searchIcon,
+    facebookIcon,
+    instagramIcon
   },
   methods:{
     toggleNav (){
@@ -175,6 +213,6 @@ export default {
 
 <style scoped>
 .right-nav {
-  @apply bg-white text-gray-700 px-1 sm:px-2 py-1 outline-none sm:mx-2;
+  @apply bg-white px-1 sm:px-2 py-1 outline-none sm:mx-1;
 }
 </style>
